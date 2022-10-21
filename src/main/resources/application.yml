@@ -1,0 +1,10 @@
+server:
+  port: 8000
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+
+mybatis:
+  mapper-locations:
+    - /mappers/*.xml
