@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>익명상점</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="/static/css/account/reset.css">
     <link rel="stylesheet" href="/static/css/header.css">
     <link rel="stylesheet" href="/static/css/account/register.css">
@@ -85,7 +86,7 @@
                                     <th><span class="important">아이디</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="text" id="memId" name="memId" data-pattern="gdMemberId">
+                                            <input class="account-inputs" type="text" id="memId" name="memId" data-pattern="gdMemberId">
                                         </div>
                                     </td>
                     
@@ -94,7 +95,7 @@
                                     <th><span class="important">비밀번호</span></th>
                                     <td class="member_password">
                                         <div class="member_warning">
-                                            <input type="password" id="newPassword" name="memPw" autocomplete="off" placeholder="">
+                                            <input class="account-inputs" type="password" id="newPassword" name="memPw" autocomplete="off" placeholder="">
                                         </div>
                                     </td>
                                 </tr>
@@ -102,7 +103,7 @@
                                     <th><span class="important">비밀번호 확인</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="password" class="check-id" name="memPwRe" autocomplete="off">
+                                            <input class="account-inputs check-id" type="password" name="memPwRe" autocomplete="off">
                                         </div>
                                     </td>
                                 </tr>
@@ -110,7 +111,7 @@
                                     <th><span class="important">이름</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="text" name="memNm" data-pattern="gdEngKor" value="" maxlength="30">
+                                            <input class="account-inputs" type="text" name="memNm" data-pattern="gdEngKor" value="" maxlength="30">
                                         </div>
                                     </td>
                                 </tr>
@@ -118,7 +119,7 @@
                                     <th><span class="important">이메일</span></th>
                                     <td class="member_email">
                                         <div class="member_warning">
-                                            <input type="text" name="email" id="email" value="" tabindex="-1">
+                                            <input class="account-inputs" type="text" name="email" id="email" value="" tabindex="-1">
                                             <select id="emailDomain" name="emailDomain" class="chosen-select";>
                                                 <option value="self">직접입력</option>
                                                 <option value="naver.com">naver.com</option>
@@ -141,7 +142,7 @@
                                     <th><span>휴대폰번호</span></th>
                                     <td class="member_address">
                                         <div class="address_postcode">
-                                            <input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
+                                            <input class="account-inputs" type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
                                         </div>
                                         <div class="form_element">
                                             <input type="checkbox" id="smsFl" name="smsFl" value="y">
@@ -153,7 +154,7 @@
                                     <th><span>전화번호</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="text" id="phone" name="phone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
+                                            <input class="account-inputs" type="text" id="phone" name="phone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
                                         </div>
                                     </td>
                                 </tr>
@@ -170,7 +171,7 @@
                                                 <input type="text" name="address" readonly="readonly" value="">
                                             </div>
                                             <div class="member_warning js_address_sub">
-                                                <input type="text" name="addressSub" value="">
+                                                <input class="account-inputs" type="text" name="addressSub" value="">
                                             </div>
                                         </div>
                                     </td>
@@ -193,5 +194,6 @@
     
         </div>
     </div>
+    <script src="/static/js/account/register.js"></script>
 </body>
 </html>
