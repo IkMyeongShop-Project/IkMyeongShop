@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,6 @@
             </div>
             <!-- //member_tit -->
             <div class="member_cont">
-                <form id="formJoin" name="formJoin" action="https://www.ikmyeongshop.com/member/member_ps.php" method="post" novalidate="novalidate">
                     <div class="base_info_box">
                         <h3>기본정보</h3>
                         <span class="important">표시는 반드시 입력하셔야 하는 항목입니다.</span>
@@ -85,7 +84,7 @@
                                     <th><span class="important">아이디</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="text" id="memId" name="memId" class="account-input" data-pattern="gdMemberId">
+                                            <input type="text" id="memId" name="memId" class="account-inputs" data-pattern="gdMemberId">
                                         </div>
                                     </td>
                     
@@ -94,7 +93,7 @@
                                     <th><span class="important">비밀번호</span></th>
                                     <td class="member_password">
                                         <div class="member_warning">
-                                            <input type="password" id="newPassword" name="memPw" class="account-input" autocomplete="off" placeholder="">
+                                            <input type="password" id="newPassword" class="account-inputs" placeholder="">
                                         </div>
                                     </td>
                                 </tr>
@@ -102,7 +101,7 @@
                                     <th><span class="important">비밀번호 확인</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="password" class="check-id" name="memPwRe" class="account-input" autocomplete="off">
+                                            <input type="password" class="account-inputs" autocomplete="off">
                                         </div>
                                     </td>
                                 </tr>
@@ -110,7 +109,7 @@
                                     <th><span class="important">이름</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="text" name="memNm" class="account-input" data-pattern="gdEngKor" value="" maxlength="30">
+                                            <input type="text" class="account-inputs" data-pattern="gdEngKor" value="" maxlength="30">
                                         </div>
                                     </td>
                                 </tr>
@@ -118,7 +117,7 @@
                                     <th><span class="important">이메일</span></th>
                                     <td class="member_email">
                                         <div class="member_warning">
-                                            <input type="text" name="email" id="email" class="account-input" value="" tabindex="-1">
+                                            <input type="text" name="email" id="email" class="account-inputs" value="" tabindex="-1">
                                             <select id="emailDomain" name="emailDomain" class="chosen-select";>
                                                 <option value="self">직접입력</option>
                                                 <option value="naver.com">naver.com</option>
@@ -132,7 +131,7 @@
                                         </div>
                                         <div class="member_warning js_email"></div>
                                         <div class="form_element">
-                                            <input type="checkbox" id="maillingFl" name="maillingFl" value="y">
+                                            <input type="checkbox" id="maillingFl" value="y">
                                             <label for="maillingFl" class="check_s ">정보/이벤트 메일 수신에 동의합니다.</label>
                                         </div>
                                     </td>
@@ -182,15 +181,14 @@
                         <button type="button" id="btnCancel" class="btn_member_cancel">취소</button>
                         <button type="button" class="btn_comfirm js_btn_join" value="회원가입">회원가입</button>
                     </div>
-                </form>
             </div>
+            <script src="/static/js/account/register.js"></script>
         </div>
     </div>
         </div>
         </div>
         </div>
         <div id="footer_wrap">
-    
         </div>
     </div>
 </body>

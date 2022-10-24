@@ -15,10 +15,11 @@ public class AccountController {
                         @RequestParam @Nullable String error) {
         model.addAttribute("username", username == null? "" : username);
         model.addAttribute("error", error == null? "" : error);
-        return "/account/login";
+        return "account/login";
     }
 
     @GetMapping("/account/register")
-    public String register() {return "/account/register";}
+    public String register() {
+        return "account/register";}
 
 }

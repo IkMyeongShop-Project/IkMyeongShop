@@ -1,14 +1,15 @@
 const btnComfirm = document.querySelector(".btn_comfirm");
 
 btnComfirm.onclick = () => {
-    const accountInpus = document.querySelectorAll(".caaount_inputs");
+    const accountInpus = document.querySelectorAll(".account-input");
 
     let user = {
         userName: accountInpus[0].value,
         password: accountInpus[1].value,
         passwordChk: accountInpus[2].value,
         name: accountInpus[3].value,
-        email: accountInpus[4].value
+        email: accountInpus[4].value,
+        address: accountInpus[5].value
     }
 
     $.ajax({
