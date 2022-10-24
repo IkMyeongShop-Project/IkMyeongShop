@@ -44,7 +44,7 @@ public class RegisterReqDto {
         return User.builder()
                 .username(userName)
                 .password(new BCryptPasswordEncoder().encode(password))
-                .passwordChk(new BCryptPasswordEncoder().encode(passwordChk))
+                .passwordChk(passwordChk)
                 .name(firstName + lastName)
                 .email(email)
                 .role_id(1)

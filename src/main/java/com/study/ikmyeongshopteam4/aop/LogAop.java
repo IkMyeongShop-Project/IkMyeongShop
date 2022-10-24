@@ -15,10 +15,10 @@ public class LogAop {
     @Pointcut("execution(* com.study.ikmyeongshopteam4.api.*Api.*(..))")
     private void pointCut() {}
 
-    @Pointcut("annotation(com.study.ikmyeongshopteam4.aop.annotation.LogAspect)")
-    private void accnotationPointCut() {}
+    @Pointcut("@annotation(com.study.ikmyeongshopteam4.aop.annotation.LogAspect)")
+    private void annotationPointCut() {}
 
-    @Around("accnotationPointCut()")
+    @Around("annotationPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
         String className = codeSignature.getDeclaringTypeName();

@@ -18,6 +18,8 @@ public class User {
     private String passwordChk;
     private String name;
     private String email;
+    private String phone;
+    private String address;
     private String provider;
     private int role_id;
     private LocalDateTime create_date;
