@@ -9,7 +9,8 @@ btnComfirm.onclick = () => {
         passwordChk: accountInpus[2].value,
         name: accountInpus[3].value,
         email: accountInpus[4].value,
-        address: accountInpus[5].value
+        phone: accountInpus[5].value,
+        address: accountInpus[6].value
     }
 
     $.ajax({
@@ -47,3 +48,4 @@ function loadErrorMassage(errors) {
     errorList.classList.remove("errors-invisible");
 
 }
+
