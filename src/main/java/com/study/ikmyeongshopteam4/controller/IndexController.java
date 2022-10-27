@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ControllerTest {
+public class IndexController {
 
-    @GetMapping("/account/login")
-    public String login(){
-        return "account/login";
+    @GetMapping(value = {"/", "/index", ""})
+    public String index() {
+        return "index";
     }
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<!--    <script src="https://code.jquery.com/jquery-latest.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="/static/css/account/reset.css">
     <link rel="stylesheet" href="/static/css/account/login.css">
 </head>
@@ -48,7 +48,7 @@
         </header>
         <section id="account">
             <div class="location_cont">
-                    <em><a class="local_home" href="#">HOME</a> > 로그인</em>
+                    <em><a class="local_home" href="/">HOME</a> > 로그인</em>
             </div>
             <div class="sub_content">
                 <div class="content_box">
@@ -62,8 +62,8 @@
                                     <h3>회원 로그인</h3>
                                     <div class="login_input_sec">
                                         <div>
-                                            <input class="account_input" type="text" id="username" name="username" placeholder="아이디" required="true" aria-required="true">
-                                            <input class="account_input" type="password" id="loginPwd" name="loginPwd" placeholder="비밀번호" required="true" aria-required="true">
+                                            <input class="account_input" type="text" name="username" placeholder="아이디" required="true" aria-required="true">
+                                            <input class="account_input" type="password" name="password" placeholder="비밀번호" required="true" aria-required="true">
                                         </div>
                                         <button type="submit" class="login-button">로그인</button>
                                     </div>
@@ -74,6 +74,7 @@
                                         </span>
                                     </div>
                                 </div>
+                            </form>
                                 <div class="member_sns_login">
                                     <a class="btn_facebook_login" href="#">
                                         <img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/etc/login_facebook.png" alt="Facebook">
@@ -87,17 +88,17 @@
                                 <div class="btn_login_box">
                                     <ul>
                                         <li>
-                                            <button class="btn_member_join">회원가입</button>
+                                            <button class="btn-member-join" type="button">회원가입</button>
                                         </li>
                                         <li>
-                                            <button class="btn_find_id">아아디 찾기</button>
+                                            <button class="btn_find_id" type="button">아아디 찾기</button>
                                         </li>
                                         <li>
-                                            <button class="btn_find_pwd">비밀번호 찾기</button>
+                                            <button class="btn_find_pwd" type="button">비밀번호 찾기</button>
                                         </li>
                                     </ul>
                                 </div>
-                            </form>
+
                             <!-- <form id="formOrderLogin" method="post">
                                 <div class="nonmember_order_box">
                                     <h3>비회원 주문조회 하기</h3>
