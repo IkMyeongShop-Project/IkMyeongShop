@@ -28,3 +28,4 @@
 //    $.ajax(ajaxOption);
 //}
 
+const registerForWardButton = document.querySelectorAll(".")
