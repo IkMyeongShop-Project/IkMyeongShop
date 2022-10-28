@@ -96,13 +96,13 @@ class InputData {
         // JSON.stringify() - js 객체를 JSON 문자열로 변환
         // JSON.parse()     - JSOn 문자열을 js 객체로 변환
         dataType: "json",               
-        success: (response) => {        
+        success: (response, textStatus, request) => {        
           console.log(response);
+          const successURI = request.getResponseHeader("Location");
+          location.replace(successURI + "?username=" + response.data); // Location 지정한 곳 + response.data까지
         },
         error: (error) => {
           console.log(error.responseJSON.data);
-          console.log(Object.keys(error.responseJSON.data));
-          console.log(Object.values(error.responseJSON.data));
           errorMessage.getInstance().getErrorMessage(error.responseJSON.data);
         }
       });

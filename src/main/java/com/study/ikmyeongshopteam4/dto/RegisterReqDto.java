@@ -1,5 +1,6 @@
 package com.study.ikmyeongshopteam4.dto;
 
+import com.study.ikmyeongshopteam4.domain.User;
 import com.study.ikmyeongshopteam4.dto.validation.ValidationGroups;
 import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 
 @Data
 public class RegisterReqDto {
@@ -18,14 +20,12 @@ public class RegisterReqDto {
 
     @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
     @Size(min = 10, max = 16, message = "최소 10자, 최대 16자 이하 입력해 주세요.", groups = ValidationGroups.SizeGroup.class)
-    @Pattern(regexp = "^(([a-z]+[A-Z]+)|([a-z]+[0-9]+)|([a-z]+[~!@#$%^&*_]+)|([A-Z]+[0-9]+)|([A-Z]+[~!@#$%^&*_]+)|([0-9]+[~!@#$%^&*_]+))[a-zA-Z\\d-~!@#$%^&*_]*$",
-            message = "사용불가! 영문대/소문자, 숫자, 특수문자 중 2가지 이상 조합하세요.", groups = ValidationGroups.PatternCheckGroup.class)
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함하여야 합니다.", groups = ValidationGroups.PatternCheckGroup.class)
     private String password;
 
     @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
     @Size(min = 10, max = 16, message = "최소 10자, 최대 16자 이하 입력해 주세요.", groups = ValidationGroups.SizeGroup.class)
-    @Pattern(regexp = "^(([a-z]+[A-Z]+)|([a-z]+[0-9]+)|([a-z]+[~!@#$%^&*_]+)|([A-Z]+[0-9]+)|([A-Z]+[~!@#$%^&*_]+)|([0-9]+[~!@#$%^&*_]+))[a-zA-Z\\d-~!@#$%^&*_]*$",
-            message = "사용불가! 영문대/소문자, 숫자, 특수문자 중 2가지 이상 조합하세요.", groups = ValidationGroups.PatternCheckGroup.class)
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함하여야 합니다.", groups = ValidationGroups.PatternCheckGroup.class)
     private String passwordChk;
 
     @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
@@ -38,16 +38,23 @@ public class RegisterReqDto {
     @Email(message = "이메일을 정확하게 입력해 주세요.", groups = ValidationGroups.PatternCheckGroup.class)
     private String email;
 
-    // null 허용
-    private int cellPhone;
     private int phone;
     private int postCode;
     private String address;
     private String addressSub;
 
 
-//    public User toEntity() {
-//        return User.builder()
-//                .build();
-//    }
+    public User toEntity() {
+        return User.builder()
+                .userName(userName)
+                .password(new BCryptPasswordEncoder().encode(password))
+                .name(name)
+                .email(email)
+                .phone(phone)
+                .postcode(postCode)
+                .address(address)
+                .addressSub(addressSub)
+                .role_id(1)
+                .build();
+    }
 }

@@ -15,4 +15,10 @@ public class AccountController {
     public String register() {
         return "account/register";
     }
+
+    @GetMapping("/account/register_ok")
+    public String registerOk() {
+        return "account/register_ok";
+    }
+
 }
