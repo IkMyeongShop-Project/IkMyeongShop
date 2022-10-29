@@ -71,14 +71,15 @@
             <!-- //member_tit -->
             <div class="member_cont">
                     <div class="base_info_box">
+                        <div class="errors errors-invisible">
+                            <ul class="error-msgs">
+
+                            </ul>
+                        </div>
                         <h3>기본정보</h3>
                         <span class="important">표시는 반드시 입력하셔야 하는 항목입니다.</span>
                     <div class="base_info_sec">
                         <table>
-                            <colgroup>
-                                <col width="25%">
-                                <col width="75%">
-                            </colgroup>
                             <tbody>
                                 <tr>
                                     <th><span class="important">아이디</span></th>
@@ -140,7 +141,7 @@
                                     <th><span>휴대폰번호</span></th>
                                     <td class="member_address">
                                         <div class="address_postcode">
-                                            <input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
+                                            <input type="text" id="cellPhone" name="cellPhone" class="account-inputs" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
                                         </div>
                                         <div class="form_element">
                                             <input type="checkbox" id="smsFl" name="smsFl" value="y">
@@ -152,7 +153,7 @@
                                     <th><span>전화번호</span></th>
                                     <td>
                                         <div class="member_warning">
-                                            <input type="text" id="phone" name="phone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
+                                            <input type="text" id="phone" name="phone" maxlength="12" class="account-inputs" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
                                         </div>
                                     </td>
                                 </tr>
@@ -160,16 +161,15 @@
                                     <th><span>주소</span></th>
                                     <td class="member_address">
                                         <div class="address_postcode">
-                                            <input type="text" name="zonecode" readonly="readonly" value="">
+                                            <input type="text" id="postcode" class="account-inputs" readonly="readonly" placeholder="우편번호">
                                             <button type="button" id="btnPostcode" class="btn_post_search">우편번호검색</button>
-                                            <input type="hidden" name="zipcode" value="">
                                         </div>
                                         <div class="address_input">
                                             <div class="member_warning">
-                                                <input type="text" name="address" readonly="readonly" value="">
+                                                <input type="text" id="address" class="account-inputs" readonly="readonly" placeholder="주소">
                                             </div>
                                             <div class="member_warning js_address_sub">
-                                                <input type="text" name="addressSub" value="">
+                                                <input type="text"  id="detailAddress" class="account-inputs" placeholder="상세주소">
                                             </div>
                                         </div>
                                     </td>
@@ -181,7 +181,8 @@
                         <button type="button" id="btnCancel" class="btn_member_cancel">취소</button>
                         <button type="button" class="btn_comfirm js_btn_join" value="회원가입">회원가입</button>
                     </div>
-            </div>
+                </div>
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script src="/static/js/account/register.js"></script>
         </div>
     </div>
@@ -191,5 +192,6 @@
         <div id="footer_wrap">
         </div>
     </div>
+
 </body>
 </html>

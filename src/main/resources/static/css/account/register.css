@@ -118,6 +118,16 @@
           no-repeat 0 center;
 }
 
+.errors {
+  margin-bottom: 15px;
+  color: #e74c3c;
+  text-align: center;
+}
+
+.errors-invisible {
+  display: none;
+}
+
 .base_info_box > span{
   display: block;
   float: right;

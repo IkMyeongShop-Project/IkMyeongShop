@@ -19,7 +19,10 @@ public class User {
     private String name;
     private String email;
     private String phone;
+    private String tel;
+    private String postcode;
     private String address;
+    private String addresssub;
     private String provider;
     private int role_id;
     private LocalDateTime create_date;
