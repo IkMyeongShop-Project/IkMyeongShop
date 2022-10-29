@@ -13,7 +13,7 @@
 
     <resultMap id="user" type="com.study.ikmyeongshopteam4.domain.User">
         <result property="id" column="id"/>
-        <result property="userName" column="userName"/>
+        <result property="userName" column="username"/>
         <result property="password" column="password"/>
         <result property="name" column="name"/>
         <result property="email" column="email"/>
@@ -31,7 +31,7 @@
     <select id="findUserByUserName" parameterType="String" resultMap="user"> <!-- 조인할 땐, resultMap 사용 -->
         select
             um.id,
-            um.userName,
+            um.username,
             um.password,
             um.name,
             um.provider,
@@ -43,7 +43,7 @@
             user_mst um
             left outer join role_mst rm on(rm.id = um.role_id)
         where
-            um.userName = #{userName}
+            um.username = #{userName}
 
     </select>
     <!-- insert, update, delete 는 row의 갯수라서 int // select만 rseultMap Type -->
