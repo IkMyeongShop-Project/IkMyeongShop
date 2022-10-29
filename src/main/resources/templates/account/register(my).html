@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/account/reset.css">
+    <link rel="stylesheet" href="/static/css/account/register.css">
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+            <div id="top">
+                <div class="sns">
+                    <ul>
+                        <li><a href="https://www.facebook.com/ikmyeongshop" target="_blank"><img src="/static/img/header/top_btn_sns1.png" alt=""></a></li>
+                        <li><a href="https://www.instagram.com/anonymous_ikmsang/" target="_blank"><img src="/static/img/header/top_btn_sns2.png" alt=""></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/account/login">로그인</a></li>
+                        <li><a href="/account/register">회원가입</a></li>
+                        <li><a href="/order/cart">장바구니0</a></li>
+                        <li><a href="/mypage/index">마이페이지</a></li>
+                        <li><a href="#">고객센터</a></li>
+                        <li><a href="#"><img src="/static/img/header/top_btn_search.png" alt=""></a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <a href="#"><img src="/static/img/header/event_left.png" alt=""></a>
+                    <a href="/main/index"><img src="/static/img/header/logo.png" alt=""></a>
+                    <a href="#"><img src="/static/img/header/event_right.png" alt=""></a>
+                </div>
+                <nav  class="nav">
+                    <ul>
+                        <li class="nav1"><a href="/goods/goods_list">DOLL</a></li>
+                        <li class="nav1"><a href="#">FIGURE & TOY</a></li>
+                        <li><a href="#">FANCY</a></li>
+                        <li><a href="#">ACCESSORY</a></li>
+                        <li><a href="#">LIVING</a></li>
+                        <li><a href="#">KITCHEN & BATHROOM</a></li>
+                        <li><a href="#">MOBILE</a></li>
+                        <li><a href="#">깨꾹이</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section id="account">
+            <div class="location_cont">
+                    <em><a class="local_home" href="#">HOME</a> > 로그인</em>
+            </div>
+           <div class="content_box">
+                <div class="join_base_wrap">
+                    <div class="member_tit">
+                        <h2>회원가입</h2>
+                        <ol>
+                            <li>
+                                <span>01</span>
+                                약관동의
+                                <span>
+                                    <img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/member/icon_join_step_off.png" alt="">
+                                </span>
+                            </li>
+                            <li>
+                                <span>02</span>
+                                정보입력
+                                <span>
+                                    <img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/member/icon_join_step_off.png" alt="">
+                                </span>
+                            </li>
+                            <li>
+                                <span>03</span>
+                                가입완료
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="member_cont">
+                        <form action="formJoin">
+                            <div class="base_info_box">
+                                <div class="test">
+                                    <h3>기본정보</h3>
+                                    <span class="important">표시는 반드시 입력하셔야 하는 항목입니다.</span>
+                                </div>
+                                <div class="base_info_sec">
+                                    <table>
+                                        <colgroup>
+                                            <col width="25%">
+                                            <col width="75%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <span class="important">아이디</span>
+                                                </th>
+                                                <td>
+                                                    <div class="member_warning">
+                                                        <input class="caaount_inputs" type="text" id="userName" name="userName" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <span class="important">비밀번호</span>
+                                                </th>
+                                                <td class="member_password">
+                                                    <div class="member_warning">
+                                                        <input class="caaount_inputs" type="password" id="password" name="password" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <span class="important">비밀번호 확인</span>
+                                                </th>
+                                                <td>
+                                                    <div class="member_warning">
+                                                        <input class="caaount_inputs" type="password" id="passwordChk" name="passwordChk">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <span class="important">이름</span>
+                                                </th>
+                                                <td>
+                                                    <div class="member_warning">
+                                                        <input class="caaount_inputs" type="text" id="name" name="name" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <span class="important">이메일</span>
+                                                </th>
+                                                <td>
+                                                    <div class="member_warning">
+                                                        <input class="caaount_inputs" type="email" id="email" name="email" required>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="errors errors-invisible">
+                            <ul class="error-msgs">
+                               
+                            </ul>
+                        </div>
+                        <div class="btn_center_box">
+                            <button type="button" id="btnCancel" class="btnCancel">취소</button>
+                            <button type="button" class="btn_comfirm" value="회원가입">회원가입</button>
+                        </div>
+                    </div>
+                </div>
+           </div>
+          
+        </section>
+    </div>
+   <script src="/static/js/account/register.js"></script>
+</body>
+</html>
