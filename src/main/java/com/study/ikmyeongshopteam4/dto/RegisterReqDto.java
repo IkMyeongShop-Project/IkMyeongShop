@@ -36,8 +36,16 @@ public class RegisterReqDto {
     @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함해야합니다", groups = ValidationGroups.PatternCheckGroup.class)
     private String passwordChk;
 
-    @Pattern(regexp = )
+
     private String phone;
+
+    private String tel;
+
+    private String postcode;
+
+    private String address;
+
+    private String addresssub;
 
     public User toEntity() {
         return User.builder()
@@ -46,6 +54,11 @@ public class RegisterReqDto {
                 .passwordChk(passwordChk)
                 .name(name)
                 .email(email)
+                .phone(phone)
+                .tel(tel)
+                .postcode(postcode)
+                .address(address)
+                .addresssub(addresssub)
                 .role_id(1)
                 .build();
     }
