@@ -1,18 +1,33 @@
 package com.study.ikmyeongshopteam4.api;
 
+import com.study.ikmyeongshopteam4.aop.annotation.LogAspect;
+import com.study.ikmyeongshopteam4.dto.CMRespDto;
 import com.study.ikmyeongshopteam4.dto.RegisterReqDto;
-import org.springframework.http.HttpStatus;
+import com.study.ikmyeongshopteam4.dto.validation.ValidationSequence;
+import com.study.ikmyeongshopteam4.service.AccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 
 @RequestMapping("/api/account")
 @RestController
+@RequiredArgsConstructor
+
 public class AccountApi {
 
+    private final AccountService accountService;
+
+    @LogAspect
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterReqDto registerReqDto){
-        System.out.println("회원가입 요청 데이터: " + registerReqDto);
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto,
+                                      BindingResult bindingResult) throws Exception {
+
+        accountService.register(registerReqDto);
+
+        return ResponseEntity.created(null).body(new CMRespDto<>("회원가입 성공", registerReqDto));
     }
 
 }

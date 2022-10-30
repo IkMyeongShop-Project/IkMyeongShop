@@ -1,7 +1,7 @@
-const btnComfirm = document.querySelector(".btn_comfirm");
+const btnConfirm = document.querySelector(".btn_confirm");
 
-btnComfirm.onclick = () => {
-    const accountInputs = document.querySelectorAll(".account-inputs");
+btnConfirm.onclick = () => {
+    const accountInputs = document.querySelectorAll(".account-input");
 
     let user = {
         username: accountInputs[0].value,
@@ -27,7 +27,15 @@ btnComfirm.onclick = () => {
         },
         error: (error) => {
             alert("회원가입 요청 실패");
-            console.log(error);
+            console.log(error.responseJSON.data);
         }
+    }); 
+}
+
+function loadErrorMessage(errors){
+    
+    const errorsArray = Object.values(errors);
+    errorsArray.forEach(error => {
+        alert(error);
     });
 }

@@ -1,4 +1,4 @@
-#container{
+main{
   width: 1200px;
   margin: 0 auto;
   border-top: none;
@@ -357,7 +357,7 @@ option {
   margin-left: 6px;
 }
 
-.btn_comfirm {
+.btn_confirm {
   width: 150px;
   height: 45px;
   margin: 0;

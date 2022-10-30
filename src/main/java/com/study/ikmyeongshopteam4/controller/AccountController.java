@@ -1,6 +1,5 @@
-package com.study.ikmyeongshopteam4.controller.account;
+package com.study.ikmyeongshopteam4.controller;
 
-import com.study.ikmyeongshopteam4.dto.RegisterReqDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
