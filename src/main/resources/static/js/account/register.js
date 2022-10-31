@@ -9,7 +9,13 @@ btnComfirm.onclick = () => {
         userName: accountInputs[0].value,
         password: accountInputs[1].value,
         passwordChk: accountInputs[2].value,
-        name: accountInputs[3].value
+        name: accountInputs[3].value,
+        email: accountInputs[4].value,
+        phone: accountInputs[5].value,
+        postcode: accountInputs[6].value,
+        address: accountInputs[7].value,
+        addresssub: accountInputs[8].value,
+
     }
     console.log(user);
 

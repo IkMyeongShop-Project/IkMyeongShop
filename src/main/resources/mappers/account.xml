@@ -6,7 +6,7 @@
 <mapper namespace="com.study.ikmyeongshopteam4.repository.AccountRepository">
     <resultMap id="role" type="com.study.ikmyeongshopteam4.domain.Role">
         <result property="id" column="id"/>
-        <result property="name" column="role_id"/>
+        <result property="name" column="role_name"/>
         <result property="create_date" column="create_date"/>
         <result property="update_date" column="update_date"/>
     </resultMap>
@@ -15,10 +15,10 @@
         <result property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
+        <result property="passwordChk" column="passwordChk"/>
         <result property="name" column="name"/>
         <result property="email" column="email"/>
         <result property="phone" column="phone"/>
-        <result property="tel" column="tel"/>
         <result property="postcode" column="postcode"/>
         <result property="address" column="address"/>
         <result property="addresssub" column="addresssub"/>
@@ -34,23 +34,23 @@
             um.id,
             um.username,
             um.password,
+            um.passwordChk,
             um.name,
             um.email,
             um.phone,
-            um.tel,
             um.postcode,
             um.address,
             um.addresssub,
             um.provider,
             um.role_id,
-            rm.name,
+            rm.name as role_name,
             um.create_date,
             um.update_date
         from
             user_mst um
             left outer join role_mst rm on(rm.id = um.role_id)
         where
-            um.email = #{email}
+        um.username = #{username}
 
     </select>
 
@@ -61,8 +61,13 @@
         0,
         #{username},
         #{password},
+        #{passwordChk},
         #{name},
         #{email},
+        #{phone},
+        #{postcode},
+        #{address},
+        #{addresssub},
         #{provider},
         #{role_id},
         now(),

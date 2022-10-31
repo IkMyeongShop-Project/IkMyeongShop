@@ -36,12 +36,11 @@ public class RegisterReqDto {
     @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함해야합니다", groups = ValidationGroups.PatternCheckGroup.class)
     private String passwordChk;
 
+//    @NotBlank(message = "핸드폰 번호를 비울 수 없습니다.", groups = ValidationGroups.NotBlankGroup.class)
+//    @Size(min = 10, max = 12, message = "핸드폰 번호는 최대 12자리 까지 입력해주세요", groups = ValidationGroups.SizeGroup.class)
+    private int phone;
 
-    private String phone;
-
-    private String tel;
-
-    private String postcode;
+    private int postcode;
 
     private String address;
 
@@ -50,12 +49,11 @@ public class RegisterReqDto {
     public User toEntity() {
         return User.builder()
                 .username(userName)
-                .password(new BCryptPasswordEncoder().encode(password))
-                .passwordChk(passwordChk)
+                .password(password)
+                .passwordChk(new BCryptPasswordEncoder().encode(passwordChk))
                 .name(name)
                 .email(email)
                 .phone(phone)
-                .tel(tel)
                 .postcode(postcode)
                 .address(address)
                 .addresssub(addresssub)

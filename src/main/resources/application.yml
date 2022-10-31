@@ -12,7 +12,7 @@ spring:
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://shc-db.cgogdkhaohzu.ap-northeast-2.rds.amazonaws.com/stussy-20220930
+    url: jdbc:mariadb://cyc-db1.cwlppyimbsxu.ap-northeast-2.rds.amazonaws.com:3306/Ikmyeong-shop
     username: admin
     password: 1q2w3e4r
 
