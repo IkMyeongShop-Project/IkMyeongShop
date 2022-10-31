@@ -2,6 +2,7 @@ package com.study.ikmyeongshopteam4.service.admin;
 
 import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
 import com.study.ikmyeongshopteam4.dto.admin.ProductRegisterReqDto;
+import com.study.ikmyeongshopteam4.exception.CustomInternalServerErrorException;
 import com.study.ikmyeongshopteam4.repository.admin.ProductManagementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class ProductManagementServiceImpl implements ProductManagementService{
 
     @Override
     public void registerMst(ProductRegisterReqDto productRegisterReqDto) throws Exception {
+        if(productManagementRepository.saveProductMst(productRegisterReqDto.toEntity()) == 0) {
+            throw new CustomInternalServerErrorException("상품 등록 실패");
+        };
 
     }
 }

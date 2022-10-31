@@ -7,7 +7,7 @@
 <mapper namespace="com.study.ikmyeongshopteam4.repository.admin.ProductManagementRepository">
     <resultMap id="product_category" type="com.study.ikmyeongshopteam4.domain.ProductCategory">
         <result property="category_id" column="id"/>
-        <result property="category_name" column="role_name"/>
+        <result property="category_name" column="category_name"/>
     </resultMap>
 
     <select id="getCategoryList" resultMap="product_category">
@@ -16,5 +16,20 @@
             category_name
         from
             pdt_category_mst
+        order by
+            id
     </select>
+
+    <insert id="saveProductMst" parameterType="com.study.ikmyeongshopteam4.domain.Product">
+        insert into
+            pdt_mst
+        values(
+        0,
+        #{pdt_name},
+        #{category_id},
+        #{pdt_price},
+        now(),
+        now()
+        )
+    </insert>
 </mapper>

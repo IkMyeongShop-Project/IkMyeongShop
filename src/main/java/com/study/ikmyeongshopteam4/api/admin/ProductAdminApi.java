@@ -23,11 +23,14 @@ public class ProductAdminApi {
     @ValidAspect
     @PostMapping("/product")
     public ResponseEntity<?> registerProductMst(@Validated @RequestBody ProductRegisterReqDto productRegisterReqDto, BindingResult bindingResult) throws Exception {
-        return ResponseEntity.created(null).body(new CMRespDto<>("Register Successfully", null));
+        productManagementService.registerMst(productRegisterReqDto);
+        return ResponseEntity.created(null).body(new CMRespDto<>("Register Successfully", true));
     }
 
     @GetMapping("/product/category")
-    public ResponseEntity<?> getCategoryList() throws Exception {
-        return ResponseEntity.ok().body(new CMRespDto<>("get Successfully", productManagementService.getCategoryList()));
+    public ResponseEntity<?>getCategoryList() throws Exception{
+        return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully",productManagementService.getCategoryList()));
     }
+
+
 }
