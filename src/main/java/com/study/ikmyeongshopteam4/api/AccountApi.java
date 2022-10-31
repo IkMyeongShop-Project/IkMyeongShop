@@ -28,7 +28,6 @@ public class AccountApi {
         accountService.duplicateUserName(registerReqDto);
         accountService.passwordCheck(registerReqDto);
         accountService.register(registerReqDto);
-
         return ResponseEntity.created(URI.create("/account/register_ok")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getUserName()));
     }
 

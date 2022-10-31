@@ -18,8 +18,8 @@ public class User {
     private String password;
     private String name;
     private String email;
-    private int phone;
-    private int postcode;
+    private String phone;
+    private String postcode;
     private String address;
     private String addressSub;
     private String provider;

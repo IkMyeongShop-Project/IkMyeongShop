@@ -38,8 +38,8 @@ public class RegisterReqDto {
     @Email(message = "이메일을 정확하게 입력해 주세요.", groups = ValidationGroups.PatternCheckGroup.class)
     private String email;
 
-    private int phone;
-    private int postCode;
+    private String phone;
+    private String postCode;
     private String address;
     private String addressSub;
 

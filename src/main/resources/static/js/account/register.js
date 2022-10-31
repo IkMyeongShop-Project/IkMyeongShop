@@ -10,7 +10,8 @@ class Option {
 
   constructor() {
     this.getEmail();
-    this.getaddress();
+    this.phoneNumCheck();
+    this.getAddress();
     this.cancel();
   }
 
@@ -27,7 +28,15 @@ class Option {
     }   
   }
 
-  getaddress() {
+  phoneNumCheck() {
+    const phone =  document.querySelectorAll(".register-inputs")[5];
+
+    phone.oninput= () => {
+      phone.value = phone.value.replace(/[^0-9]/g, '');
+    } 
+  }
+
+  getAddress() {
     const addressbtn = document.querySelector(".btn_post_search");
 
     addressbtn.onclick = () => {
@@ -81,7 +90,7 @@ class InputData {
         "passwordChk" : document.querySelectorAll(".register-inputs")[2].value,
         "name" : document.querySelectorAll(".register-inputs")[3].value,
         "email" : document.querySelectorAll(".register-inputs")[4].value,
-        "cellPhone" : document.querySelectorAll(".register-inputs")[5].value,
+        "phone" : document.querySelectorAll(".register-inputs")[5].value,
         "postCode" : document.querySelectorAll(".register-inputs")[6].value,
         "address" : document.querySelectorAll(".register-inputs")[7].value,
         "addressSub" : document.querySelectorAll(".register-inputs")[8].value
