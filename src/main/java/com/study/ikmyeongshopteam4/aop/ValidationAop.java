@@ -17,13 +17,13 @@ import java.util.Map;
 @Component
 public class ValidationAop {
 
-    @Pointcut("execution(* com.study.ikmyeongshopteam4.aop.annotation..*Api.*(..))")
-    private void executionPointCut() {}
+//    @Pointcut("execution(* com.study.ikmyeongshopteam4.aop.annotation..*Api.*(..))")
+//    private void executionPointCut() {}
 
-//    @Pointcut("@annotation(com.study.ikmyeongshopteam4.aop.annotation.ValidAspect")
-//    private void annotationPointcut() {}
+    @Pointcut("@annotation(com.study.ikmyeongshopteam4.aop.annotation.ValidAspect")
+    private void annotationPointcut() {}
 
-    @Around("executionPointCut()")
+    @Around("annotationPointcut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
 
         Object[] args = joinPoint.getArgs();

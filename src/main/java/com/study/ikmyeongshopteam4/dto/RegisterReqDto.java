@@ -38,9 +38,9 @@ public class RegisterReqDto {
 
 //    @NotBlank(message = "핸드폰 번호를 비울 수 없습니다.", groups = ValidationGroups.NotBlankGroup.class)
 //    @Size(min = 10, max = 12, message = "핸드폰 번호는 최대 12자리 까지 입력해주세요", groups = ValidationGroups.SizeGroup.class)
-    private int phone;
+    private String phone;
 
-    private int postcode;
+    private String postcode;
 
     private String address;
 
