@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 @Data
 public class User {
     private int id;
-    private String username;
+    private String userName;
     private String password;
     private String name;
     private String email;
-    private int phone;
-    private int postcode;
+    private String phone;
+    private String postcode;
     private String address;
-    private String addresssub;
+    private String addressSub;
     private String provider;
     private int role_id;
     private LocalDateTime create_date;
