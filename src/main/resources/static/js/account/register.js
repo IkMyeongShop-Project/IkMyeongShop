@@ -37,5 +37,5 @@ function loadErrorMessage(errors){
     const errorsArray = Object.values(errors);
     errorsArray.forEach(error => {
         alert(error);
-    });
+    });()
 }
