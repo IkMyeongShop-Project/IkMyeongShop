@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ProductController {
 
     @GetMapping("/goods/register")
-    public String loadGoods(@PathVariable String category){
+    public String loadGoods(){
         return "goods/goods_list";
     }
 }
