@@ -49,6 +49,9 @@ class PageNumber {
     }
 
     createNumberButtons() {
+        const startIndex = this.#page % 5 == 0 ? this.#page - 4 : this.#page - (this.#page % 5) + 1;
+        const endIndex = startIndex + 4 <= this.#maxPageNumber ? startIndex + 4 : this.#maxPageNumber;
+
         for(let i = startIndex; i <= endIndex; i++) {
             this.#pageNumberList.innerHTML += `
                 <a href="javascript:void(0)"><li>${i}</li></a>
