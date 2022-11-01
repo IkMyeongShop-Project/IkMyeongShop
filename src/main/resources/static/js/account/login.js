@@ -1,31 +1,34 @@
-//const loginButton = document.querySelector(".login-button");
-//
-//loginButton.onclick = () => {
-//    const accountInputs = document.querySelectorAll(".account_input");
-//
-//    let user = {
-//        userName: accountInputs[0].value,
-//        password: accountInputs[1].value
-//    }
-//
-//    let ajaxOption = {
-//        async: false,
-//        type: "post",
-//        url: "/api/account/login",
-//        contentType: "application/json",
-//        data: JSON.stringify(user),
-//        dataType: "json",
-//        success: (response) => {
-//            alert("로그인 요청 성공");
-//            console.log(response);
-//        },
-//        error: (error) => {
-//            alert("로그인 요청 실패");
-//            console.log(error.responseJSON.userName);
-//        }
-//    }
-//
-//    $.ajax(ajaxOption);
-//}
+const registerButton = document.querySelector(".btn_member_join")
 
-const registerForWardButton = document.querySelectorAll(".")
+registerButton.onclick = () =>{
+    const accountInput = document.querySelectorAll(".member_warning")
+
+    let user = {
+        Id : accountInput[0].value,
+        Password : accountInput[1].value,
+        RePassword : accountInput[2].value,
+        email : accountInput[3].value,
+        Phone : accountInput[4].value,
+        Call : accountInput[5].value,
+        Address : accountInput[6].value
+
+    }
+    $.ajax({
+        async: false,
+        type: "post", 
+        url: "/api/account/register", 
+        contentType: "application/json",
+        data: JSON.stringify(user), 
+      
+        dataType: "json",  
+        success: (response, textStatus, request) => {    
+          console.log(response);
+          const successURL = request.getResponseHeader("Location");
+          location.replace(successURL + "?email=" + response.data)
+        },
+        error: (error) => {       
+          console.log(error.responseJSON.data);
+          loadErrorMessage(error.responseJSON.data)
+        }
+      });
+    }
