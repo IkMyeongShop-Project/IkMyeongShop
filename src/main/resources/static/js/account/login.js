@@ -1,6 +1,7 @@
-//const loginButton = document.querySelector(".login-button");
+const loginButton = document.querySelector(".btn_member_join");
 //
-//loginButton.onclick = () => {
+loginButton.onclick = () => {
+    location.href = "/account/register";
 //    const accountInputs = document.querySelectorAll(".account_input");
 //
 //    let user = {
@@ -26,5 +27,5 @@
 //    }
 //
 //    $.ajax(ajaxOption);
-//}
+}
 

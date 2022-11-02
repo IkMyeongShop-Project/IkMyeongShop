@@ -51,7 +51,7 @@ public class RegisterReqDto {
     public User toEntity() {
         return User.builder()
                 .username(userName)
-                .password(password)
+                .password(new BCryptPasswordEncoder().encode(password))
                 .passwordChk(new BCryptPasswordEncoder().encode(passwordChk))
                 .name(name)
                 .email(email)

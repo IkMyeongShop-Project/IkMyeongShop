@@ -28,10 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .formLogin()
-                .usernameParameter("username")
                 .loginPage("/account/login")
+                .defaultSuccessUrl("/main/index")
+                .failureUrl("/account/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .loginProcessingUrl("/account/login")
                 .failureHandler(new AuthFailureHandler())
-                .defaultSuccessUrl("/index");
+        ;
     }
 }

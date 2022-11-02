@@ -29,6 +29,7 @@ btnComfirm.onclick = () => {
         success: (response) => {
             alert("회원가입 요청 성공");
             console.log(response);
+            location.href = "/account/login";
         },
         error: (error) => {
             alert("회원가입 요청 실패");

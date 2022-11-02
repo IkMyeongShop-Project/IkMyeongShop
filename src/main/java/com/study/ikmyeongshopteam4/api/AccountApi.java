@@ -32,7 +32,7 @@ public class AccountApi {
         accountService.duplicateUsername(registerReqDto);
         accountService.register(registerReqDto);
 
-        return ResponseEntity.created(URI.create("/account/login")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getEmail()));
+        return ResponseEntity.created(URI.create("/account/login")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getUserName()));
     }
 
 }
