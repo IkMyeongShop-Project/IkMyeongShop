@@ -4,7 +4,7 @@ package com.study.ikmyeongshopteam4.service;
 import com.study.ikmyeongshopteam4.domain.User;
 import com.study.ikmyeongshopteam4.dto.RegisterReqDto;
 import com.study.ikmyeongshopteam4.exception.CustomValidationException;
-import com.study.ikmyeongshopteam4.exception.CustominternalServerErrorException;
+import com.study.ikmyeongshopteam4.exception.CustomInternalServerErrorException;
 import com.study.ikmyeongshopteam4.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class AccountServiceImpl implements AccountService{
         User user = registerReqDto.toEntity();
         int result = accountRepository.saveUser(user);
         if(result == 0){
-            throw new CustominternalServerErrorException("회원가입중 문제가 발생했습니다.");
+            throw new CustomInternalServerErrorException("회원가입중 문제가 발생했습니다.");
         }
     }
 }

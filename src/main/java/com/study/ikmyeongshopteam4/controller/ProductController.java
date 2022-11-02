@@ -3,17 +3,31 @@ package com.study.ikmyeongshopteam4.controller;
 
 import com.study.ikmyeongshopteam4.dto.CheckoutRespDto;
 import com.study.ikmyeongshopteam4.security.PrincipalDetails;
-import com.study.ikmyeongshopteam4.service.productService;
+import com.study.ikmyeongshopteam4.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
+
+    public final ProductService productService;
+
+    @GetMapping("/collections/{category}")
+    public String loadCollections(@PathVariable String category){
+        return "product/collections_scroll";
+    }
+
+    @GetMapping("/product/{pdtId}")
+    public String loadProductDetail(@PathVariable String pdtId){
+        return "product/product_detail";
+    }
     @GetMapping("/checkout")
     public String loadPayment(Model model,
                               @RequestParam int pdtDtlId,
@@ -23,4 +37,6 @@ public class ProductController {
         model.addAttribute("user",principalDetails.getUser());
         return "product/product_order";
     }
+
 }
+
