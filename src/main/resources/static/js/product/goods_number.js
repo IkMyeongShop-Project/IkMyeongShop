@@ -9,7 +9,7 @@ class GoodsApi {
     }
 
     getGoods(page) {
-        const responseData = null;
+        let responseData = null;
 
         const url = location.href;
         const category = url.substring(url.lastIndexOf("/") + 1);
@@ -35,17 +35,31 @@ class GoodsApi {
 
 class PageNumber {
     #page = 0;
+    #maxPageNumber = 0;
     #pageNumberList = null;
 
     constructor(page, totalCount) {
         this.#page = page;
+        this.#maxPageNumber = totalCount % 16 == 0 ? Math.floor(totalCount / 16) : Math.floor(totalCount / 16) + 1;
         this.#pageNumberList = document.querySelector(".page-number-list");
+        this.#pageNumberList.innerHTML = "";
         this.loadPageNumber();
 
     }
 
     loadPageNumber() {
+        this.createPreButton();
         this.createNumberButtons();
+        this.createNextButton();
+        this.addPageButtonEvent();
+    }
+
+    createPreButton() {
+        if(this.#page != 1) {
+            this.#pageNumberList.innerHTML += `
+                <a href="javascript:void(0)"><li>&#60;</li></a>
+            `;
+        }
     }
 
     createNumberButtons() {
@@ -57,6 +71,39 @@ class PageNumber {
                 <a href="javascript:void(0)"><li>${i}</li></a>
             `;
         }
+    }
+
+    createNextButton() {
+        if(this.#page != this.#maxPageNumber) {
+            this.#pageNumberList.innerHTML += `
+                <a href="javascript:void(0)"><li>&#62;</li></a>
+            `;
+        }
+    }
+
+    addPageButtonEvent() {
+        const pageButtons = this.#pageNumberList.querySelectorAll("li");
+        pageButtons.forEach(button => {
+            button.onclick = () => {
+                if(button.textContent == "<") {
+                    const nowPage = GoodsService.getInstance().goodsEntity.page;
+                    GoodsService.getInstance().goodsEntity.page = Number(nowPage) - 1;
+                    GoodsService.getInstance().loadGoods();
+
+                }else if(button.textContent == ">") {
+                    const nowPage = GoodsService.getInstance().goodsEntity.page;
+                    GoodsService.getInstance().goodsEntity.page = Number(nowPage) + 1;
+                    GoodsService.getInstance().loadGoods();
+
+                }else {
+                    const nowPage = GoodsService.getInstance().goodsEntity.page;
+                    if(button.textContent != nowPage){
+                        GoodsService.getInstance().goodsEntity.page = button.textContent;
+                        GoodsService.getInstance().loadGoods();
+                    }
+                }
+            }
+        });
     }
 }
 
@@ -93,13 +140,12 @@ class GoodsService {
         goodProducts.innerHTML = '';
 
         responseData.forEach(product => {
-            goodProducts.innerHTML = `
+            goodProducts.innerHTML += `
             <li class="goods-product">
                 <div class="product-img">
                     <img src="/static/img/goods/goods_list/cup.jpg">
                 </div>
                 <div class="product-name">${product.productName}</div>
-                <hr>
                 <div class="product-price">${product.productPrice}</div>
             </li>
             `;
