@@ -32,7 +32,6 @@ class Option {
     categorySelect.innerHTML = `<option value="none">카테고리</option>`;
   
     const responseData = CommonApi.getInstance().getCategoryList();
-    console.log(responseData)
     if(responseData != null) {
       if (responseData.length > 0) {
         responseData.forEach(product => {
@@ -73,6 +72,27 @@ class CommonApi {
 
     return responseResult;
   }
+
+  registerApi(formData) {
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/api/admin/product/register",
+        enctype: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        data: formData,
+        dataType: "json",
+        success: (response) => {
+            alert("상품 등록 완료");
+            location.replace("/admin/product/register");
+        },
+        error: (error) => {
+            alert("상품 등록 실패\n" + error.responseJSON.msg);
+            console.log(error);
+        }
+    });
+}
 }
 
 class ProductImgFile {
@@ -89,7 +109,7 @@ class ProductImgFile {
 
   constructor() {
     this.addFileInputEvent();
-    // this.addUploadEvent();
+    this.sumbit();
   }
 
   addFileInputEvent() {
@@ -160,24 +180,30 @@ class ProductImgFile {
     });
   }
   
-  // addUploadEvent() {
-  //   const uploadButton = document.querySelector(".upload-button");
-  //   uploadButton.onclick = () => {
-  //     const formData = new FormData();
-       
-  //     const productId = document.querySelector(".product-select").value;
-  //     formData.append("pdtId", productId);
+  sumbit() {
+    const registerButton = document.querySelector(".upload-button");
+    registerButton.onclick = () => {
+        const productInputs = document.querySelectorAll(".product-inputs");
+        
+        let formData = new FormData();
 
-  //     this.newImgList.forEach(imgFile => {
-  //       formData.append("files", imgFile);
-  //     });
+        formData.append("categoryId", productInputs[0].value);
+        formData.append("name", productInputs[1].value);
+        formData.append("price", productInputs[2].value);
+        formData.append("design", productInputs[3].value);
+        formData.append("stock", productInputs[4].value);
+        
+        this.newImgList.forEach((file) => {
+            formData.append("files", file);
+        });
 
-  //     ProductApi.getInstance().registImgFiles(formData);
-  //   }
-  // }
+        CommonApi.getInstance().registerApi(formData);
+    }        
+  }
 }
 
+
 window.onload = () => {
-    Option.getInstance();
-    ProductImgFile.getInstance();
+  Option.getInstance();
+  ProductImgFile.getInstance();
 }

@@ -6,19 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Product {
+public class ProductImgFile {
     private int id;
-    private String pdt_name;
-    private int category_id;
-    private int pdt_price;
-
-    private List<ProductImgFile> product_img_files;
-
-    private int product_total_count;
+    private int pdt_id;
+    private String origin_name;
+    private String save_name;
 }

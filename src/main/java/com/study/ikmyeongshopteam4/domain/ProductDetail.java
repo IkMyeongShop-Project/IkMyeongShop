@@ -8,17 +8,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Product {
-    private int id;
-    private String pdt_name;
-    private int category_id;
-    private int pdt_price;
+public class ProductDetail {
+    private int pdt_id;
+    private String pdt_design;
+    private int pdt_stock;
 
     private List<ProductImgFile> product_img_files;
-
-    private int product_total_count;
 }
