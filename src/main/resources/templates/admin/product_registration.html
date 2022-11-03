@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/css/admin.css">
     <link rel="stylesheet" href="/static/css/account/login.css">
     <link rel="stylesheet" href="/static/css/aside.css">
+    <link rel="stylesheet" href="/static/css/admin/product_list.css">
 </head>
 <body>
     <div id="wrap">
@@ -34,7 +35,7 @@
                     <a href="/main/index"><img src="/static/img/header/logo.png" alt=""></a>
                     <a href="#"><img src="/static/img/header/event_right.png" alt=""></a>
                 </div>
-                <nav  class="nav">
+                <!-- <nav  class="nav">
                     <ul>
                         <li class="nav1"><a href="/goods/goods_list">DOLL</a></li>
                         <li class="nav1"><a href="#">FIGURE & TOY</a></li>
@@ -45,62 +46,57 @@
                         <li><a href="#">MOBILE</a></li>
                         <li><a href="#">깨꾹이</a></li>
                     </ul>
-                </nav>
+                </nav> -->
             </div>
         </header>
-        <h1 class="admin-tittle">ADMIN PRODTUCT REGISTRATION</h1>
+
+<div class="admin">
+        <h1 class="admin-tittle">ADMIN PRODTUCT LIST</h1>
         <div class="admin-container">
-            <aside class="admin-menus">
-                <ul>
-                    <li><a href="/admin/product">상품 조회</a></li>
-                    <li><a href="/admin/product/addition">상품 등록</a></li>
-                    <li><a href="/admin/system">시스템 정보</a></li>
-                    <li><a href="/logout">로그아웃</a></li>
-                </ul>
-            </aside>
             <section class="admin-main">
-                <div class="regist-header">
-                    <select class="product-inputs product-category">
-                        <option value="none">상품 종류</option>
-                        <option value="DOLL">DOLL</option>
-                        <option value="FIGURE_TOY">FIGURE & TOY</option>
-                    </select>
-                    <input type="text" class="product-inputs" placeholder="상품명">
-                    <input type="number" min="100" step="100" class="product-inputs" placeholder="가격">
-                </div>
-                <button type="button" class="regist-button">등록하기</button>
+              <div class="list-header">
+               <div class="category-select">
+                  <select class="product-input">
+                      <option value="ALL" selected>전체 상품</option>
+                      <option value="DOLL">DOLL</option>
+                      <option value="FIGURE_TOY">FIGURE_TOY</option>
+                      <option value="OVERDYED">OVERDYED</option>
+                      <option value="TOPS_SHIRTS">TOPS & SHIRTS</option>
+                      <option value="KNITS">KNITS</option>
+                      <option value="BOTTOMS">BOTTOMS</option>
+                      <option value="DENIM">DENIM</option>
+                      <option value="HEADWEAR">HEADWEAR</option>
+                      <option value="ACCESSORIES">ACCESSORIES</option>
+                  </select>
+              </div>
+              <div class="search-container">
+                <input type="text" class="search-input" placeholder="상품명">
+                <button type="button" class="btn search-button">검색</button>
+              </div>
+            </div>
+                <!-- <button type="button" class="regist-button">등록하기</button> -->
                 <div class="product-mst">
                     <div class="list-container">
                       <div class="option-container">
-                        <ul class="page-number-list">
-                          <a href=""><li>&#60;</li></a>
-                          <a href=""><li>1</li></a>
-                          <a href=""><li>2</li></a>
-                          <a href=""><li>3</li></a>
-                          <a href=""><li>4</li></a>
-                          <a href=""><li>5</li></a>
-                          <a href=""><li>&#62;</li></a>
-                        </ul>
-                        <div class="search-container">
-                          <input type="search" class="search-input">
-                          <button type="button" class="btn search-button">검색</button>
-                        </div>
                       </div>
-                      <table class="product-mst-list">
+
+                      <table class="product-list">
                         <thead>
                           <tr>
-                            <th>상품코드</th>
-                            <th>상품종류</th>
-                            <th>상품명</th>
-                            <th>가격</th>
-                            <th>상세</th>
-                            <th>추가</th>
-                            <th>수정</th>
-                            <th>삭제</th>
+                              <th>상품번호</th>
+                              <th>상품종류</th>
+                              <th>상품명</th>
+                              <th>가격</th>
+                              <th>색상</th>
+                              <th>사이즈</th>
+                              <th>상세</th>
+                              <th>삭제</th>
                           </tr>
-                        </thead>
+                      </thead>
+
                         <tbody>
-                          <tr>
+                        
+                          <!-- <tr>
                             <td>1</td>
                             <td>TEES</td>
                             <td>테스트 상품1</td>
@@ -109,202 +105,13 @@
                             <td><button type="button" class="btn">추가</button></td>
                             <td><button type="button" class="btn">수정</button></td>
                             <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
-                          <tr>
-                            <td>1</td>
-                            <td>TEES</td>
-                            <td>테스트 상품1</td>
-                            <td>100000</td>
-                            <td><button type="button" class="btn">보기</button></td>
-                            <td><button type="button" class="btn">추가</button></td>
-                            <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr>
+                          </tr> -->
                         </tbody>
                       </table>
             </section>
         </div>
     </div>
+  </div>
     <script src="/static/js/admin/product_registration.js"></script>
 </body>
 </html>
