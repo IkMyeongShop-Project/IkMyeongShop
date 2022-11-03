@@ -135,7 +135,6 @@ class GoodsService {
 
     loadGoods() {
         const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page);
-        console.log(responseData);
         if(responseData.length > 0) {
             this.goodsEntity.totalCount = responseData[0].productTotalCount;
             new PageNumber(this.goodsEntity.page, this.goodsEntity.totalCount);
@@ -166,7 +165,39 @@ class GoodsService {
     }
 }
 
+class CategoryName {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new CategoryName();
+        }
+        return this.#instance;
+    }
+
+    getCategoryName() {
+        const locationTit = document.querySelector(".location_tit");
+        const goodsList = document.querySelector(".goods_list");
+        
+        const url = location.href;
+        const categoryName = url.substring(url.lastIndexOf("/") + 1);
+
+        locationTit.innerHTML = "";
+        goodsList.innerHTML = "";
+
+        locationTit.innerHTML = `
+        <a href="#">${categoryName} <img src="" alt=""></a>
+        `;
+        
+        goodsList.innerHTML = `
+        <h2>${categoryName}</h2>
+        `;
+        console.log(categoryName);
+    }
+
+}
 
 window.onload = () => {
     GoodsService.getInstance().loadGoods();
+    CategoryName.getInstance().getCategoryName();
 }

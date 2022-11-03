@@ -33,7 +33,7 @@
     padding: 3px 2px 3px 9px;
     font-size: 11px;
     background-color: white;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
 }
 .location_menu{
     display: flex;
