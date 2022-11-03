@@ -46,7 +46,7 @@
         um.username = #{userName}
 
     </select>
-    
+    <!-- insert, update, delete 는 row의 갯수라서 int // select만 rseultMap Type -->
     <insert id="saveUser" parameterType="com.study.ikmyeongshopteam4.domain.User">
         insert into
         user_mst
