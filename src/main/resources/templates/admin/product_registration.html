@@ -35,18 +35,6 @@
                     <a href="/main/index"><img src="/static/img/header/logo.png" alt=""></a>
                     <a href="#"><img src="/static/img/header/event_right.png" alt=""></a>
                 </div>
-                <!-- <nav  class="nav">
-                    <ul>
-                        <li class="nav1"><a href="/goods/goods_list">DOLL</a></li>
-                        <li class="nav1"><a href="#">FIGURE & TOY</a></li>
-                        <li><a href="#">FANCY</a></li>
-                        <li><a href="#">ACCESSORY</a></li>
-                        <li><a href="#">LIVING</a></li>
-                        <li><a href="#">KITCHEN & BATHROOM</a></li>
-                        <li><a href="#">MOBILE</a></li>
-                        <li><a href="#">깨꾹이</a></li>
-                    </ul>
-                </nav> -->
             </div>
         </header>
 
@@ -57,33 +45,32 @@
                 <option value="ALL" selected>상품 종류</option>
                 <option value="DOLL">DOLL</option>
                 <option value="FIGURE_TOY">FIGURE_TOY</option>
-                <option value="OVERDYED">OVERDYED</option>
-                <option value="TOPS_SHIRTS">TOPS & SHIRTS</option>
-                <option value="KNITS">KNITS</option>
-                <option value="BOTTOMS">BOTTOMS</option>
-                <option value="DENIM">DENIM</option>
-                <option value="HEADWEAR">HEADWEAR</option>
-                <option value="ACCESSORIES">ACCESSORIES</option>
+                <option value="OVERDYED">FANCY</option>
+                <option value="TOPS_SHIRTS">ACCESSORY</option>
+                <option value="KNITS">LIVING</option>
+                <option value="BOTTOMS">KITCHEN & BATHROOM</option>
+                <option value="DENIM">MOBILE</option>
+                <option value="HEADWEAR">꺠꾹이</option>
             </select>
-            <input type="text" class="product-inputs" placeholder="상품명">
-            <input type="number" step="100" min="100" class="product-inputs" placeholder="가격">
+            <select type="text" class="product-inputs" placeholder="상품명">
+            </select>
+            <input type="number" step="1    00" min="1000" class="product-inputs" placeholder="가격">
             <button type="button" class="regist-button">등록하기</button>
         </div>
         
         <div class="admin-container">
             <section class="admin-main">
                <div class="category-select">
-                  <select class="product-input">
-                      <option value="ALL" selected>전체 상품</option>
+                  <select class="product-inputs">
+                      <option value="ALL" selected>카테고리</option>
                       <option value="DOLL">DOLL</option>
                       <option value="FIGURE_TOY">FIGURE_TOY</option>
-                      <option value="OVERDYED">OVERDYED</option>
-                      <option value="TOPS_SHIRTS">TOPS & SHIRTS</option>
-                      <option value="KNITS">KNITS</option>
-                      <option value="BOTTOMS">BOTTOMS</option>
-                      <option value="DENIM">DENIM</option>
-                      <option value="HEADWEAR">HEADWEAR</option>
-                      <option value="ACCESSORIES">ACCESSORIES</option>
+                      <option value="OVERDYED">FANCY</option>
+                      <option value="TOPS_SHIRTS">ACCESSORY</option>
+                      <option value="KNITS">LIVING</option>
+                      <option value="BOTTOMS">KITCHEN & BATHROOM</option>
+                      <option value="DENIM">MOBILE</option>
+                      <option value="HEADWEAR">꺠꾹이</option>
                   </select>
               
               <div class="search-container">
@@ -109,10 +96,8 @@
                               <th>삭제</th>
                           </tr>
                       </thead>
-
                         <tbody>
-                        
-                          <!-- <tr>
+                          <tr>
                             <td>1</td>
                             <td>TEES</td>
                             <td>테스트 상품1</td>
@@ -120,14 +105,14 @@
                             <td><button type="button" class="btn">보기</button></td>
                             <td><button type="button" class="btn">추가</button></td>
                             <td><button type="button" class="btn">수정</button></td>
-                            <td><button type="button" class="btn">삭제</button></td>
-                          </tr> -->
+                            <td  class="delete-button"><button  type="button" class="btn">삭제</button></td>
+                          </tr>
                         </tbody>
                       </table>
             </section>
         </div>
     </div>
   </div>
-    <script src="/static/js/admin/product_registration.js"></script>
+    <script src="/static/js/admin/product_add_register.js"></script>
 </body>
 </html>

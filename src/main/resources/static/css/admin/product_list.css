@@ -90,3 +90,8 @@ th:nth-child(8) {
     width: 300px;
     height: 40px;
 }
+
+.product-list button{
+    margin-top: 10px;
+    line-height: 10px;
+}

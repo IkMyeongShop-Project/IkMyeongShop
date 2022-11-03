@@ -12,4 +12,8 @@ public class ProductManagementController {
     public String productRegister() {
         return "admin/product_add";
     }
+    @GetMapping("/product/registerAdd")
+    public String productAdd(){
+        return "admin/product_register";
+    }
 }
