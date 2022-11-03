@@ -5,7 +5,8 @@ import javax.validation.groups.Default;
 
 @GroupSequence({ValidationGroups.NotBlankGroup.class,
         ValidationGroups.SizeGroup.class,
-        ValidationGroups.PatternGroup.class,
+        ValidationGroups.PatternCheckGroup.class,
         Default.class
 })
-public interface ValidationSequence {}
+public interface ValidationSequence {
+}

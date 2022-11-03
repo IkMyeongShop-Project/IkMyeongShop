@@ -8,16 +8,15 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
 import org.springframework.stereotype.Component;
 
-@Slf4j
+@Slf4j // fog4j 라이브러리 내장
 @Aspect
-@Component
+@Component // IoC 컨테이너 등록
 public class LogAop {
 
-    @Pointcut("execution(* com.study.ikmyeongshopteam4.api.*Api.*(..))")
-    private void pointCut(){}
-
     @Pointcut("@annotation(com.study.ikmyeongshopteam4.aop.annotation.LogAspect)")
-    private void annotationPointCut(){}
+    private void annotationPointCut() {
+
+    }
 
     @Around("annotationPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -26,17 +25,16 @@ public class LogAop {
 
         String className = codeSignature.getDeclaringTypeName();
         String methodName = codeSignature.getName();
-
-        String[] parameterNames = codeSignature.getParameterNames();
+        String[] parameterNames = codeSignature.getParameterNames(); // 다운캐스팅을 하여야만 사용가능
         Object[] args = joinPoint.getArgs();
 
-        for(int i = 0; i < parameterNames.length; i++){
-            log.info("***Parameter info*** :: {}.{} >>> [{}: {}]", className, methodName, parameterNames[i], args[i]);
+        for(int i=0; i< parameterNames.length; i++){
+            log.info("<<<< Parameter Info >>>> {}.{} >>> [{}: {}]",className, methodName, parameterNames[i], args[i]);
         }
 
         Object result = joinPoint.proceed();
 
-        log.info("***return*** :: {}.{} >>> [{}]", className, methodName, result);
+        log.info("<<<< Return >>>> {}.{} >>> [{}]",className, methodName, result);
 
         return result;
     }

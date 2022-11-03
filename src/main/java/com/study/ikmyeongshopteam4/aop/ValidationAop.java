@@ -17,18 +17,17 @@ import java.util.Map;
 @Component
 public class ValidationAop {
 
-    @Pointcut("execution(* com.study.ikmyeongshopteam4..*Api.*(..))")
-    private void executionPointCut(){}
+    @Pointcut("execution(* com.study.ikmyeongshopteam4.api.AccountApi.*(..))")
+    private void executionPointCut() {}
 
     @Around("executionPointCut()")
-    public Object arround(ProceedingJoinPoint joinPoint) throws Throwable {
-
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
 
         BeanPropertyBindingResult bindingResult = null;
 
-        for(Object arg : args){
-            if(arg.getClass() == BeanPropertyBindingResult.class){
+        for(Object arg : args) {
+            if(arg.getClass() == BeanPropertyBindingResult.class){ // instanceof 쓰면 쉬우나.. 19버전에서 사라질 예정.
                 bindingResult = (BeanPropertyBindingResult) arg;
                 break;
             }
@@ -36,12 +35,12 @@ public class ValidationAop {
 
         if(bindingResult.hasErrors()){
             Map<String, String> errorMap = new HashMap<String, String>();
-
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            for(FieldError fieldError: fieldErrors){
+            for(FieldError fieldError : fieldErrors) {
                 errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
-            throw new CustomValidationException("ValidationError", errorMap);
+
+            throw new CustomValidationException("Validation Error", errorMap);
         }
 
         Object result = null;
