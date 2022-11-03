@@ -52,9 +52,26 @@
 
 <div class="admin">
         <h1 class="admin-tittle">ADMIN PRODTUCT LIST</h1>
+        <div class="don">
+            <select class="product-inputs">
+                <option value="ALL" selected>상품 종류</option>
+                <option value="DOLL">DOLL</option>
+                <option value="FIGURE_TOY">FIGURE_TOY</option>
+                <option value="OVERDYED">OVERDYED</option>
+                <option value="TOPS_SHIRTS">TOPS & SHIRTS</option>
+                <option value="KNITS">KNITS</option>
+                <option value="BOTTOMS">BOTTOMS</option>
+                <option value="DENIM">DENIM</option>
+                <option value="HEADWEAR">HEADWEAR</option>
+                <option value="ACCESSORIES">ACCESSORIES</option>
+            </select>
+            <input type="text" class="product-inputs" placeholder="상품명">
+            <input type="number" step="100" min="100" class="product-inputs" placeholder="가격">
+            <button type="button" class="regist-button">등록하기</button>
+        </div>
+        
         <div class="admin-container">
             <section class="admin-main">
-              <div class="list-header">
                <div class="category-select">
                   <select class="product-input">
                       <option value="ALL" selected>전체 상품</option>
@@ -68,13 +85,12 @@
                       <option value="HEADWEAR">HEADWEAR</option>
                       <option value="ACCESSORIES">ACCESSORIES</option>
                   </select>
-              </div>
+              
               <div class="search-container">
                 <input type="text" class="search-input" placeholder="상품명">
                 <button type="button" class="btn search-button">검색</button>
-              </div>
             </div>
-                <!-- <button type="button" class="regist-button">등록하기</button> -->
+            </div>
                 <div class="product-mst">
                     <div class="list-container">
                       <div class="option-container">
