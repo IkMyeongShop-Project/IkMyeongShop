@@ -24,6 +24,7 @@ class GoodsApi {
             dataType: "json",
             success: (response) => {
                 responseData = response.data;
+                console.log(responseData);
             },
             error: (error) => {
                 console.log(error);
@@ -37,14 +38,14 @@ class PageNumber {
     #page = 0;
     #maxPageNumber = 0;
     #pageNumberList = null;
-
+    #totalCount = 0;
     constructor(page, totalCount) {
         this.#page = page;
-        this.#maxPageNumber = totalCount % 5 == 0 ? Math.floor(totalCount / 5) : Math.floor(totalCount / 5) + 1;
+        this.#maxPageNumber = totalCount % 16 == 0 ? Math.floor(totalCount / 16) : Math.floor(totalCount / 16) + 1;
         this.#pageNumberList = document.querySelector(".page-number-list");
         this.#pageNumberList.innerHTML = "";
+        this.#totalCount = totalCount;
         this.loadPageNumber();
-
     }
 
     loadPageNumber() {
@@ -52,6 +53,7 @@ class PageNumber {
         this.createNumberButtons();
         this.createNextButton();
         this.addPageButtonEvent();
+        this.getPickListNum();
     }
 
     createPreButton() {
@@ -104,6 +106,15 @@ class PageNumber {
                 }
             }
         });
+    }
+
+    getPickListNum() {
+      const pickListNum = document.querySelector(".pick_list_num");
+      pickListNum.innerHTML = "";
+      console.log(this.#totalCount);
+      pickListNum.innerHTML = `
+      <h4>상품 ${this.#totalCount} 개</h4>
+      `;
     }
 }
 
