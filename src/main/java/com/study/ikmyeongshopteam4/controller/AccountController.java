@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AccountController {
 
     @GetMapping("/account/login")
-    public String login(Model model,
-                        @RequestParam @Nullable String username,
-                        @RequestParam @Nullable String error) {
-        model.addAttribute("username", username == null? "" : username);
-        model.addAttribute("error", error == null? "" : error);
+    public String login() {
         return "account/login";
     }
 
     @GetMapping("/account/register")
     public String register() {
-        return "account/register";}
+        return "account/register";
+    }
+
+    @GetMapping("/account/register_ok")
+    public String registerOk(Model model, @RequestParam String username) {
+        model.addAttribute("username", username);
+        return "account/register_ok";
+    }
 
 }

@@ -13,5 +13,4 @@ public class CustomValidationException extends RuntimeException{
         super(message);
         this.errorMap = errorMap;
     }
-
 }

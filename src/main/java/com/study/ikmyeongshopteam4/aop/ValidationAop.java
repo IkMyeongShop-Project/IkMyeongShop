@@ -17,31 +17,26 @@ import java.util.Map;
 @Component
 public class ValidationAop {
 
-    @Pointcut("execution(* com.study.ikmyeongshopteam4.api..*Api.*(..))")
+    @Pointcut("execution(* com.study.ikmyeongshopteam4.api.AccountApi.*(..))")
     private void executionPointCut() {}
-
-//    @Pointcut("@annotation(com.study.ikmyeongshopteam4.aop.annotation.ValidAspect")
-//    private void annotationPointcut() {}
 
     @Around("executionPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-
         Object[] args = joinPoint.getArgs();
 
         BeanPropertyBindingResult bindingResult = null;
 
-        for (Object arg : args) {
-            if (arg.getClass() == BeanPropertyBindingResult.class) {
+        for(Object arg : args) {
+            if(arg.getClass() == BeanPropertyBindingResult.class){ // instanceof 쓰면 쉬우나.. 19버전에서 사라질 예정.
                 bindingResult = (BeanPropertyBindingResult) arg;
                 break;
             }
         }
 
-        if (bindingResult.hasErrors()) {
+        if(bindingResult.hasErrors()){
             Map<String, String> errorMap = new HashMap<String, String>();
-
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-            for (FieldError fieldError : fieldErrors) {
+            for(FieldError fieldError : fieldErrors) {
                 errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
 
