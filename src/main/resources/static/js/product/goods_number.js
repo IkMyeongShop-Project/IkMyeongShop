@@ -40,7 +40,7 @@ class PageNumber {
 
     constructor(page, totalCount) {
         this.#page = page;
-        this.#maxPageNumber = totalCount % 16 == 0 ? Math.floor(totalCount / 16) : Math.floor(totalCount / 16) + 1;
+        this.#maxPageNumber = totalCount % 5 == 0 ? Math.floor(totalCount / 5) : Math.floor(totalCount / 5) + 1;
         this.#pageNumberList = document.querySelector(".page-number-list");
         this.#pageNumberList.innerHTML = "";
         this.loadPageNumber();
@@ -63,7 +63,7 @@ class PageNumber {
     }
 
     createNumberButtons() {
-        const startIndex = this.#page % 5 == 0 ? this.#page - 4 : this.#page - (this.#page % 5) + 1;
+        const startIndex = this.#page % 16 == 0 ? this.#page - 16 : this.#page - (this.#page % 16) + 1;
         const endIndex = startIndex + 4 <= this.#maxPageNumber ? startIndex + 4 : this.#maxPageNumber;
 
         for(let i = startIndex; i <= endIndex; i++) {
