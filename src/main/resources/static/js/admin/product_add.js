@@ -26,15 +26,18 @@ class Option {
   }
 
   setCategorySelectOptions() {
+
+
     const categorySelect = document.querySelector(".cagetory-select");
     categorySelect.innerHTML = `<option value="none">카테고리</option>`;
   
     const responseData = CommonApi.getInstance().getCategoryList();
+    console.log(responseData)
     if(responseData != null) {
       if (responseData.length > 0) {
         responseData.forEach(product => {
           categorySelect.innerHTML += `
-            <option value="${product.Id}">${product.name}</option>
+            <option value="${product.id}">${product.name}</option>
           `;
         });
       }
