@@ -118,16 +118,6 @@
           no-repeat 0 center;
 }
 
-.errors {
-  margin-bottom: 15px;
-  color: #e74c3c;
-  text-align: center;
-}
-
-.errors-invisible {
-  display: none;
-}
-
 .base_info_box > span{
   display: block;
   float: right;
@@ -137,7 +127,7 @@
 }
 
 .base_info_sec {
-  height: 628px;
+  height: 700px;
   border-top: 1px solid #999999;
   box-sizing: border-box;
   line-height: 18px;
@@ -187,6 +177,10 @@ td {
   border-bottom: 1px solid #dcdcdc;
 }
 
+.inputs-invisible {
+  border: 1px solid #ab3e55 !important;
+}
+
 input[type="text"], input[type="password"] {
   padding: 0 10px;
   height: 31px;
@@ -196,6 +190,11 @@ input[type="text"], input[type="password"] {
 
   outline: none;
   font-size: 12px;
+}
+
+.error-message {
+  padding-top: 5px;
+  color: #ab3e55;
 }
 
 .base_info_sec .member_email select {
@@ -352,7 +351,7 @@ option {
   text-align: center;
 }
 
-.btn_member_cancel {
+.btn-member-cancel {
   width: 150px;
   height: 45px;
   color: #3e3d3c;
@@ -378,3 +377,4 @@ option {
   cursor: pointer;
   font-weight: bold;
 }
+

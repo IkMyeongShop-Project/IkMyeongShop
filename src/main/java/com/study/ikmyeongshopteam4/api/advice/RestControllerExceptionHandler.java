@@ -1,4 +1,4 @@
-package com.study.ikmyeongshopteam4.api.adivce;
+package com.study.ikmyeongshopteam4.api.advice;
 
 import com.study.ikmyeongshopteam4.dto.CMRespDto;
 import com.study.ikmyeongshopteam4.exception.CustomInternalServerErrorException;
@@ -14,7 +14,6 @@ public class RestControllerExceptionHandler {
 
     @ExceptionHandler(CustomValidationException.class)
     public ResponseEntity<?> validationErrorException(CustomValidationException e) {
-
         return ResponseEntity.badRequest().body(new CMRespDto<>(e.getMessage(), e.getErrorMap()));
     }
 
@@ -24,3 +23,4 @@ public class RestControllerExceptionHandler {
         return ResponseEntity.internalServerError().body(new CMRespDto<>(e.getMessage(), null));
     }
 }
+

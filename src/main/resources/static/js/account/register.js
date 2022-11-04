@@ -1,110 +1,205 @@
-const btnComfirm = document.querySelector(".js_btn_join");
-const searchAdrbtn = document.querySelector(".btn_post_search");
-// const btncancel = document.querySelector(".btn_number_cancel");
+class Option {
+  static #instance = null;
 
-btnComfirm.onclick = () => {
-    const accountInputs = document.querySelectorAll(".account-inputs");
- 
-    let user = {
-        userName: accountInputs[0].value,
-        password: accountInputs[1].value,
-        passwordChk: accountInputs[2].value,
-        name: accountInputs[3].value,
-        email: accountInputs[4].value,
-        phone: accountInputs[5].value,
-        postcode: accountInputs[6].value,
-        address: accountInputs[7].value,
-        addresssub: accountInputs[8].value,
-
+  static getInstance() {
+    if(this.#instance == null) {
+      this.#instance = new Option();
     }
-    console.log(user);
+    return this.#instance;
+  }
 
-    $.ajax({
-        async: false,
-        type: "post",
-        url: "/api/account/register",
-        contentType: "application/json",
-        data: JSON.stringify(user),
-        dataType: "json",
-        success: (response) => {
-            alert("회원가입 요청 성공");
-            console.log(response);
-            location.href = "/account/login";
-        },
-        error: (error) => {
-            alert("회원가입 요청 실패");
-            console.log(error.responseJSON.data);
-            loadErrorMassage(error.responseJSON.data);
-        }
-    });
-    
-}
+  constructor() {
+    this.getEmail();
+    this.phoneNumCheck();
+    this.getAddress();
+    this.cancel();
+  }
 
-function loadErrorMassage(errors) {
-    const errorList = document.querySelector(".errors");
-    const errorMsgs = document.querySelector(".error-msgs");
-    const errorArray = Object.values(errors);
+  getEmail() {
+    const emailSelect = document.querySelector(".chosen-select");
 
-    errorMsgs.innerHTML = "";
+    emailSelect.onchange = () => {
+      const inputEmail = document.querySelectorAll(".register-inputs")[4].value;
+      if (inputEmail.includes('@')) {
+        document.querySelectorAll(".register-inputs")[4].value = inputEmail.substr(0,inputEmail.indexOf("@")) + emailSelect.value;
+      }else {
+        document.querySelectorAll(".register-inputs")[4].value += emailSelect.value;
+      }
+    }   
+  }
 
-    errorArray.forEach(error => {
-        errorMsgs.innerHTML += `
-        <li>${error}</li>
-        `;
-    });
+  phoneNumCheck() {
+    const phone =  document.querySelectorAll(".register-inputs")[5];
 
-    errorList.classList.remove("errors-invisible");
+    phone.oninput= () => {
+      phone.value = phone.value.replace(/[^0-9]/g, '');
+    } 
+  }
 
-}
+  getAddress() {
+    const addressbtn = document.querySelector(".btn_post_search");
 
-searchAdrbtn.onclick = () => {
-    execDaumPostcode();
-}
-
-function execDaumPostcode() {
-    new daum.Postcode({
+    addressbtn.onclick = () => {
+      new daum.Postcode({
         oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            let addr = ''; // 주소 변수
-            let extraAddr = ''; // 참고항목 변수
-
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+            var addr = '';
+    
+            if (data.userSelectedType === 'R') {
                 addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            } else {
                 addr = data.jibunAddress;
             }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            // if(data.userSelectedType === 'R'){
-            //     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-            //     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-            //     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-            //         extraAddr += data.bname;
-            //     }
-            //     // 건물명이 있고, 공동주택일 경우 추가한다.
-            //     if(data.buildingName !== '' && data.apartment === 'Y'){
-            //         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-            //     }
-            //     // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-            //     if(extraAddr !== ''){
-            //         extraAddr = ' (' + extraAddr + ')';
-            //     }
-            //     // 조합된 참고항목을 해당 필드에 넣는다.
-            //     document.getElementById(".extraAddress").value = extraAddr;
             
-            // } else {
-            //     document.getElementById(".extraAddress").value = '';
-            // }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById("postcode").value = data.zonecode;
             document.getElementById("address").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("detailAddress").focus();
+    
+            document.getElementById("addressSub").focus();
         }
-    }).open();
+      }).open();
+    }
+  }
+
+  cancel() {
+    const cancelButton = document.querySelector(".btn-member-cancel");
+
+    cancelButton.onclick = () => {
+      location.href = "/index";
+    }
+  }
+}
+
+class InputData {
+  static #instance = null;
+  static getInstance() {
+    if(this.#instance == null) {
+      this.#instance = new InputData();
+    }
+    return this.#instance;
+  }
+
+  getRegisterApi() {
+    const registerButton = document.querySelector(".js_btn_join");
+
+    registerButton.onclick = () => {
+      errorMessage.getInstance().nonError();
+      errorMessage.getInstance().nonErrorMessage();
+
+      const userData = {
+        "userName" : document.querySelectorAll(".register-inputs")[0].value,
+        "password" : document.querySelectorAll(".register-inputs")[1].value,
+        "passwordChk" : document.querySelectorAll(".register-inputs")[2].value,
+        "name" : document.querySelectorAll(".register-inputs")[3].value,
+        "email" : document.querySelectorAll(".register-inputs")[4].value,
+        "phone" : document.querySelectorAll(".register-inputs")[5].value,
+        "postCode" : document.querySelectorAll(".register-inputs")[6].value,
+        "address" : document.querySelectorAll(".register-inputs")[7].value,
+        "addressSub" : document.querySelectorAll(".register-inputs")[8].value
+      }
+
+      $.ajax({
+        async: false,                   
+        type: "post",                   // post 생성, get 조회
+        url: "/api/account/register",   
+        contentType: "application/json",// 전송할 데이터가 json인 경우
+        data: JSON.stringify(userData), // 전송할 데이터가 있으면
+        // JSON.stringify() - js 객체를 JSON 문자열로 변환
+        // JSON.parse()     - JSOn 문자열을 js 객체로 변환
+        dataType: "json",               
+        success: (response, textStatus, request) => {        
+          console.log(response);
+          const successURI = request.getResponseHeader("Location");
+          location.replace(successURI + "?username=" + response.data); // Location 지정한 곳 + response.data까지
+        },
+        error: (error) => {
+          console.log(error.responseJSON.data);
+          errorMessage.getInstance().getErrorMessage(error.responseJSON.data);
+        }
+      });
+    }
+  }
+}
+
+class errorMessage {
+  static #instance = null;
+
+  static getInstance() {
+    if(this.#instance == null) {
+      this.#instance = new errorMessage();
+    }
+    return this.#instance;
+  }
+
+  getErrorMessage(error) {
+    const errorKeys = Object.keys(error);
+    const errorValues = Object.values(error);
+
+    for(let i=0; i<errorKeys.length; i++) {
+      if (errorKeys[i] == "userName"){
+        const userNameError = document.querySelectorAll(".register-inputs")[0];
+        userNameError.classList.add("inputs-invisible");
+        
+        const userNameErrorMsg = document.querySelectorAll(".error-message")[0];
+        userNameErrorMsg.innerHTML = `${errorValues[i]}`;
+      }else if (errorKeys[i] == "password") {
+        const passwordError = document.querySelectorAll(".register-inputs")[1];
+        passwordError.classList.add("inputs-invisible");
+        
+        const passwordErrorMsg = document.querySelectorAll(".error-message")[1];
+        passwordErrorMsg.innerHTML = `${errorValues[i]}`;
+      }else if (errorKeys[i] == "passwordChk") {
+        const passwordChkError = document.querySelectorAll(".register-inputs")[2];
+        passwordChkError.classList.add("inputs-invisible");
+        
+        const passwordChkErrorMsg = document.querySelectorAll(".error-message")[2];
+        passwordChkErrorMsg.innerHTML = `${errorValues[i]}`;
+      }else if (errorKeys[i] == "name") {
+        const nameError = document.querySelectorAll(".register-inputs")[3];
+        nameError.classList.add("inputs-invisible");
+        
+        const nameErrorMsg = document.querySelectorAll(".error-message")[3];
+        nameErrorMsg.innerHTML = `${errorValues[i]}`;
+      }else {
+        const emailError = document.querySelectorAll(".register-inputs")[4];
+        emailError.classList.add("inputs-invisible");
+        
+        const emailErrorMsg = document.querySelectorAll(".error-message")[4];
+        emailErrorMsg.innerHTML = `${errorValues[i]}`;
+      }
+    }
+  }
+
+  nonError() {
+    const userNameError = document.querySelectorAll(".register-inputs")[0];
+    const passwordError = document.querySelectorAll(".register-inputs")[1];
+    const passwordChkError = document.querySelectorAll(".register-inputs")[2];
+    const nameError = document.querySelectorAll(".register-inputs")[3];
+    const emailError = document.querySelectorAll(".register-inputs")[4];
+
+    userNameError.classList.remove("inputs-invisible");
+    passwordError.classList.remove("inputs-invisible");
+    passwordChkError.classList.remove("inputs-invisible");
+    nameError.classList.remove("inputs-invisible");
+    emailError.classList.remove("inputs-invisible");
+  }
+
+  nonErrorMessage() {
+    const userNameErrorMsg = document.querySelectorAll(".error-message")[0];
+    const passwordErrorMsg = document.querySelectorAll(".error-message")[1];
+    const passwordChkErrorMsg = document.querySelectorAll(".error-message")[2];
+    const nameErrorMsg = document.querySelectorAll(".error-message")[3];
+    const emailErrorMsg = document.querySelectorAll(".error-message")[4];
+
+    userNameErrorMsg.innerHTML = "";
+    passwordErrorMsg.innerHTML = "";
+    passwordChkErrorMsg.innerHTML = "";
+    nameErrorMsg.innerHTML = "";
+    emailErrorMsg.innerHTML = "";
+  }
+
+}
+
+window.onload = () => {
+  Option.getInstance();
+  InputData.getInstance().getRegisterApi();
+  
 }

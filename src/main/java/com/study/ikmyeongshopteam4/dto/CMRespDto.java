@@ -7,5 +7,5 @@ import lombok.Data;
 @Data
 public class CMRespDto<T> {
     private String msg;
-    private T Data;
+    private T data;
 }

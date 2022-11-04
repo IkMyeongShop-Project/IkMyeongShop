@@ -10,57 +10,51 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+
 @Data
 public class RegisterReqDto {
-    @NotBlank(message = "아이디는 비워 둘 수 없습니다.", groups = ValidationGroups.NotBlankGroup.class)
-    @Size(min = 4, message = "아이디는 최소 4자리 이상 입력하여야 합니다.", groups = ValidationGroups.SizeGroup.class)
+    // 통과 시 사용가능한 아이디입니다.
+    @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
+    @Size(min = 4, max = 50, message = "최소 4자, 최대 50자 이하 입력해 주세요.", groups = ValidationGroups.SizeGroup.class)
     private String userName;
 
-    @NotBlank(message = "이름은 비워 둘 수 없습니다", groups = ValidationGroups.NotBlankGroup.class)
-    @Size(min = 1, max = 5, message = "이름은 5자까지만 입력가능합니다.", groups = ValidationGroups.SizeGroup.class)
-    @Pattern(regexp = "^[가-힇]*$", message = "한글만 입력 가능합니다", groups = ValidationGroups.PatternCheckGroup.class)
-    private String name;
-
-
-    @NotBlank(message = "이메일은 비워 둘 수 없습니다", groups = ValidationGroups.NotBlankGroup.class)
-    @Email
-    private String email;
-
-    @NotBlank(message = "비밀번호는 비워 둘 수 없습니다", groups = ValidationGroups.NotBlankGroup.class)
-    @Size(min = 8, max = 16, message = "비밀번호는 8자 부터 16자까지 입력하여야 합니다", groups = ValidationGroups.SizeGroup.class)
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함해야합니다", groups = ValidationGroups.PatternCheckGroup.class)
+    @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
+    @Size(min = 10, max = 16, message = "최소 10자, 최대 16자 이하 입력해 주세요.", groups = ValidationGroups.SizeGroup.class)
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함하여야 합니다.", groups = ValidationGroups.PatternCheckGroup.class)
     private String password;
 
-    @NotBlank(message = "비밀번호는 비워 둘 수 없습니다", groups = ValidationGroups.NotBlankGroup.class)
-    @Size(min = 8, max = 16, message = "비밀번호는 8자 부터 16자까지 입력하여야 합니다", groups = ValidationGroups.SizeGroup.class)
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함해야합니다", groups = ValidationGroups.PatternCheckGroup.class)
+    @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
+    @Size(min = 10, max = 16, message = "최소 10자, 최대 16자 이하 입력해 주세요.", groups = ValidationGroups.SizeGroup.class)
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_])[a-zA-Z\\d-~!@#$%^&*_]*$", message = "비밀번호는 특수기호, 영문, 숫자를 모두 포함하여야 합니다.", groups = ValidationGroups.PatternCheckGroup.class)
     private String passwordChk;
 
-//    @NotBlank(message = "핸드폰 번호를 비울 수 없습니다.", groups = ValidationGroups.NotBlankGroup.class)
-//    @Size(min = 10, max = 12, message = "핸드폰 번호는 최대 12자리 까지 입력해주세요", groups = ValidationGroups.SizeGroup.class)
+    @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
+    @Size(min = 2, max = 5, message = "최소 2자, 최대 5자 이하 입력해 주세요.", groups = ValidationGroups.SizeGroup.class)
+    @Pattern(regexp = "^[가-힣]*$", message = "이름은 한글만 입력 가능합니다.", groups = ValidationGroups.PatternCheckGroup.class)
+    private String name;
 
-    @NotBlank(message = "1")
+    // 이메일 형식
+    @NotBlank(message = "필수항목 입니다.", groups = ValidationGroups.NotBlankGroup.class)
+    @Email(message = "이메일을 정확하게 입력해 주세요.", groups = ValidationGroups.PatternCheckGroup.class)
+    private String email;
+
     private String phone;
-
-    private String postcode;
-
+    private String postCode;
     private String address;
+    private String addressSub;
 
-    private String addresssub;
 
     public User toEntity() {
         return User.builder()
-                .username(userName)
+                .userName(userName)
                 .password(new BCryptPasswordEncoder().encode(password))
-                .passwordChk(new BCryptPasswordEncoder().encode(passwordChk))
                 .name(name)
                 .email(email)
                 .phone(phone)
-                .postcode(postcode)
+                .postcode(postCode)
                 .address(address)
-                .addresssub(addresssub)
+                .addressSub(addressSub)
                 .role_id(1)
                 .build();
     }
-
 }

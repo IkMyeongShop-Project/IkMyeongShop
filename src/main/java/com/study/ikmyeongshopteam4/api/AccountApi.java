@@ -1,7 +1,5 @@
 package com.study.ikmyeongshopteam4.api;
 
-
-import com.study.ikmyeongshopteam4.aop.annotation.LogAspect;
 import com.study.ikmyeongshopteam4.dto.CMRespDto;
 import com.study.ikmyeongshopteam4.dto.RegisterReqDto;
 import com.study.ikmyeongshopteam4.dto.validation.ValidationSequence;
@@ -22,17 +20,15 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class AccountApi {
 
-    private final AccountService accountService;
+    public final AccountService accountService;
 
-    @LogAspect
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto,
-                                      BindingResult bindingResult) throws Exception {
+    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto, BindingResult bindingResult) throws Exception{
 
-        accountService.duplicateUsername(registerReqDto);
+        accountService.duplicateUserName(registerReqDto);
+        accountService.passwordCheck(registerReqDto);
         accountService.register(registerReqDto);
-
-        return ResponseEntity.created(URI.create("/account/login")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getUserName()));
+        return ResponseEntity.created(URI.create("/account/register_ok")).body(new CMRespDto<>("회원가입 성공", registerReqDto.getUserName()));
     }
 
 }

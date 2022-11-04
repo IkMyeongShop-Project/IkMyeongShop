@@ -115,6 +115,11 @@ dt {
     height: 31px;
 }
 
+.no-stock {
+    color: rgb(198, 198, 198);
+    text-decoration: line-through;
+}
+
 .benefit_mileage {
     color: #999999;
     font-size: 11px;
