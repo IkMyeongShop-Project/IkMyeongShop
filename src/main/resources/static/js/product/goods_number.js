@@ -8,7 +8,7 @@ class GoodsApi {
         return this.#instance;
     }
 
-    getGoods(page) {
+    getGoods(page, limitCount) {
         let responseData = null;
 
         const url = location.href;
@@ -19,17 +19,19 @@ class GoodsApi {
             type: "get",
             url: "/api/goods/" + category,
             data: {
-                "page": page
+                "page": page,
+                "limitCount": limitCount
             },
             dataType: "json",
             success: (response) => {
                 responseData = response.data;
-                console.log(responseData);
+                console.log(page);
             },
             error: (error) => {
                 console.log(error);
             }
         });
+        console.log(responseData);
         return responseData;
     }
 }
@@ -39,9 +41,11 @@ class PageNumber {
     #maxPageNumber = 0;
     #pageNumberList = null;
     #totalCount = 0;
-    constructor(page, totalCount) {
+    #limitCount = 0;
+    constructor(page, totalCount, limitCount) {
+        this.#limitCount = limitCount
         this.#page = page;
-        this.#maxPageNumber = totalCount % 16 == 0 ? Math.floor(totalCount / 16) : Math.floor(totalCount / 16) + 1;
+        this.#maxPageNumber = totalCount % this.#limitCount == 0 ? Math.floor(totalCount / this.#limitCount) : Math.floor(totalCount / this.#limitCount) + 1;
         this.#pageNumberList = document.querySelector(".page-number-list");
         this.#pageNumberList.innerHTML = "";
         this.#totalCount = totalCount;
@@ -135,6 +139,7 @@ class GoodsService {
 
     loadGoods() {
         const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page);
+        console.log(responseData);
         if(responseData.length > 0) {
             this.goodsEntity.totalCount = responseData[0].productTotalCount;
             new PageNumber(this.goodsEntity.page, this.goodsEntity.totalCount);

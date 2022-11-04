@@ -29,7 +29,7 @@
             </if>
         group by
             pm.id
-        limit #{index}, 16;
+        limit #{index}, #{limitCount};
     </select>
 
 </mapper>
