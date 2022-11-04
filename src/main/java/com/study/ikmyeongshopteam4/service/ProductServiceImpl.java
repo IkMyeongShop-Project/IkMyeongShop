@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService{
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("category", category);
-        map.put("index", (page - 1) * 16);
+        map.put("index", (page - 1) * limitCount);
         map.put("limitCount", limitCount);
 
         productRepository.getProductList(map).forEach(goodsProduct -> {

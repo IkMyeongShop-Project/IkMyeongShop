@@ -25,7 +25,7 @@ class GoodsApi {
             dataType: "json",
             success: (response) => {
                 responseData = response.data;
-                console.log(page);
+                console.log(responseData);
             },
             error: (error) => {
                 console.log(error);
@@ -68,6 +68,7 @@ class PageNumber {
         }
     }
 
+    
     createNumberButtons() {
         const startIndex = this.#page % 16 == 0 ? this.#page - 16 : this.#page - (this.#page % 16) + 1;
         const endIndex = startIndex + 4 <= this.#maxPageNumber ? startIndex + 4 : this.#maxPageNumber;
@@ -134,11 +135,12 @@ class GoodsService {
 
     goodsEntity = {
         page: 1,
-        totalCount: 0
+        totalCount: 0,
+        limitCount: 16
     }
 
     loadGoods() {
-        const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page);
+        const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page, this.goodsEntity.limitCount);
         console.log(responseData);
         if(responseData.length > 0) {
             this.goodsEntity.totalCount = responseData[0].productTotalCount;
