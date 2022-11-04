@@ -1,8 +1,12 @@
 package com.study.ikmyeongshopteam4.service;
 
+<<<<<<< HEAD
 import com.study.ikmyeongshopteam4.domain.Product;
 import com.study.ikmyeongshopteam4.dto.GoodsListRespDto;
 import com.study.ikmyeongshopteam4.dto.GoodsRespDto;
+=======
+import com.study.ikmyeongshopteam4.dto.GoodsListRespDto;
+>>>>>>> 0d1be5f8b43c3c4fc57f4742b11670f6cafa823b
 import com.study.ikmyeongshopteam4.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,6 +35,7 @@ public class ProductServiceImpl implements ProductService{
         });
         return productList;
     }
+<<<<<<< HEAD
 
     @Override
     public GoodsRespDto getGoods(int pdtId) throws Exception {
@@ -42,4 +47,6 @@ public class ProductServiceImpl implements ProductService{
 
         return null;
     }
+=======
+>>>>>>> 0d1be5f8b43c3c4fc57f4742b11670f6cafa823b
 }

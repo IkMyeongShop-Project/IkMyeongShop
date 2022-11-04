@@ -20,6 +20,9 @@ public class ProductApi {
     public ResponseEntity<?> getGoods(@PathVariable String category, int page) throws Exception {
         return ResponseEntity.ok(new CMRespDto<>("Successfully", productService.getProductList(category, page)));
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0d1be5f8b43c3c4fc57f4742b11670f6cafa823b
 }
