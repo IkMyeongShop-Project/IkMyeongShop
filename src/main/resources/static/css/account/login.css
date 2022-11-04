@@ -189,7 +189,7 @@
     height: 140px;
 }
 
-.btn_facebook_login, .btn_naver_login{
+.btn_google_login, .btn_naver_login{
     display: block;
     margin-top: 12px;
     padding: 20px 0;
