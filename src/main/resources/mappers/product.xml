@@ -31,5 +31,16 @@
             pm.id
         limit #{index}, 16;
     </select>
+    <select id="getList" parameterType="hashmap" resultType="com.study.ikmyeongshopteam4.domain.admin.ProductList">
+        SELECT
+            pm.id AS pdt_id,
+            pm.category_id,
+            pm.pdt_name,
+            pm.pdt_price,
+            pd.pdt_design
+        FROM
+            pdt_mst pm
+            LEFT OUTER JOIN pdt_dtl pd ON(pd.id = pm.id)
+    </select>
 
 </mapper>

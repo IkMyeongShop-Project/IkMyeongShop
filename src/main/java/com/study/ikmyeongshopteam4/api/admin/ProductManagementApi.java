@@ -2,6 +2,7 @@ package com.study.ikmyeongshopteam4.api.admin;
 
 
 import com.study.ikmyeongshopteam4.dto.CMRespDto;
+import com.study.ikmyeongshopteam4.service.admin.ProductListService;
 import com.study.ikmyeongshopteam4.service.admin.ProductManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,4 +21,5 @@ public class ProductManagementApi {
     public ResponseEntity<?> getCategoryList() throws Exception {
         return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully", productManagementService.getCategoryList()));
     }
+
 }

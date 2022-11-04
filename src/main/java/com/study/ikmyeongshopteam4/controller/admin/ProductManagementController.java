@@ -10,10 +10,10 @@ public class ProductManagementController {
 
     @GetMapping("/product/register")
     public String productRegister() {
-        return "admin/product_add";
+        return "admin/product_addition";
     }
-    @GetMapping("/product/registerAdd")
+    @GetMapping("/product/registerList")
     public String productAdd(){
-        return "admin/product_register";
+        return "admin/product_add";
     }
 }

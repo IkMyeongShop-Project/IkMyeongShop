@@ -82,33 +82,32 @@ class PageNumber {
         }
     }
 
-    addPageButtonEvent(){
+    addPageButtonEvent() {
         const pageButtons = this.#pageNumberList.querySelectorAll("li");
-        pageButtons.forEach(button =>{
-            button.onclick = () =>{
-                if(button.textContent == "<"){
+        pageButtons.forEach(button => {
+            button.onclick = () => {
+                if(button.textContent == "<") {
                     const nowPage = CollectionsService.getInstance().collectionsEntity.page;
-                    CollectionsService.getInstance().collectionsEntity.page = Number(nowPage) -1;
-                    CollectionsService.getInstance().getCollections();
+                    CollectionsService.getInstance().collectionsEntity.page = Number(nowPage) - 1;
+                    CollectionsService.getInstance().loadCollections();
 
-                }else if(button.textContent == ">"){
+                }else if(button.textContent == ">") {
                     const nowPage = CollectionsService.getInstance().collectionsEntity.page;
-                    CollectionsService.getInstance().collectionsEntity.page = Number(nowPage) +1;
-                    CollectionsService.getInstance().getCollections();
+                    CollectionsService.getInstance().collectionsEntity.page = Number(nowPage) + 1;
+                    CollectionsService.getInstance().loadCollections();
 
-                }else{
+                }else {
                     const nowPage = CollectionsService.getInstance().collectionsEntity.page;
                     if(button.textContent != nowPage){
                         CollectionsService.getInstance().collectionsEntity.page = button.textContent;
-                        CollectionsService.getInstance().getCollections();
+                        CollectionsService.getInstance().loadCollections();
                     }
                 }
             }
-            
         });
     }
 
-}   
+}
 
 class CollectionsService {
     static #instance = null;
@@ -119,6 +118,7 @@ class CollectionsService {
         }
         return this.#instance;
     }
+
     collectionsEntity = {
         page: 1,
         totalCount: 0
@@ -131,25 +131,24 @@ class CollectionsService {
             this.collectionsEntity.totalCount = responseData[0].productTotalCount;
             new PageNumber(this.collectionsEntity.page, this.collectionsEntity.totalCount);
             this.getCollections(responseData);
-        }else{
+        }else {
             alert("해당 카테고리에 등록된 상품 정보가 없습니다.");
             location.href = "/collections/all";
         }
     }
 
-    getCollections(responseData){
+    getCollections(responseData) {
         const collectionProducts = document.querySelector(".collection-products");
-        collectionProducts.innerHTML += ``;
+        collectionProducts.innerHTML = ``;
 
-
-        responseData.forEach(product =>{
+        responseData.forEach(product => {
             collectionProducts.innerHTML += `
             <li class="collection-product">
                 <div class="product-img">
-                    <img src="/static/images/header/item1.png">
+                    <img src="/static/images/product/1924840_PUTT_1_720x.png">
                 </div>
                 <div class="product-name">
-                    ${product.prodcutName}
+                    ${product.productName}
                 </div>
                 <div class="product-price">
                     ${product.productPrice}원
@@ -161,6 +160,12 @@ class CollectionsService {
 
 }
 
+    loading(responseData) {
+        const loadData = document.querySelector(".product-button").onclick = () =>{
+            loadData.alert("조회하기")
+        }
+    }
+
 window.onload = () => {
     CollectionsService.getInstance().loadCollections();
-}
+} 
