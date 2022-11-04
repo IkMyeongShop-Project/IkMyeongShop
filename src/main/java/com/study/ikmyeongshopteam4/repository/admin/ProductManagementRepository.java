@@ -4,6 +4,7 @@ import com.study.ikmyeongshopteam4.domain.Product;
 import com.study.ikmyeongshopteam4.domain.ProductDetail;
 import com.study.ikmyeongshopteam4.domain.ProductImgFile;
 import com.study.ikmyeongshopteam4.domain.admin.ProductCategory;
+import com.study.ikmyeongshopteam4.domain.admin.ProductInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface ProductManagementRepository {
     public int saveProduct(Product product) throws Exception;
     public int saveProductDetail(ProductDetail productDetail) throws Exception;
     public int saveImgFiles(List<ProductImgFile> productImgFiles) throws Exception;
+    public ProductInfo getProduct(int pdtId, String pdtDesign) throws Exception;
 }

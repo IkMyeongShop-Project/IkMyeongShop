@@ -96,7 +96,12 @@
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.update-list {
+  width: 300px;
+  text-align: center;
 }
 
 select {
@@ -108,16 +113,17 @@ select {
 }
 
 input[type="text"]{
-    height: 24px;
-    width: 18%;
     padding: 0 5px;
-    
+    height: 24px;
+    width: 200px;   
+    text-align: left;
     border-radius: 3px;
     border: 1px solid rgb(198, 198, 198);
 }
-  
-input[type="text"]:nth-child(2n-1) {
-    text-align: right;
+
+.update-list:nth-child(2) input[type="text"] {
+  text-align: right;
+
 }
 
 button {

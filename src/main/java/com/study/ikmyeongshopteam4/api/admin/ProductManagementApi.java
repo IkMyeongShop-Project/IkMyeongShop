@@ -36,4 +36,9 @@ public class ProductManagementApi {
                 .created(null)
                 .body(new CMRespDto<>("Product register Successfully", true));
     }
+
+    @GetMapping("/product/{pdtId}/{pdtDesign}")
+    public ResponseEntity<?> getProduct(@PathVariable("pdtId") int pdtId, @PathVariable("pdtDesign") String pdtDesign) throws Exception {
+        return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully", productManagementService.getProduct(pdtId, pdtDesign)));
+    }
 }

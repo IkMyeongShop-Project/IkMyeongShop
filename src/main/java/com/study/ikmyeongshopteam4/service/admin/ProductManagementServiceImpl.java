@@ -3,8 +3,10 @@ package com.study.ikmyeongshopteam4.service.admin;
 import com.study.ikmyeongshopteam4.domain.Product;
 import com.study.ikmyeongshopteam4.domain.ProductDetail;
 import com.study.ikmyeongshopteam4.domain.ProductImgFile;
+import com.study.ikmyeongshopteam4.domain.admin.ProductInfo;
 import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
 import com.study.ikmyeongshopteam4.dto.admin.ProductRegisterReqDto;
+import com.study.ikmyeongshopteam4.dto.admin.ProductUpdateResponseDto;
 import com.study.ikmyeongshopteam4.exception.CustomInternalServerErrorException;
 import com.study.ikmyeongshopteam4.exception.CustomValidationException;
 import com.study.ikmyeongshopteam4.repository.admin.ProductManagementRepository;
@@ -26,6 +28,7 @@ import java.util.*;
 public class ProductManagementServiceImpl implements ProductManagementService {
 
     private final ResourceLoader resourceLoader;
+
     private final ProductManagementRepository productManagementRepository;
 
     @Override
@@ -124,5 +127,11 @@ public class ProductManagementServiceImpl implements ProductManagementService {
             productImgFiles.add(productImgFile);
         });
         return productImgFiles;
+    }
+
+    @Override
+    public ProductUpdateResponseDto getProduct(int pdtId, String pdtDesign) throws Exception {
+
+        return productManagementRepository.getProduct(pdtId, pdtDesign).toDto();
     }
 }
