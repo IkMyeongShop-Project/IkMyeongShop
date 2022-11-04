@@ -180,15 +180,14 @@ class CategoryName {
         const goodsList = document.querySelector(".goods_list");
         
         const url = location.href;
-        const categoryName = url.substring(url.lastIndexOf("/") + 1);
-
+        const categoryName = decodeURI(url.substring(url.lastIndexOf("/") + 1));
         locationTit.innerHTML = "";
         goodsList.innerHTML = "";
 
         locationTit.innerHTML = `
-        <a href="#">${categoryName} <img src="" alt=""></a>
+        <a href="#">${categoryName}></a>
         `;
-        
+
         goodsList.innerHTML = `
         <h2>${categoryName}</h2>
         `;
@@ -200,4 +199,5 @@ class CategoryName {
 window.onload = () => {
     GoodsService.getInstance().loadGoods();
     CategoryName.getInstance().getCategoryName();
+
 }

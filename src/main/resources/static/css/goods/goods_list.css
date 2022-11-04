@@ -85,13 +85,36 @@
 }
 .chosen_container{
     display: flex;
+    flex-wrap: wrap;
+    /* overflow: hidden; */
     width: 120px;
     height: 25px;
     align-items: center;
     background-color: white;
     cursor: pointer;
     border: 1px solid black;
+    z-index: 1;
 }
+
+.chosen_container a {
+  margin: 5px 10px ;
+  cursor: pointer;
+
+}
+
+.chosen_container_num {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.chosen_container_num_invisible {
+  display: none;
+}
+
 .choose_button{
     position: absolute;top: 68px; right: -29px;
     height: 31px;
@@ -180,3 +203,5 @@
     
     border: 1px solid black;
 }
+
+
