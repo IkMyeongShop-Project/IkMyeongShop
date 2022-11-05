@@ -107,6 +107,7 @@ select {
     background-color:black;
     color: white;
 }
+
 input[type="text"]{
     height: 24px;
     width: 20%;
@@ -205,7 +206,7 @@ table{
     height: 20px;
     border: 1px solid rgb(198, 198, 198);
     border-radius: 3px;
-  
+    cursor: pointer;
     text-align: center;
   }
   .product-mst-list{
