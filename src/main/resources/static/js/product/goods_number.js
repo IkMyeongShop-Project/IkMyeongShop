@@ -45,7 +45,7 @@ class PageNumber {
     constructor(page, totalCount, limitCount) {
         this.#limitCount = limitCount
         this.#page = page;
-        this.#maxPageNumber = totalCount % this.#limitCount == 0 ? Math.floor(totalCount / this.#limitCount) : Math.floor(totalCount / this.#limitCount) + 1;
+        this.#maxPageNumber = totalCount % GoodsService.getInstance().goodsEntity.limitCount == 0 ? Math.floor(totalCount / GoodsService.getInstance().goodsEntity.limitCount) : Math.floor(totalCount / GoodsService.getInstance().goodsEntity.limitCount) + 1;
         this.#pageNumberList = document.querySelector(".page-number-list");
         this.#pageNumberList.innerHTML = "";
         this.#totalCount = totalCount;
@@ -70,14 +70,17 @@ class PageNumber {
 
     
     createNumberButtons() {
-        const startIndex = this.#page % 16 == 0 ? this.#page - 16 : this.#page - (this.#page % 16) + 1;
+        const startIndex = this.#page % 5== 0 ? this.#page - 4 : this.#page - (this.#page % 5) + 1;
         const endIndex = startIndex + 4 <= this.#maxPageNumber ? startIndex + 4 : this.#maxPageNumber;
 
         for(let i = startIndex; i <= endIndex; i++) {
             this.#pageNumberList.innerHTML += `
                 <a href="javascript:void(0)"><li>${i}</li></a>
             `;
+            console.log(GoodsService.getInstance().goodsEntity.limitCount);
         }
+        console.log(this.#page);
+        console.log(this.#maxPageNumber);
     }
 
     createNextButton() {
@@ -136,13 +139,15 @@ class GoodsService {
     goodsEntity = {
         page: 1,
         totalCount: 0,
-        limitCount: 16
+        limitCount: 10
     }
 
     loadGoods() {
         const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page, this.goodsEntity.limitCount);
+        const chosenNum = ChosenEvent.getInstance().getChosenNum(this.limitCount).value;
         console.log(responseData);
         if(responseData.length > 0) {
+            this.goodsEntity.limitCount = chosenNum.value;
             this.goodsEntity.totalCount = responseData[0].productTotalCount;
             new PageNumber(this.goodsEntity.page, this.goodsEntity.totalCount);
             this.getGoods(responseData);
@@ -150,6 +155,7 @@ class GoodsService {
             alert("해당 카테고리에 등록된 상품 정보가 없습니다.");
             location.href = "/goods/all"
         }
+        console.log(this.goodsEntity.limitCount);
     }
 
     getGoods(responseData){
@@ -192,7 +198,7 @@ class CategoryName {
         goodsList.innerHTML = "";
 
         locationTit.innerHTML = `
-        <a href="#">${categoryName}></a>
+        <a href="#">${categoryName}</a>
         `;
 
         goodsList.innerHTML = `
@@ -203,8 +209,31 @@ class CategoryName {
 
 }
 
+class ChosenEvent {
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new ChosenEvent();
+        }
+        return this.#instance;
+    }
+
+    getChosenNum() {
+        const chosenContainer = document.querySelector(".chosen_container");
+
+        chosenContainer.onchange = () => {
+            console.log(chosenContainer.value);
+        }
+
+
+    }
+
+}
+
 window.onload = () => {
     GoodsService.getInstance().loadGoods();
     CategoryName.getInstance().getCategoryName();
+    ChosenEvent.getInstance().getChosenNum();
 
 }
