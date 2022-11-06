@@ -11,4 +11,9 @@ public class ProductController {
     public String loadGoods(@PathVariable String category) {
         return "goods/goods_list";
     }
+
+    @GetMapping("/product/{pdtId}")
+    public String loadProductDetail(@PathVariable String pdtId) {
+        return "goods/goods_view";
+    }
 }

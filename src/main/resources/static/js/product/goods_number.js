@@ -117,10 +117,16 @@ class GoodsService {
         return this.#instance;
     }
 
+    // pdtList = null;
+
     goodsEntity = {
         page: 1,
         totalCount: 0
     }
+
+    // constructor() {
+    //     this.pdtList = new Array();
+    // }
 
     loadGoods() {
         const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page);
@@ -140,6 +146,7 @@ class GoodsService {
         goodProducts.innerHTML = '';
 
         responseData.forEach(product => {
+            // this.pdtIdList.push(product.productId);
             goodProducts.innerHTML += `
             <li class="goods-product">
                 <div class="product-img">
@@ -153,6 +160,16 @@ class GoodsService {
         });
 
     }
+
+    // addGoodsListEvent() {
+    //     const goodsProducts = document.querySelectorAll(".goods-product");
+
+    //     goodsProducts.forEach((product, index) => {
+    //         product.onclick = () => {
+    //             location.href = "/product/" + this.pdtIdList[index];
+    //         }
+    //     })
+    // }
 }
 
 

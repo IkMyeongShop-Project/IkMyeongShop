@@ -12,4 +12,6 @@ public class ProductManagementController {
     public String productRegister() {
         return "admin/product_add";
     }
+
+
 }

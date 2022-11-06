@@ -9,12 +9,13 @@ class ProductApi {
 
     getProductData() {
         let responseData = null;
-        const url = url.substring(rul.lastIndexOf("/") + 1);
+        const url = location.href;
+        const pdtId = url.substring(url.lastIndexOf("/") + 1);
 
         $.ajax({
             async: false,
             type: "get",
-            url: "/goods/" + pdtId,
+            url: "/api/product/" + pdtId,
             dataType: "json",
             success: response => {
                 responseData - response.data;
@@ -30,6 +31,11 @@ class ProductApi {
 
 class ProductDetail {
 
+    constructor() {
+        const responseData = ProductApi.getInstace().getProductData();
+        this.loadProductDetail(responseData);
+    }
+
     loadProductImgs(responseData) {
         const productImages = document.querySelector(".item_photo_view");
         productImages.innerHTML =``;
@@ -37,7 +43,7 @@ class ProductDetail {
         responseData.pdtImgs.forEach(img => {
             productImages.innerHTML = `
             <div class="item_photo">
-                <img src="/static/upload/product/${img}" alt="">
+                <img src="/static/img/goods/goods_list/cup.jpg" alt="">
                 <div class="slick-list.draggable">
                     <div class="mini_img">
                         <img class="img_cl" src="/static/upload/product/${img}" alt="cup">
@@ -69,5 +75,6 @@ class ProductDetail {
 }
 
 window.onload = () => {
+    console.log(ProductApi.getInstace().getProductData());
     new ProductDetail();
 }

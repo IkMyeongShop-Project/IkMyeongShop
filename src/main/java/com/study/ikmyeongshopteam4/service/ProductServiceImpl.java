@@ -1,12 +1,11 @@
 package com.study.ikmyeongshopteam4.service;
 
-<<<<<<< HEAD
+
 import com.study.ikmyeongshopteam4.domain.Product;
 import com.study.ikmyeongshopteam4.dto.GoodsListRespDto;
 import com.study.ikmyeongshopteam4.dto.GoodsRespDto;
-=======
 import com.study.ikmyeongshopteam4.dto.GoodsListRespDto;
->>>>>>> 0d1be5f8b43c3c4fc57f4742b11670f6cafa823b
+import com.study.ikmyeongshopteam4.exception.CustomValidationException;
 import com.study.ikmyeongshopteam4.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,18 +34,49 @@ public class ProductServiceImpl implements ProductService{
         });
         return productList;
     }
-<<<<<<< HEAD
+
 
     @Override
     public GoodsRespDto getGoods(int pdtId) throws Exception {
         Product product = productRepository.getProduct(pdtId);
 
         if (product == null) {
-
+            Map<String, String> errorMap = new HashMap<String, String>();
+            errorMap.put("error", "등록되지 않은 상품입니다.");
+            throw new CustomValidationException("Get Product Error", errorMap);
         }
+        Map<String, List<Object>> pdtDesign =new HashMap<String, List<Object>>();
+        List<String> pdtImgs = new ArrayList<String>();
 
-        return null;
+        product.getPdt_dtls().forEach(dtl -> {
+            if(!pdtDesign.containsKey(dtl.getPdt_design())) {
+            pdtDesign.put(dtl.getPdt_design(), new ArrayList<Object>());
+            }
+        });
+
+        product.getPdt_dtls().forEach(dtl -> {
+            Map<String, Object> pdtDtlAndDesign = new HashMap<String, Object>();
+            pdtDtlAndDesign.put("pdtDtlId", dtl.getId());
+            pdtDtlAndDesign.put("DesignName", dtl.getPdt_design());
+            pdtDtlAndDesign.put("pdtStock", dtl.getPdt_stock());
+
+            pdtDesign.get(pdtDtlAndDesign);
+        });
+
+        product.getPdt_imgs().forEach(img -> {
+            pdtImgs.add(img.getSave_name());
+        });
+
+        GoodsRespDto dto = GoodsRespDto.builder()
+                .pdtId(product.getId())
+                .pdtName(product.getPdt_name())
+                .pdtPrice(product.getPdt_price())
+                .pdtDesign(pdtDesign.toString())
+                .pdtImgs(pdtImgs)
+                .build();
+
+        return dto;
     }
-=======
->>>>>>> 0d1be5f8b43c3c4fc57f4742b11670f6cafa823b
+
+
 }
