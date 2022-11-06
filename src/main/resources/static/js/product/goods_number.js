@@ -77,10 +77,7 @@ class PageNumber {
             this.#pageNumberList.innerHTML += `
                 <a href="javascript:void(0)"><li>${i}</li></a>
             `;
-            console.log(GoodsService.getInstance().goodsEntity.limitCount);
         }
-        console.log(this.#page);
-        console.log(this.#maxPageNumber);
     }
 
     createNextButton() {
@@ -139,15 +136,13 @@ class GoodsService {
     goodsEntity = {
         page: 1,
         totalCount: 0,
-        limitCount: 10
+        limitCount: 16
     }
 
     loadGoods() {
         const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page, this.goodsEntity.limitCount);
-        const chosenNum = ChosenEvent.getInstance().getChosenNum(this.limitCount).value;
         console.log(responseData);
         if(responseData.length > 0) {
-            this.goodsEntity.limitCount = chosenNum.value;
             this.goodsEntity.totalCount = responseData[0].productTotalCount;
             new PageNumber(this.goodsEntity.page, this.goodsEntity.totalCount);
             this.getGoods(responseData);
@@ -174,7 +169,19 @@ class GoodsService {
             `;
             
         });
+        this.addGoodsListEvent(responseData);
+    }
 
+    //상품 등록 시 해당 주소 가져오기, 팀원 작업 마무리 후 href 수정필요
+
+    addGoodsListEvent() {
+        const goodProduct = document.querySelectorAll(".goods-product");
+
+        goodProduct.forEach((product, index) => {
+            product.onclick = () => {
+                location.href = "/product/" + this.pdtIdList[index];
+            }
+        });
     }
 }
 
@@ -211,6 +218,7 @@ class CategoryName {
 
 class ChosenEvent {
     static #instance = null;
+    #test = 0;
 
     static getInstance() {
         if(this.#instance == null) {
@@ -218,22 +226,24 @@ class ChosenEvent {
         }
         return this.#instance;
     }
-
-    getChosenNum() {
+    
+    getChosenNum(test) {
+        this.#test = test;
         const chosenContainer = document.querySelector(".chosen_container");
-
+        
         chosenContainer.onchange = () => {
-            console.log(chosenContainer.value);
+            this.#test = chosenContainer.value;
         }
-
-
+        console.log(this.#test);
     }
-
+    
 }
+
 
 window.onload = () => {
     GoodsService.getInstance().loadGoods();
     CategoryName.getInstance().getCategoryName();
     ChosenEvent.getInstance().getChosenNum();
+    
 
 }
