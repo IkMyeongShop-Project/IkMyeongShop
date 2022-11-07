@@ -23,6 +23,38 @@
         <collection property="product_img_files" javaType="list" resultMap="product_img_files"/>
     </resultMap>
 
+    <update id="setProduct" parameterType="com.study.ikmyeongshopteam4.domain.Product">
+        update
+            pdt_mst
+        set
+            pdt_price = #{pdt_price},
+            update_date = now()
+        where
+            id = #{id}
+    </update>
+
+    <update id="setProductDetail" parameterType="com.study.ikmyeongshopteam4.domain.ProductDetail">
+        update
+            pdt_dtl
+        set
+            pdt_design = #{pdt_design},
+            pdt_stock = #{pdt_stock},
+            update_date = now()
+        where
+            id = #{pdt_id}
+    </update>
+    <delete id="deleteImgFiles" parameterType="hashmap">
+        delete
+        from
+            pdt_image_mst
+        where
+            pdt_Id = #{pdtId}
+        and save_name in
+        <foreach collection="deleteImgFiles" item="save_name" open="(" separator="," close=")">
+            #{save_name}
+        </foreach>
+    </delete>
+
 
     <select id="getCategoryList" resultType="com.study.ikmyeongshopteam4.domain.admin.ProductCategory">
         select

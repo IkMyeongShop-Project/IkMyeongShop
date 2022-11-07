@@ -59,6 +59,27 @@ class CommonApi {
 
     return responseResult;
   }
+
+  updateApi(formData) {
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/api/admin/product/update",
+        enctype: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        data: formData,
+        dataType: "json",
+        success: (response) => {
+            alert("상품 수정 완료");
+            location.replace("/admin/product/1");
+        },
+        error: (error) => {
+            alert("상품 등록 실패\n" + error.responseJSON.msg);
+            console.log(error);
+        }
+    });
+  }
 }
 
 class ProductService {
@@ -121,13 +142,11 @@ class ProductImgFile {
   oldImgDeleteList;
   newImgList;
   newImgSrcList;
-  updateFormData;
 
   constructor() {
     this.oldImgList = CommonApi.getInstance().getProduct().files;
     this.oldImgDeleteList = new Array();
     this.newImgList = new Array();
-    this.updateFormData = new FormData();
     this.loadOldImgs();
     this.addFileInputEvent();
     // this.sumbit();
@@ -144,13 +163,11 @@ class ProductImgFile {
               <img src="/static/upload/product/${imgFile.save_name}" alt="">
             </div>
             <div class="file-name">${imgFile.origin_name}</div>
-            <button type="button" class="btn .old-delete-button">삭제</button>
+            <button type="button" class="btn old-delete-button">삭제</button>
           </li>
         `;
-        setTimeout(() => {
-          this.addDeleteEvent();
-        }, i * 300);
       });
+      this.addDeleteEvent();
   }
 
   addFileInputEvent() {
@@ -213,12 +230,11 @@ class ProductImgFile {
     const deleteButtons = document.querySelectorAll(".delete-button");
     oldDeleteButton.forEach((deleteButton, i) => {
       deleteButton.onclick = () => {
-          if (confirm("상품 이미지를 지우시겠습니까?")) {
-              this.oldImgDeleteList.push(this.oldImgList[i]);
-              this.oldImgList.splice(i, 1);
-              this.loadOldImgs();
-              console.log(this.oldImgDeleteList);
-          }
+        if (confirm("상품 이미지를 지우시겠습니까?")) {
+            this.oldImgDeleteList.push(this.oldImgList[i]);
+            this.oldImgList.splice(i, 1);
+            this.loadOldImgs();
+        }
       };
       });
     deleteButtons.forEach((deleteButton, i) => {
@@ -230,61 +246,99 @@ class ProductImgFile {
       }
     });
   }
-  
-  // sumbit() {
-  //   const registerButton = document.querySelector(".upload-button");
-  //   registerButton.onclick = () => {
-  //       const productInputs = document.querySelectorAll(".product-inputs");
-        
-  //       let formData = new FormData();
-
-  //       formData.append("categoryId", productInputs[0].value);
-  //       formData.append("name", productInputs[1].value);
-  //       formData.append("price", productInputs[2].value);
-  //       formData.append("design", productInputs[3].value);
-  //       formData.append("stock", productInputs[4].value);
-        
-  //       this.newImgList.forEach((file) => {
-  //           formData.append("files", file);
-  //       });
-
-  //       CommonApi.getInstance().registerApi(formData);
-  //   }        
-  // }
 }
 
-// class ProductRepository {
-//   oldImgList;
-//   oldImgDeleteList;
-//   newImgList;
-//   newImgSrcList;
-//   updateFormData;
+class NewFormData {
 
-//   constructor() {
-//       this.oldImgList = CommonApi.getInstance().getProduct().files;
-//       this.oldImgDeleteList = new Array();
-//       this.newImgList = new Array();
-//       this.updateFormData = new FormData();
-//   }
+  oldImgDeleteList;
+  newImgList;
+  updateFormData;
 
-//   toUpdateFormData(productId) {
-//       const productInputs = document.querySelectorAll(".product-input");
+  constructor() {
+    this.oldImgDeleteList = ProductImgFile.getInstance().oldImgDeleteList;
+    this.newImgList = ProductImgFile.getInstance().newImgList;
+    this.updateFormData = new FormData();
+    this.toUpdateFormData();
+  }
 
-//       // this.updateFormData.append("id", productId);
-//       // this.updateFormData.append("price", productInputs[0].value);
+  toUpdateFormData() {
+      const productInputs = document.querySelectorAll(".product-inputs");
 
+      this.updateFormData.append("id", productInputs[0].value);
+      this.updateFormData.append("pdtDtlId", productInputs[1].value);
+      this.updateFormData.append("pdtPrice", productInputs[2].value);
+      this.updateFormData.append("pdtDesign", productInputs[3].value);
+      this.updateFormData.append("pdtStock", productInputs[4].value);
 
-//       // this.oldImgDeleteList.forEach(deleteImgFile => {
-//       //     this.updateFormData.append("deleteImgFiles", deleteImgFile.temp_name);
-//       // });
+      this.oldImgDeleteList.forEach(deleteImgFile => {
+          this.updateFormData.append("deleteImgFiles", deleteImgFile.save_name);
+      });
 
-//       // this.newImgList.forEach(newImgFile => {
-//       //     this.updateFormData.append("files", newImgFile);
-//       // });
-//   }
-// }
+      this.newImgList.forEach(newImgFile => {
+          this.updateFormData.append("files", newImgFile);
+      });
+      return this.updateFormData;
+  }
+} 
 
+class UpdateEvent {
+
+  oldImgDeleteList;
+  newImgList;
+
+  constructor() {
+    this.oldImgDeleteList = ProductImgFile.getInstance().oldImgDeleteList;
+    this.newImgList = ProductImgFile.getInstance().newImgList;
+    this.getUpdateButton();
+  }
+
+  toUpdateFormData() {
+    const productInputs = document.querySelectorAll(".product-inputs");
+
+    let updateFormData = new FormData();
+
+    updateFormData.append("id", productInputs[0].value);
+    updateFormData.append("pdtDtlId", productInputs[1].value);
+    updateFormData.append("pdtPrice", productInputs[2].value);
+    updateFormData.append("pdtDesign", productInputs[3].value);
+    updateFormData.append("pdtStock", productInputs[4].value);
+
+    this.oldImgDeleteList.forEach(deleteImgFile => {
+        updateFormData.append("deleteImgFiles", deleteImgFile.save_name);
+    });
+
+    this.newImgList.forEach(newImgFile => {
+        updateFormData.append("files", newImgFile);
+    });
+  }
+
+  getUpdateButton() {
+    
+    const uploadButton = document.querySelector(".upload-button");
+    uploadButton.onclick = () => {
+      const productInputs = document.querySelectorAll(".product-inputs");
+
+      let updateFormData = new FormData();
+
+      updateFormData.append("id", productInputs[0].value);
+      updateFormData.append("pdtDtlId", productInputs[1].value);
+      updateFormData.append("pdtPrice", productInputs[2].value);
+      updateFormData.append("pdtDesign", productInputs[3].value);
+      updateFormData.append("pdtStock", productInputs[4].value);
+
+      this.oldImgDeleteList.forEach(deleteImgFile => {
+          updateFormData.append("deleteImgFiles", deleteImgFile.save_name);
+      });
+
+      this.newImgList.forEach(newImgFile => {
+          updateFormData.append("files", newImgFile);
+      });
+      CommonApi.getInstance().updateApi(updateFormData);
+    }
+  }
+}
 window.onload = () => {
   ProductService.getInstance();
   ProductImgFile.getInstance();
+  new UpdateEvent;
 }

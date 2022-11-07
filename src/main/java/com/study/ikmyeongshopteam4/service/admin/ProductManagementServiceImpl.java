@@ -6,6 +6,7 @@ import com.study.ikmyeongshopteam4.domain.ProductImgFile;
 import com.study.ikmyeongshopteam4.domain.admin.ProductInfo;
 import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
 import com.study.ikmyeongshopteam4.dto.admin.ProductRegisterReqDto;
+import com.study.ikmyeongshopteam4.dto.admin.ProductGetResponseDto;
 import com.study.ikmyeongshopteam4.dto.admin.ProductUpdateResponseDto;
 import com.study.ikmyeongshopteam4.exception.CustomInternalServerErrorException;
 import com.study.ikmyeongshopteam4.exception.CustomValidationException;
@@ -42,7 +43,7 @@ public class ProductManagementServiceImpl implements ProductManagementService {
     }
 
     @Override
-    public void ProductRegister(ProductRegisterReqDto productRegisterReqDto) throws Exception {
+    public void productRegister(ProductRegisterReqDto productRegisterReqDto) throws Exception {
         int resultCount = 0;
         int productPkId = 0;
 
@@ -130,8 +131,69 @@ public class ProductManagementServiceImpl implements ProductManagementService {
     }
 
     @Override
-    public ProductUpdateResponseDto getProduct(int pdtId, String pdtDesign) throws Exception {
+    public ProductGetResponseDto getProduct(int pdtId, String pdtDesign) throws Exception {
 
         return productManagementRepository.getProduct(pdtId, pdtDesign).toDto();
+    }
+
+    @Override
+    public void productSet(ProductUpdateResponseDto productUpdateResponseDto) throws Exception {
+        List<ProductImgFile> productImgFiles = null;
+        List<String> productDeleteImgFiles = productUpdateResponseDto.getDeleteImgFiles();
+        List<MultipartFile> files = productUpdateResponseDto.getFiles();
+
+        Product product = productUpdateResponseDto.toProductEntity();
+        ProductDetail productDetail = productUpdateResponseDto.toProductDetailEntity();
+
+        if (product.getPdt_price() == 0 || productDetail.getPdt_design().equals("") || productDetail.getPdt_stock() == 0) {
+            Map<String, String> errorMap = new HashMap<String, String>();
+            errorMap.put("update", "빈 칸을 허용하지 않습니다.");
+            throw new CustomValidationException("사진을 제외하고, 빈 칸을 허용하지 않습니다.", errorMap);
+        }
+
+        productManagementRepository.setProduct(product);
+        productManagementRepository.setProductDetail(productDetail);
+
+        // update
+        if(productUpdateResponseDto.getDeleteImgFiles() != null) {
+            deleteProductImg(productUpdateResponseDto.getDeleteImgFiles(), product.getId());
+        }
+
+        if(files != null) {
+            productImgFiles = getProductImgFiles(files, product.getId());
+            productManagementRepository.saveImgFiles(productImgFiles);
+        }
+
+    }
+
+    private boolean deleteProductImg(List<String> deleteImgFiles, int pdtId) throws Exception {
+        boolean status = false;
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pdtId", pdtId);
+        map.put("deleteImgFiles", deleteImgFiles);
+
+        int result = productManagementRepository.deleteImgFiles(map);
+        if(result != 0) {
+            deleteImgFiles.forEach(save_name -> {
+                Resource resource = resourceLoader.getResource("classpath:static/upload/product");
+                String filePath = null;
+                try {
+                    filePath = resource.getURI().toString(); // file/xxx 형식.
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                filePath = filePath.substring(filePath.indexOf("/") + 1);
+                Path path = Paths.get(filePath + "/" + save_name);
+
+                File file = new File(path.toUri());
+                if(file.exists()) {
+                    file.delete();
+                }
+            });
+            status = true;
+        }
+
+        return status;
     }
 }

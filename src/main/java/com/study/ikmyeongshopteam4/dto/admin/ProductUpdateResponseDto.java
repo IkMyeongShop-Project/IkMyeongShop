@@ -1,26 +1,37 @@
 package com.study.ikmyeongshopteam4.dto.admin;
 
-import com.study.ikmyeongshopteam4.domain.ProductImgFile;
-import lombok.Builder;
+import com.study.ikmyeongshopteam4.domain.Product;
+import com.study.ikmyeongshopteam4.domain.ProductDetail;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-@Builder
 @Data
 public class ProductUpdateResponseDto {
     private int id;
-    private String pdtName;
-    private String categoryName;
     private int pdtDtlId;
     private int pdtPrice;
     private String pdtDesign;
     private int pdtStock;
+    private List<String> deleteImgFiles;
+    private List<MultipartFile> files;
 
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
+    public Product toProductEntity() {
+        return Product.builder()
+                .id(id)
+                .pdt_price(pdtPrice)
+                .build();
+    }
 
-    private List<ProductImgFile> files;
+    public ProductDetail toProductDetailEntity() {
+        return ProductDetail.builder()
+                .pdt_id(pdtDtlId)
+                .pdt_design(pdtDesign)
+                .pdt_stock(pdtStock)
+                .build();
+    }
 }

@@ -2,7 +2,7 @@ package com.study.ikmyeongshopteam4.domain.admin;
 
 
 import com.study.ikmyeongshopteam4.domain.ProductImgFile;
-import com.study.ikmyeongshopteam4.dto.admin.ProductUpdateResponseDto;
+import com.study.ikmyeongshopteam4.dto.admin.ProductGetResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,8 +29,8 @@ public class ProductInfo {
 
     private List<ProductImgFile> product_img_files;
 
-    public ProductUpdateResponseDto toDto() {
-        return ProductUpdateResponseDto.builder()
+    public ProductGetResponseDto toDto() {
+        return ProductGetResponseDto.builder()
                 .id(id)
                 .pdtName(pdt_name)
                 .categoryName(category_name)
