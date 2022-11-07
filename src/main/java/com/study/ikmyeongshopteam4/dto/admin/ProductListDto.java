@@ -12,5 +12,5 @@ public class ProductListDto {
     private String categoryName;
     private String productName;
     private int productPrice;
-    private int productDesign;
+    private String productDesign;
 }

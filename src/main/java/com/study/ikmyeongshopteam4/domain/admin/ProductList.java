@@ -16,7 +16,7 @@ public class ProductList {
     private int id;
     private String category_name;
     private String pdt_name;
-    private int pdt_design;
+    private String pdt_design;
     private int pdt_price;
 
     public ProductListDto toDto() {
