@@ -17,7 +17,9 @@ public class Product {
     private String pdt_name;
     private int category_id;
     private int pdt_price;
-    private List<ProductDetail> pdt_dtls;
-    private List<ProductImg> pdt_imgs;
 
+    private List<ProductDetail> pdt_dtls;
+    private List<ProductImgFile> pdt_imgs;
+
+    private int product_total_count;
 }

@@ -1,4 +1,4 @@
-package com.study.ikmyeongshopteam4.dto.admin;
+package com.study.ikmyeongshopteam4.domain.admin;
 
 
 import lombok.Builder;

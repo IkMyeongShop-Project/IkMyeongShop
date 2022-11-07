@@ -1,3 +1,11 @@
+const orderbtn = document.querySelector(".btn_add_order");
+
+orderbtn.onclick = () => {
+    location.href = "/checkout"
+}
+    
+
+
 class ProductApi {
     static #instance = null;
     static getInstace() {
@@ -18,7 +26,7 @@ class ProductApi {
             url: "/api/product/" + pdtId,
             dataType: "json",
             success: response => {
-                responseData - response.data;
+                responseData = response.data;
             },
             error: error => {
                 console.log(error);
@@ -33,7 +41,9 @@ class ProductDetail {
 
     constructor() {
         const responseData = ProductApi.getInstace().getProductData();
+        this.loadProductImgs(responseData);
         this.loadProductDetail(responseData);
+        this.loadProductDesigns(responseData);
     }
 
     loadProductImgs(responseData) {
@@ -43,7 +53,7 @@ class ProductDetail {
         responseData.pdtImgs.forEach(img => {
             productImages.innerHTML = `
             <div class="item_photo">
-                <img src="/static/img/goods/goods_list/cup.jpg" alt="">
+                <img src="/static/upload/product/${img}" alt="">
                 <div class="slick-list.draggable">
                     <div class="mini_img">
                         <img class="img_cl" src="/static/upload/product/${img}" alt="cup">
@@ -56,19 +66,29 @@ class ProductDetail {
 
     loadProductDetail(responseData) {
         document.querySelector(".goods-title").textContent = responseData.pdtName;
-        document.querySelector(".item_price").textContent = responseData.pdtPrice;
+        document.querySelector(".goods-price").textContent = responseData.pdtPrice + "원";
+        document.querySelector(".goods-code").textContent = responseData.pdtId;
     }
+
 
     loadProductDesigns(responseData) {
         const productDesigns = document.querySelector(".option_bar");
+        const productStock = document.querySelector(".product-stock");
         productDesigns.innerHTML = ``;
-
-        Object.keys(responseData.pdtDesign).forEach(design => {
+        
+        // for(let i = 0; i < pdtDesign.length; i++) {
+        //     document.querySelector(".product-stock") += value.pdtStock[i];
+        //     console.log(productStock);
+        // }
+        let sumStock = 0;
+        responseData.pdtDesign.forEach(value => {
+            sumStock += value.pdtStock;
             productDesigns.innerHTML += `
-            <option value="${design}">${design} : ${stock} + "개"</option>
+            <option value="${value.pdtDtlId}">${value.pdtDesign} : ${value.pdtStock} 개 </option>
             `;
-        }) //<option type="radio" id="item-design--${value.pdtDesign} value="${design}" ${value.pdtStock == 0 ? 'disabled' : ''}>${design} : ${stock} + "개"</option>
-
+        })
+        productStock.textContent = sumStock;
+        console.log()
     }
 
 

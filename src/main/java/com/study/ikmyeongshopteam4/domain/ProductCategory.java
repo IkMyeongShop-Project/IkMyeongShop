@@ -1,6 +1,6 @@
 package com.study.ikmyeongshopteam4.domain;
 
-import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
+import com.study.ikmyeongshopteam4.domain.admin.CategoryResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

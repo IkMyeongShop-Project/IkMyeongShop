@@ -1,6 +1,6 @@
 package com.study.ikmyeongshopteam4.service.admin;
 
-import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
+import com.study.ikmyeongshopteam4.domain.admin.CategoryResponseDto;
 import com.study.ikmyeongshopteam4.repository.admin.ProductManagementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,4 +23,6 @@ public class ProductManagementServiceImpl implements ProductManagementService {
         });
         return categoryResponseDtos;
     }
+
+
 }

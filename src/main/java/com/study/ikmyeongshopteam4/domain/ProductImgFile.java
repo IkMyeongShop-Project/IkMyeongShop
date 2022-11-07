@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ProductImg {
+public class ProductImgFile {
     private int id;
     private int pdt_id;
     private String origin_name;

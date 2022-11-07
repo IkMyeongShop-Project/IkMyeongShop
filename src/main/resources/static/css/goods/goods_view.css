@@ -35,7 +35,13 @@ select {
 
 .item_photo_view {
     margin-left: 80px;
-    width: auto;
+    height: 490px;
+    width: 490px;
+}
+
+.item_photo_view img {
+    width: 490px;
+    height: 490px;
 }
 
 .slick-list.draggable {
@@ -47,7 +53,8 @@ select {
 }
 
 .mini_img {
-
+    height: 66px;
+    width: 66px;
 }
 
 .img_cl {
@@ -86,6 +93,11 @@ dt {
     height: 18px;
 }
 
+.goods-price{
+    font-weight: 500;
+    font-size: 16px;
+}
+
 .item_discount_dn {
     padding: 1px 0 2px 20px;
     background-image: url("/static/img/goods/goods_view/Mbutton.png");
@@ -107,6 +119,7 @@ dt {
 
 .btn_choice_box button {
     border: none;
+    cursor: pointer;
 
 }
 

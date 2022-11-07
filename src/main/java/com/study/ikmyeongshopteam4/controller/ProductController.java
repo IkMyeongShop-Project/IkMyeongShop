@@ -13,7 +13,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{pdtId}")
-    public String loadProductDetail(@PathVariable String pdtId) {
+    public String loadProductDetail(@PathVariable int pdtId) {
         return "goods/goods_view";
     }
 }
