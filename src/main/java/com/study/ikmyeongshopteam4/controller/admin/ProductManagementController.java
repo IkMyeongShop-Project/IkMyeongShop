@@ -24,23 +24,23 @@ public class ProductManagementController {
     public String productRegister() {
         return "admin/product_addition";
     }
-    @GetMapping("/product/registerList")
+    @GetMapping("/api/v1/product/{page}")
     public String productAdd(){
         return "admin/product_add";
     }
 
     //상품 리스트 불러오기
-    @PostMapping("/api/v1/product/{page}")
-    public ResponseEntity<?> getProductList(@RequestBody ProductListDto productListDto, @PathVariable int page) {
-        List<ProductListDto> listDtos = new ArrayList<>();
-
-        try {
-            listDtos = productListService.getList(page);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.ok().body(new CMRespDto("failed page", listDtos));
-        }
-
-        return ResponseEntity.ok().body(new CMRespDto("success page", listDtos));
-    }
+//    @PostMapping("/api/v1/product/{page}")
+//    public ResponseEntity<?> getProductList(@RequestBody ProductListDto productListDto, @PathVariable int page) {
+//        List<ProductListDto> listDtos = new ArrayList<>();
+//
+//        try {
+//            listDtos = productListService.getList(page);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.ok().body(new CMRespDto("failed page", listDtos));
+//        }
+//
+//        return ResponseEntity.ok().body(new CMRespDto("success page", listDtos));
+//    }
 }

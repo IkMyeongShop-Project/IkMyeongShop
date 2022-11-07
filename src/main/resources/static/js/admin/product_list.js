@@ -36,20 +36,24 @@ class CollectionsApi {
         $.ajax({
             async: false,
             type: "get",
-            url:  "/admin/api/v1/product" + page,
-            data: {
-                "page": page
-            },
+            url:  "/api/v1/product/" + page,
             dataType: "json",
             success: (response) => {
                 responseData = response.data;
+                console.log(responseData);
             },
             error: (error) => {
                 console.log(error);
             }
         });
+        console.log(responseData);
 
         return responseData;
 
     }
 }
+
+
+window.onload= () => {
+    CollectionsApi.getInstance().getCollections(1);
+  }

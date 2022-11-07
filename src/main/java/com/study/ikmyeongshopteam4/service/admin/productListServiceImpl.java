@@ -23,7 +23,7 @@ public class productListServiceImpl implements ProductListService {
         int index = (page - 1 )*10;
         List<ProductListDto> productListDtos = new ArrayList<>();
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap   <String, Object>();
         map.put("index", index);
 
         productRepository.getList(map).forEach(list -> {
