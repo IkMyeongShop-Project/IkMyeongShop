@@ -43,7 +43,7 @@
             LEFT OUTER JOIN pdt_dtl pd ON(pd.id = pm.id)
             LEFT OUTER JOIN pdt_category_mst pc ON(pc.id = pm.category_id)
         WHERE
-            pd.id = 1
+            pd.id = pm.id
     </select>
 
 </mapper>

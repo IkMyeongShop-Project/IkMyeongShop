@@ -1,22 +1,3 @@
-
-const ReButton = document.querySelector(".product-button");
-
-ReButton.onclick = () =>{
-
-}
-
-const PageNumber = document.querySelectorAll(".page-number-list li")[0]
-
-PageNumber.onclick = () =>{
-    alert("2로")}
-
-const sideList = document.querySelectorAll(".side-content-menulist a")[1]
-
-sideList.onclick =() =>{
-    alert("등록으로 이동")
-    location.href = "/admin/product/register";
-
-}
 class CollectionsApi {
     static #instance = null;
 
@@ -53,7 +34,60 @@ class CollectionsApi {
     }
 }
 
+class Collections{
+
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null) {
+            this.#instance = new Collections();
+        }
+        return this.#instance;
+    }
+    collectionsEntity = {
+        page: 1
+    }
+    loadCollections(){
+        const responseData = CollectionsApi.getInstance().getCollections(this.collectionsEntity.page);
+        console.log(responseData)
+        if(responseData.length < 0) {
+            alert("해당 카테고리에 등록된 상품 정보가 없습니다.");
+        }
+    }
+    getCollections(){
+        const responseData = CollectionsApi.getInstance().getCollections(this.collectionsEntity.page);
+        console.log(responseData)
+
+        const collectionProducts = document.querySelector(".item_list");
+        
+        console.log(collectionProducts)
+
+        collectionProducts.innerHTML += ``;
+
+        responseData.forEach(product =>{
+            const reader = new FileReader();
+            console.log(reader);
+          //  reader.onload = () =>{
+            collectionProducts.innerHTML += `
+            <tr>
+                <th>${product.productId}</th>
+                <th>${product.categoryName}</th>
+                <th>${product.productName}</th>
+                <th>${product.productDesign}</th>
+                <th>${product.productPrice}</th>
+                <th><button>보기</button></th>
+                <th><button>수정</button></th>
+                <th><button>삭제</button></th>
+            </tr>
+            `;
+           // }
+
+        });
+    }
+}
 
 window.onload= () => {
     CollectionsApi.getInstance().getCollections(1);
+    Collections.getInstance().loadCollections();
+    Collections.getInstance().getCollections();
   }
