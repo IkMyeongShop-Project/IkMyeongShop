@@ -35,33 +35,38 @@ class CommonApi {
 }
 
 class ProductService {
-  static #instance = null;
-  
-  static getInstance() {
-    if(this.#instance == null) {
-      this.#instance = new ProductService();
-    }
-    return this.#instance;
+  productData = null;
+
+  constructor(product) {
+    this.productData = product;
+    this.readProduct();
   }
-  readProduct() {
-    const responseData = CommonApi.getInstance().getProduct();
+
+  readProduct() {  // pdtId, pdtDtlId 필요? 
+    const registHeader = document.querySelector(".regist-header");
+    registHeader.innerHTML = `
+    <input type="hidden" class="product-inputs" value=${this.productData.id}>
+    <input type="hidden" class="product-inputs" value=${this.productData.pdtDtlId}>
+    <div class="update-list">
+    </div>
+    <div class="update-list">
+    </div>
+    <div class="update-list">
+    </div>
+    `;
     const updateList = document.querySelectorAll(".update-list");
-    console.log(responseData[0]);
-    console.log(responseData.pdtPrice);
-    console.log(responseData.pdtDesign);
-    console.log(responseData.pdtStock);
     updateList[0].innerHTML = "";
     updateList[0].innerHTML = ` 가격 :
-    <input type="text" class="product-inputs numberChk" value=${responseData.pdtPrice} placeholder="가격">`;
+    <input type="text" class="product-inputs numberChk" value=${this.productData.pdtPrice} placeholder="가격">`;
     updateList[1].innerHTML = "";
     updateList[1].innerHTML = ` 디자인 :
-    <input type="text" class="product-inputs" value=${responseData.pdtDesign} placeholder="디자인">`;
+    <input type="text" class="product-inputs" value=${this.productData.pdtDesign} placeholder="디자인">`;
     updateList[2].innerHTML = "";
     updateList[2].innerHTML = ` 재고 :
-    <input type="text" class="product-inputs numberChk" value=${responseData.pdtStock} placeholder="재고">`;
+    <input type="text" class="product-inputs numberChk" value=${this.productData.pdtStock} placeholder="재고">`;
   }
 }
 
 window.onload = () => {
-  ProductService.getInstance().readProduct();
+  new ProductService(CommonApi.getInstance().getProduct());
 }

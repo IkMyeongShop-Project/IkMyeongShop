@@ -14,6 +14,7 @@ public class ProductUpdateResponseDto {
     private int id;
     private String pdtName;
     private String categoryName;
+    private int pdtDtlId;
     private int pdtPrice;
     private String pdtDesign;
     private int pdtStock;

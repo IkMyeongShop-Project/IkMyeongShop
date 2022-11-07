@@ -19,6 +19,7 @@ public class ProductInfo {
     private int id;
     private String pdt_name;
     private String category_name;
+    private int pdt_dtl_id;
     private int pdt_price;
     private String pdt_design;
     private int pdt_stock;
@@ -33,6 +34,7 @@ public class ProductInfo {
                 .id(id)
                 .pdtName(pdt_name)
                 .categoryName(category_name)
+                .pdtDtlId(pdt_dtl_id)
                 .pdtPrice(pdt_price)
                 .pdtDesign(pdt_design)
                 .pdtStock(pdt_stock)

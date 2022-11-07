@@ -14,6 +14,7 @@
         <result property="id" column="id"/>
         <result property="pdt_name" column="pdt_name"/>
         <result property="category_name" column="category_name"/>
+        <result property="pdt_dtl_id" column="pdt_dtl_id"/>
         <result property="pdt_price" column="pdt_price"/>
         <result property="pdt_design" column="pdt_design"/>
         <result property="pdt_stock" column="pdt_stock"/>
@@ -61,11 +62,14 @@
             pm.id,
             pm.pdt_name,
             pcm.category_name,
+            pd.id as pdt_dtl_id,
             pm.pdt_price,
             pd.pdt_design,
             pd.pdt_stock,
             pd.create_date,
             pd.update_date,
+            pim.id as img_id,
+            pim.pdt_id as product_id,
             pim.origin_name,
             pim.save_name
         FROM
