@@ -65,22 +65,19 @@ class Collections{
         collectionProducts.innerHTML += ``;
 
         responseData.forEach(product =>{
-            const reader = new FileReader();
-            console.log(reader);
-          //  reader.onload = () =>{
+
             collectionProducts.innerHTML += `
             <tr>
                 <th>${product.productId}</th>
                 <th>${product.categoryName}</th>
                 <th>${product.productName}</th>
-                <th>${product.productDesign}</th>
+                <th class ="design">${product.productDesign}</th>
                 <th>${product.productPrice}</th>
                 <th><button>보기</button></th>
                 <th><button>수정</button></th>
                 <th><button>삭제</button></th>
             </tr>
             `;
-           // }
 
         });
     }
