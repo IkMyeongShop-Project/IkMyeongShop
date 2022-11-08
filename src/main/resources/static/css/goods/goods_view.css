@@ -35,11 +35,43 @@ select {
 
 .item_photo_view {
     margin-left: 80px;
-    height: 490px;
-    width: 490px;
+    /* height: 490px;
+    width: 490px; */
 }
 
-.item_photo_view img {
+.item_photo:nth-child(2) {
+    height: 66px;
+    width: 66px;
+}
+
+.item_photo:nth-child(2) img {
+    height: 100%;
+    width: 100%;
+}
+
+.item_photo:nth-child(3) {
+    height: 66px;
+    width: 66px;
+}
+
+.item_photo:nth-child(3) img {
+    height: 100%;
+    width: 100%;
+}
+
+.item_photo:nth-child(4) {
+    height: 66px;
+    width: 66px;
+}
+
+.item_photo:nth-child(4) img {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+.item_photo img {
     width: 490px;
     height: 490px;
 }
@@ -52,13 +84,18 @@ select {
     margin: 0px 61px;
 }
 
-.mini_img {
+/* .mini_img {
     height: 66px;
     width: 66px;
-}
+} */
+
+/* .mini_img img {
+    width: 100%;
+    height: 100%;
+} */
 
 .img_cl {
-    width: 66px;
+    width: 100%;
     height: 66px;
 }
 
