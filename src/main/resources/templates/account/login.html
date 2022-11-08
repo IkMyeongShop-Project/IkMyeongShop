@@ -57,33 +57,31 @@
                             <h2>로그인</h2>
                         </div>
                         <div class="member_cont">
-                            <form action="/account/login" id="formLogin" method="post">
+                            <form action="/account/login" name="fform" id="formLogin" method="post">
                                 <div class="member_login_box">
                                     <h3>회원 로그인</h3>
                                     <div class="login_input_sec">
                                         <div>
-                                            <input class="account_input" type="text" name="username" placeholder="아이디" required="true" aria-required="true">
+                                            <input id="username" class="account_input" type="text" name="username" placeholder="아이디" required="true" aria-required="true">
                                             <input class="account_input" type="password" name="password" placeholder="비밀번호" required="true" aria-required="true">
                                         </div>
                                         <button type="submit" class="login-button">로그인</button>
                                     </div>
                                     <div class="id_chk">
                                         <span class="form_element">
-                                            <input type="checkbox" class="saveId" name="saveId">
+                                            <input type="checkbox" id="saveId" class="saveId" name="saveId">
                                             <label for="saveId">아이디 저장</label>
                                         </span>
                                     </div>
                                 </div>
                             </form>
                                 <div class="member_sns_login">
-                                    <a class="btn_facebook_login" href="#">
-                                        <img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/etc/login_facebook.png" alt="Facebook">
-                                        <span>아이디 로그인</span>
-                                    </a>
-                                    <a class="btn_naver_login" href="#">
-                                        <img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/etc/login_naver.png" alt="네이버">
-                                        <span>아이디 로그인</span>
-                                    </a>
+                                    <button type="button" class="btn_google_login" onclick="location.href='/oauth2/authorization/google'">
+                                        <img src="/static/img/account/login/google_login.png">
+                                    </button>
+                                    <button type="button" class="btn_naver_login" onclick="location.href='/oauth2/authorization/naver'">
+                                        <img src="/static/img/account/login/naver_login2.png">
+                                    </button>
                                 </div>
                                 <div class="btn_login_box">
                                     <ul>
@@ -119,6 +117,7 @@
             </div>
         </section>
     </div>
+    <script src="/static/js/account/id_check.js"></script>
     <script src="/static/js/account/login.js"></script>
 </body>
 </html>
