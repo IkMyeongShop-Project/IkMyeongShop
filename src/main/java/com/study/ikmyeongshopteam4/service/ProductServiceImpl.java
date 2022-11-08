@@ -17,12 +17,13 @@ public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
 
     @Override
-    public List<GoodsListRespDto> getProductList(String category, int page) throws Exception {
+    public List<GoodsListRespDto> getProductList(String category, int page, int limitCount) throws Exception {
         List<GoodsListRespDto> productList = new ArrayList<GoodsListRespDto>();
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("category", category);
-        map.put("index", (page - 1) * 16);
+        map.put("index", (page - 1) * limitCount);
+        map.put("limitCount", limitCount);
 
         productRepository.getProductList(map).forEach(goodsProduct -> {
             productList.add(goodsProduct.toDto());
