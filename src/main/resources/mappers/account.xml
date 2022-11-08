@@ -4,14 +4,14 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.study.ikmyeongshopteam4.repository.AccountRepository">
-    <resultMap id="role" type="com.study.ikmyeongshopteam4.domain.Role">
+    <resultMap id="role" type="com.study.ikmyeongshopteam4.aop.domain.Role">
         <result property="id" column="id"/>
         <result property="name" column="role_name"/>
         <result property="create_date" column="create_date"/>
         <result property="update_date" column="update_date"/>
     </resultMap>
 
-    <resultMap id="user" type="com.study.ikmyeongshopteam4.domain.User">
+    <resultMap id="user" type="com.study.ikmyeongshopteam4.aop.domain.User">
         <result property="id" column="id"/>
         <result property="userName" column="username"/>
         <result property="password" column="password"/>
@@ -47,7 +47,7 @@
 
     </select>
     <!-- insert, update, delete 는 row의 갯수라서 int // select만 rseultMap Type -->
-    <insert id="saveUser" parameterType="com.study.ikmyeongshopteam4.domain.User">
+    <insert id="saveUser" parameterType="com.study.ikmyeongshopteam4.aop.domain.User">
         insert into
             user_mst
         values(

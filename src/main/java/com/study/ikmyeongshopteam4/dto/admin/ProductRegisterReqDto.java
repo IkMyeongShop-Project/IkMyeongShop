@@ -1,10 +1,9 @@
 package com.study.ikmyeongshopteam4.dto.admin;
 
-import com.study.ikmyeongshopteam4.domain.Product;
+import com.study.ikmyeongshopteam4.aop.domain.Product;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 
 @Data
 public class ProductRegisterReqDto {

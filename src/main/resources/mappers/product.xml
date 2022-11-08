@@ -5,7 +5,7 @@
 
 
 <mapper namespace="com.study.ikmyeongshopteam4.repository.ProductRepository">
-    <select id="getProductList" parameterType="hashmap" resultType="com.study.ikmyeongshopteam4.domain.GoodsProduct">
+    <select id="getProductList" parameterType="hashmap" resultType="com.study.ikmyeongshopteam4.aop.domain.GoodsProduct">
         select
             pm.id,
             pm.pdt_name,

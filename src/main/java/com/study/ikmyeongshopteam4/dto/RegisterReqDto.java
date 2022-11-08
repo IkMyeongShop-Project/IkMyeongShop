@@ -1,6 +1,6 @@
 package com.study.ikmyeongshopteam4.dto;
 
-import com.study.ikmyeongshopteam4.domain.User;
+import com.study.ikmyeongshopteam4.aop.domain.User;
 import com.study.ikmyeongshopteam4.dto.validation.ValidationGroups;
 import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

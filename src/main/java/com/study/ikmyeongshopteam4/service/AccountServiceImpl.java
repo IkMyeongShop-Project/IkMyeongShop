@@ -1,6 +1,6 @@
 package com.study.ikmyeongshopteam4.service;
 
-import com.study.ikmyeongshopteam4.domain.User;
+import com.study.ikmyeongshopteam4.aop.domain.User;
 import com.study.ikmyeongshopteam4.dto.RegisterReqDto;
 import com.study.ikmyeongshopteam4.exception.CustomInternalServerErrorException;
 import com.study.ikmyeongshopteam4.exception.CustomValidationException;

@@ -1,4 +1,4 @@
-package com.study.ikmyeongshopteam4.domain;
+package com.study.ikmyeongshopteam4.aop.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

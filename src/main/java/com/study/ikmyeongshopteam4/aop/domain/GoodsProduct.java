@@ -1,4 +1,4 @@
-package com.study.ikmyeongshopteam4.domain;
+package com.study.ikmyeongshopteam4.aop.domain;
 
 import com.study.ikmyeongshopteam4.dto.GoodsListRespDto;
 import lombok.AllArgsConstructor;

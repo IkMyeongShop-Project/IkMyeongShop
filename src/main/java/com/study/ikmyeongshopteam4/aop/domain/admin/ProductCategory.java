@@ -1,10 +1,12 @@
-package com.study.ikmyeongshopteam4.domain;
+package com.study.ikmyeongshopteam4.aop.domain.admin;
 
 import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

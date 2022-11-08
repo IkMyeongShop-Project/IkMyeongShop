@@ -1,6 +1,6 @@
 package com.study.ikmyeongshopteam4.repository;
 
-import com.study.ikmyeongshopteam4.domain.User;
+import com.study.ikmyeongshopteam4.aop.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
