@@ -139,6 +139,7 @@ class GoodsService {
         this.pdtIdList = new Array();
                
     }
+    // pdtList = null;
 
     goodsEntity = {
         page: 1,
@@ -159,6 +160,10 @@ class GoodsService {
 
     }
 
+    // constructor() {
+    //     this.pdtList = new Array();
+    // }
+
     loadGoods() {
         const responseData = GoodsApi.getInstance().getGoods(this.goodsEntity.page, this.goodsEntity.limitCount);
         if(responseData.length > 0) {
@@ -177,6 +182,7 @@ class GoodsService {
 
         responseData.forEach(product => {
             this.pdtIdList.push(product.productId);
+            // this.pdtIdList.push(product.productId);
             goodProducts.innerHTML += `
             <li class="goods-product">
                 <div class="product-img">
@@ -202,6 +208,16 @@ class GoodsService {
             }
         });
     }
+
+    // addGoodsListEvent() {
+    //     const goodsProducts = document.querySelectorAll(".goods-product");
+
+    //     goodsProducts.forEach((product, index) => {
+    //         product.onclick = () => {
+    //             location.href = "/product/" + this.pdtIdList[index];
+    //         }
+    //     })
+    // }
 }
 
 class CategoryName {

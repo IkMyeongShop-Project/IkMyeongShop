@@ -78,40 +78,30 @@
                     </div>
                     <div class="item_photo_info_sec">
                         <div class="item_photo_view">
-                            <img src="/static/img/goods/goods_view/cup.jpg" alt="">
-                            <!-- 제품 사진 -->
-                            <div class="slick-list.draggable">
-                                <div class="mini_img">
-                                    <img class="img_cl" src="/static/img/goods/goods_view/cup_min.jpg" alt="cup">
-                                    <!-- 제품 사진 -->
+                            <!-- <div class="item_photo">
+                                <img src="/static/img/goods/goods_view/cup.jpg" alt="">
+                                <div class="slick-list.draggable">
+                                    <div class="mini_img">
+                                        <img class="img_cl" src="/static/img/goods/goods_view/cup_min.jpg" alt="cup">
+                                    </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="item_info_box">
                             <div class="item_detail_tit">
-                                <h3>익명&깨꾹 상큼 캔유리컵</h3>
+                                <h3 class="goods-title"></h3>
                             </div>
                             <div class="item_detail_list">
                                 <dl class="item_price">
                                     <dt>판매가</dt>
-                                    <dd>
-                                        <strong>10,000원</strong>
+                                    <dd class="goods-price">
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>구매제한</dt>
                                     <dd>최소 1개</dd>
                                 </dl>
-                                <dl class="item_discount_mileage">
-                                    <dt>구매혜택</dt>
-                                    <dd>
-                                        <span class="item_discount_dn">
-                                        </span>
-                                        <span>적립 마일리지:</span>
-                                        <strong>+100원</strong>
-                                        <strong class="benefit_mileage">(상품 : 100원)</strong>
-                                    </dd>
-                                </dl>
+                                
                                 <dl class="item_delivery">
                                     <dt class="baesong">배송비</dt>
                                     <dd class="dd1">
@@ -191,33 +181,33 @@
                                 </dl>
                                 <dl>
                                     <dt>상품코드</dt>
-                                    <dd>1000000365</dd>
+                                    <dd class="goods-code"></dd>
                                 </dl>
                                 <dl>
                                     <dt>상품재고</dt>
-                                    <dd>210</dd>
+                                    <dd class="product-stock"></dd>
                                 </dl>
                                 <div class="item_add_option_box">
                                     <dl>
                                         <dt>디자인</dt>
                                         <dd>
-                                            <select class="option_bar" name="" id="">
-                                                <option value="">= 옵션 : 가격 : 재고 =</option>
+                                            <select class="option_bar">
+                                                <!-- <option value="">= 옵션 : 가격 : 재고 =</option>
                                                 <option value="">익명이 : 110개</option>
-                                                <option value="">깨꾹이 : 100게</option>
+                                                <option value="">깨꾹이 : 100게</option> -->
                                             </select>
                                         </dd>
                                     </dl>
                                 </div>
                             </div>
                             <div class="btn_choice_box">
-                                <button class="btn_add_cart">
+                                <button type="button" class="btn_add_cart">
                                     <img src="/static/img/goods/goods_view/btn_cart.gif" alt="장바구니">
                                 </button>
-                                <button class="btn_add_order">
+                                <button type="button" class="btn_add_order">
                                     <img src="/static/img/goods/goods_view/btn_direct_buy.gif" alt="바로구매">
                                 </button>
-                                <button class="btn_add_wish">
+                                <button type="button" class="btn_add_wish">
                                     <img src="/static/img/goods/goods_view/btn_wish_m_un.gif" alt="관심상품">
                                 </button>
                             </div>
@@ -484,6 +474,7 @@
         </div>
     </div>
     <script src="/static/js/goods/goods_view/btn_gray_list.js"></script>
+    <script src="/static/js/goods/goods_detail.js"></script>
 </body>
 
 </html>

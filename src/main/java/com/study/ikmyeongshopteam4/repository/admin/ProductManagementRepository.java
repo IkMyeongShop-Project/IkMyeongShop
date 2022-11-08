@@ -3,6 +3,7 @@ package com.study.ikmyeongshopteam4.repository.admin;
 import com.study.ikmyeongshopteam4.domain.Product;
 import com.study.ikmyeongshopteam4.domain.ProductDetail;
 import com.study.ikmyeongshopteam4.domain.ProductImgFile;
+import com.study.ikmyeongshopteam4.domain.ProductDetail;
 import com.study.ikmyeongshopteam4.domain.admin.ProductCategory;
 import com.study.ikmyeongshopteam4.domain.admin.ProductInfo;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,6 @@ public interface ProductManagementRepository {
     public int setProduct(Product product) throws Exception;
     public int setProductDetail(ProductDetail productDetail) throws Exception;
     public int deleteImgFiles(Map<String, Object> map) throws Exception;
+
+
 }

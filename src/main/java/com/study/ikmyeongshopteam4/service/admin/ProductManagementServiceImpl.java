@@ -3,7 +3,7 @@ package com.study.ikmyeongshopteam4.service.admin;
 import com.study.ikmyeongshopteam4.domain.Product;
 import com.study.ikmyeongshopteam4.domain.ProductDetail;
 import com.study.ikmyeongshopteam4.domain.ProductImgFile;
-import com.study.ikmyeongshopteam4.domain.admin.ProductInfo;
+import com.study.ikmyeongshopteam4.domain.admin.ProductCategory;
 import com.study.ikmyeongshopteam4.dto.admin.CategoryResponseDto;
 import com.study.ikmyeongshopteam4.dto.admin.ProductRegisterReqDto;
 import com.study.ikmyeongshopteam4.dto.admin.ProductGetResponseDto;

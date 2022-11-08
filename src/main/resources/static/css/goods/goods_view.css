@@ -35,7 +35,45 @@ select {
 
 .item_photo_view {
     margin-left: 80px;
-    width: auto;
+    /* height: 490px;
+    width: 490px; */
+}
+
+.item_photo:nth-child(2) {
+    height: 66px;
+    width: 66px;
+}
+
+.item_photo:nth-child(2) img {
+    height: 100%;
+    width: 100%;
+}
+
+.item_photo:nth-child(3) {
+    height: 66px;
+    width: 66px;
+}
+
+.item_photo:nth-child(3) img {
+    height: 100%;
+    width: 100%;
+}
+
+.item_photo:nth-child(4) {
+    height: 66px;
+    width: 66px;
+}
+
+.item_photo:nth-child(4) img {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+.item_photo img {
+    width: 490px;
+    height: 490px;
 }
 
 .slick-list.draggable {
@@ -46,12 +84,18 @@ select {
     margin: 0px 61px;
 }
 
-.mini_img {
+/* .mini_img {
+    height: 66px;
+    width: 66px;
+} */
 
-}
+/* .mini_img img {
+    width: 100%;
+    height: 100%;
+} */
 
 .img_cl {
-    width: 66px;
+    width: 100%;
     height: 66px;
 }
 
@@ -86,6 +130,11 @@ dt {
     height: 18px;
 }
 
+.goods-price{
+    font-weight: 500;
+    font-size: 16px;
+}
+
 .item_discount_dn {
     padding: 1px 0 2px 20px;
     background-image: url("/static/img/goods/goods_view/Mbutton.png");
@@ -107,12 +156,18 @@ dt {
 
 .btn_choice_box button {
     border: none;
+    cursor: pointer;
 
 }
 
 .option_bar {
     width: 344px;
     height: 31px;
+}
+
+.no-stock {
+    color: rgb(198, 198, 198);
+    text-decoration: line-through;
 }
 
 .benefit_mileage {

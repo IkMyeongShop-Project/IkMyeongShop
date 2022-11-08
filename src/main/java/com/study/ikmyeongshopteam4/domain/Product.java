@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Builder
@@ -18,7 +19,9 @@ public class Product {
     private int category_id;
     private int pdt_price;
 
-    private List<ProductImgFile> product_img_files;
+    private List<ProductDetail> pdt_dtls;
+
+    private List<ProductImgFile> pdt_imgs;
 
     private int product_total_count;
 }
