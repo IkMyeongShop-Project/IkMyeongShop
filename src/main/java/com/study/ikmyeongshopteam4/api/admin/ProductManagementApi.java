@@ -26,6 +26,7 @@ public class ProductManagementApi {
         return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully", productManagementService.getCategoryList()));
     }
 
+<<<<<<< HEAD
     @ValidAspect
     @PostMapping("/product/register")
     public ResponseEntity<?> addProduct(ProductRegisterReqDto productRegisterReqDto,
@@ -48,4 +49,6 @@ public class ProductManagementApi {
         productManagementService.productSet(productUpdateResponseDto);
         return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully", true));
     }
+=======
+>>>>>>> ym2
 }

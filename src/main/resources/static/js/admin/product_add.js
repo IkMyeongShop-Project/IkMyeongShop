@@ -101,7 +101,7 @@ class ProductImgFile {
     if(this.#instance == null) {
       this.#instance = new ProductImgFile();
     }
-    return this.#instance;
+    return this.#instance;    
   }
 
   newImgList = new Array();
