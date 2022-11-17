@@ -299,9 +299,7 @@ class PageNumber {
     #maxPageNumber = 0;
     #pageNumberList = null;
     #totalCount = 0;
-    #limitCount = 0;
-    constructor(page, totalCount, limitCount) {
-        this.#limitCount = limitCount
+    constructor(page, totalCount) {
         this.#page = page;
         this.#maxPageNumber = totalCount % GoodsService.getInstance().goodsEntity.limitCount == 0 ? Math.floor(totalCount / GoodsService.getInstance().goodsEntity.limitCount) : Math.floor(totalCount / GoodsService.getInstance().goodsEntity.limitCount) + 1;
         this.#pageNumberList = document.querySelector(".page-number-list");
