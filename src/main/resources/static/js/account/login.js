@@ -1,5 +1,6 @@
-const memberJoinButton = document.querySelector(".btn_member_join");
+const registerForwardButton = document.querySelector(".btn-member-join");
 
-memberJoinButton.onclick = () => {
-    location.href = "/account/register";
+registerForwardButton.onclick = () => {
+  location.href = "/account/register";
 }
+
