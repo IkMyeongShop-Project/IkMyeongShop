@@ -1,5 +1,6 @@
 package com.study.ikmyeongshopteam4.api;
 
+import com.study.ikmyeongshopteam4.aop.annotation.LogAspect;
 import com.study.ikmyeongshopteam4.dto.CMRespDto;
 import com.study.ikmyeongshopteam4.dto.RegisterReqDto;
 import com.study.ikmyeongshopteam4.dto.validation.ValidationSequence;
@@ -22,8 +23,10 @@ public class AccountApi {
 
     public final AccountService accountService;
 
+    @LogAspect
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto, BindingResult bindingResult) throws Exception{
+    public ResponseEntity<?> register(@Validated(ValidationSequence.class) @RequestBody RegisterReqDto registerReqDto,
+                                      BindingResult bindingResult) throws Exception{
 
         accountService.duplicateUserName(registerReqDto);
         accountService.passwordCheck(registerReqDto);

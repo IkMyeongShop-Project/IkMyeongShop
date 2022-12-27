@@ -30,19 +30,19 @@
                 </div>
                 <div class="logo">
                     <a href="#"><img src="/static/img/header/event_left.png" alt=""></a>
-                    <a href="/main/index"><img src="/static/img/header/logo.png" alt=""></a>
+                    <a href="/index"><img src="/static/img/header/logo.png" alt=""></a>
                     <a href="#"><img src="/static/img/header/event_right.png" alt=""></a>
                 </div>
                 <nav  class="nav">
                     <ul>
-                        <li class="nav1"><a href="/goods/DOLL">DOLL</a></li>
-                        <li class="nav1"><a href="/goods/FIGURE&TOY">FIGURE & TOY</a></li>
-                        <li><a href="/goods/FANCY">FANCY</a></li>
-                        <li><a href="/goods/ACCESSORY">ACCESSORY</a></li>
-                        <li><a href="/goods/LIVING">LIVING</a></li>
-                        <li><a href="/goods/KITCHEN&BATHROOM">KITCHEN & BATHROOM</a></li>
-                        <li><a href="/goods/MOBILE">MOBILE</a></li>
-                        <li><a href="/goods/깨꾹이">깨꾹이</a></li>
+                      <li><a href="/goods/DOll">DOLL</a></li>
+                      <li><a href="/goods/FIGURE&TOY">FIGURE & TOY</a></li>
+                      <li><a href="/goods/FANCY">FANCY</a></li>
+                      <li><a href="/goods/ACCESSORY">ACCESSORY</a></li>
+                      <li><a href="/goods/LIVING">LIVING</a></li>
+                      <li><a href="/goods/KITCHEN&BATHROOM">KITCHEN & BATHROOM</a></li>
+                      <li><a href="/goods/MOBILE">MOBILE</a></li>
+                      <li><a href="/goods/깨꾹이">깨꾹이</a></li>
                     </ul>
                 </nav>
             </div>
@@ -67,7 +67,6 @@
                         <li><a href="#">깨꾹이</a></li>
                     </ul>
                 </div>
-                <script src="/static/js/goods/goods_list/index.js"></script>
                 <div class="goods_item">
                     <div class="goods_list">
                         <h2>DOLL</h2>
@@ -76,9 +75,22 @@
                       <div class="pick_list_num">
                           <h4>상품 42 개</h4>
                       </div>
-                      <div class="chosen_container">
-                          <a href="">10개씩 보기</a>
-                          <img class="choose_button" src="/static/img/goods/goods_list/chosen-sprite.png" alt="">
+                      <div>
+                        <select class="chosen_container">
+                            <option value="10">10개씩 보기</option>
+                            <option value="20">20개씩 보기</option>
+                            <option value="30">30개씩 보기</option>
+                            <option value="40">40개씩 보기</option>
+                        </select>
+                          <!-- <a href="">10개씩 보기</a>
+                          <div class="chosen_container_num chosen_container_num_invisible">
+                            <a href="">10개씩 보기</a>
+                            <a href="">20개씩 보기</a>
+                            <a href="">30개씩 보기</a>
+                            <a href="">40개씩 보기</a>
+                            <img class="choose_button" src="/static/img/goods/goods_list/chosen-sprite.png" alt="">
+                          </div>
+                          <img class="choose_button" src="/static/img/goods/goods_list/chosen-sprite.png" alt=""> -->
                       </div>
                     </div>
                    <main>
@@ -102,6 +114,7 @@
             
         </section>
     </div>
-    <script src="/static/js/product/goods_number.js"></script>
+    <script src="/static/js/product/goods_number.js" charset="UTF-8"></script>
+    <!-- <script src="/static/js/product/chosen.js"></script> -->
 </body>
 </html>
