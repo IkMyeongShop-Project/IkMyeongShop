@@ -2,6 +2,7 @@ package com.study.ikmyeongshopteam4.service;
 
 
 import com.study.ikmyeongshopteam4.domain.Product;
+import com.study.ikmyeongshopteam4.dto.CheckoutRespDto;
 import com.study.ikmyeongshopteam4.dto.GoodsListRespDto;
 import com.study.ikmyeongshopteam4.dto.ProductRespDto;
 import com.study.ikmyeongshopteam4.exception.CustomValidationException;
@@ -72,6 +73,11 @@ public class ProductServiceImpl implements ProductService{
                 .build();
 
         return dto;
+    }
+
+    @Override
+    public CheckoutRespDto getCheckoutProduct(int pdtDtlId) throws Exception {
+        return productRepository.getPaymentProduct(pdtDtlId).toDto();
     }
 
 

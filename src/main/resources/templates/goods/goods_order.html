@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <link rel="stylesheet" href="/static/css/order/reset.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/order/order.css">
+    <title>익명상점 | 결제하기</title>
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+            <div id="top">
+                <div class="sns">
+                    <ul>
+                        <li><a href="#" target="_blank"><img src="/static/img/header/top_btn_sns1.png" alt=""></a></li>
+                        <li><a href="#" target="_blank"><img src="/static/img/header/top_btn_sns2.png" alt=""></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/account/login">로그인</a></li>
+                        <li><a href="/account/register">회원가입</a></li>
+                        <li><a href="/order/cart">장바구니0</a></li>
+                        <li><a href="/mypage/index">마이페이지</a></li>
+                        <li><a href="#">고객센터</a></li>
+                        <li><a href="#"><img src="/static/img/header/top_btn_search.png" alt=""></a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <a href="#"><img src="/static/img/header/event_left.png" alt=""></a>
+                    <a href="/index"><img src="/static/img/header/logo.png" alt=""></a>
+                    <a href="#"><img src="/static/img/header/event_right.png" alt=""></a>
+                </div>
+                <nav  class="nav">
+                    <ul>
+                        <li class="nav1"><a href="#">DOLL</a></li>
+                        <li class="nav1"><a href="#">FIGURE & TOY</a></li>
+                        <li><a href="#">FANCY</a></li>
+                        <li><a href="#">ACCESSORY</a></li>
+                        <li><a href="#">LIVING</a></li>
+                        <li><a href="#">KITCHEN & BATHROOM</a></li>
+                        <li><a href="#">MOBILE</a></li>
+                        <li><a href="#">깨꾹이</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section id="bag_list">
+            <div class="location_cont">
+                <em><a class="local_home" href="#">HOME</a> > 장바구니</em>
+            </div>
+            <div class="content_box">
+                <div class="order_wrap">
+                    <div class="order_tit">
+                        <h2>주문서작성/결제</h2>
+                        <ol class="order_state">
+                            <li>
+                                <span>01</span> 장바구니 <span class="state_img"><img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/member/icon_join_step_on.png" alt=">기호"></span>
+                            </li>
+                            <li class="page_on">
+                                <span>02</span> 주문서작성/결제 <span class="state_img"><img src="https://cdn-std-web-219-244-godomall.spdycdn.net/classythe8_godomall_com/data/skin/front/designbook_moderntim/img/member/icon_join_step_on.png" alt=">기호"></span>
+                            </li>
+                            <li>
+                                <span>03</span> 주문완료
+                            </li>
+                        </ol>
+                    </div>
+                        <div class="order_cont">
+            
+                            <div class="cart_cont_list">
+                                <div class="order_cart_tit">
+                                    <h3>주문상세내역</h3>
+                                </div>
+                                <!-- //order_cart_tit -->
+            
+                                <div class="order_table_type">
+                                    <!-- 장바구니 상품리스트 시작 -->
+                                    <table>
+                                        <colgroup>
+                                            <col>					<!-- 상품명/옵션 -->
+                                            <col style="width:5%">  <!-- 수량 -->
+                                            <col style="width:10%"> <!-- 상품금액 -->
+                                            <col style="width:13%"> <!-- 할인/적립 -->
+                                            <col style="width:10%"> <!-- 합계금액 -->
+                                            <col style="width:10%"> <!-- 배송비 -->
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th>상품/옵션 정보</th>
+                                            <th>수량</th>
+                                            <th>상품금액</th>
+                                            <th>할인/적립</th>
+                                            <th>합계금액</th>
+                                            <th>배송비</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="td_left">
+                                                <input type="hidden" name="cartSno[]" value="">
+                                                <div class="pick_add_cont">
+                                                    <span class="pick_add_img">
+                                                        <a href="../goods/goods_view.php?goodsNo=1000000486"><img th:src="|/static/upload/product/${data.saveName}|" class="middle"></a>
+                                                    </span>
+                                                    <div class="pick_add_info">
+                                                        <div class="product-name" th:text="${data.pdtName}">
+                                                            <em></em>
+                                                        </div>
+                                                        <!-- //icon_pick_list -->
+            
+                                                        <div class="pick_option_box" th:text="${data.pdtDesign}">
+                                                            <span class="text_type_cont" ></span>
+                                                        </div>
+            
+                                                        <div class="pick_option_box">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- //pick_add_cont -->
+            
+                                                <!-- //pick_add_list -->
+            
+                                            </td>
+                                            <td class="td_order_amount">
+                                                <div class="order_goods_num">
+                                                    <strong>1개</strong>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <strong class="order_sum_txt product-price" th:text="${data.pdtPrice}"></strong>
+                                            </td>
+                                            <td class="td_benefit">
+                                                <ul class="benefit_list">
+                                                    <li class="benefit_mileage js_mileage">
+                                                        <em>적립</em>
+                                                        <span><strong class="mileage">원</strong></span>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <strong class="order_sum_txt" th:text="${data.pdtPrice}"></strong>
+                                            </td>
+                                            <td class="td_delivery" rowspan="1">
+                                                기본 - 금액별배송비<br>
+                                                2,500원
+            
+                                                <br>
+                                                (택배)
+                                            </td>
+                                        </tr>
+            
+            
+                                        </tbody>
+                                    </table>
+                                    <!-- 장바구니 상품리스트 끝 -->
+                                </div>
+            
+                            </div>
+                            <!-- //cart_cont_list -->
+            
+                            <div class="btn_left_box">
+                                <a href="./cart.php" class="shop_go_link"><em>&lt; 장바구니 가기</em></a>
+                            </div>
+            
+                            <div class="price_sum">
+                                <div class="price_sum_cont">
+                                    <div class="price_sum_list">
+                                        <dl>
+                                            <dt>총 <strong>1</strong> 개의 상품금액 </dt>
+                                            <dd><strong class="pdtPrice" value="${data.pdtPrice}" th:text="${data.pdtPrice}"></strong>원</dd>
+                                        </dl>
+                                        <span class="price-font1">+</span>
+                                        <dl>
+                                            <dt>배송비</dt>
+                                            <dd><strong>2,500</strong>원</dd>
+                                        </dl>
+                                        <span class="price-font1">=</span>
+                                        <dl class="price_total">
+                                            <dt>합계</dt>
+                                            <dd><strong class="totalPay"></strong>원
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <em class="tobe_mileage js_mileage">적립예정 마일리지 : <span class="mileage"></span> 원</em>
+                                </div>
+                                <!-- //price_sum_cont -->
+                            </div>
+                            <!-- //price_sum -->
+            
+            
+                            <div class="order_view_info">
+            
+            
+                                <div class="order_info">
+                                    <div class="order_zone_tit">
+                                        <h4>주문자 정보</h4>
+                                    </div>
+            
+                                    <div class="order_table_type">
+                                        <table class="table_left">
+                                            <colgroup>
+                                                <col style="width:15%;">
+                                                <col style="width:85%;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><span>주문하시는 분</span></th>
+                                                    <td th:text="|${user.name}"><input type="text"name="orderName" data-pattern="gdEngKor" maxlength="20"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">전화번호</th>
+                                                    <td>
+                                                        <input type="text" id="phoneNum" name="orderPhone" value="" maxlength="20">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><span>이메일</span></th>
+                                                    <td class="member_email">
+                                                        <input type="text" class="principal-email" name="orderEmail">
+                
+                                                        <select id="emailDomain" class="chosen-select">
+                                                            <option value="self">직접입력</option>
+                                                            <option value="naver.com">naver.com</option>
+                                                            <option value="hanmail.net">hanmail.net</option>
+                                                            <option value="daum.net">daum.net</option>
+                                                            <option value="nate.com">nate.com</option>
+                                                            <option value="hotmail.com">hotmail.com</option>
+                                                            <option value="gmail.com">gmail.com</option>
+                                                            <option value="icloud.com">icloud.com</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- //order_info -->
+            
+                                <div class="delivery_info">
+                                    <div class="order_zone_tit">
+                                        <h4>배송정보</h4>
+                                    </div>
+            
+                                    <div class="order_table_type">
+                                        <table class="table_left">
+                                            <colgroup>
+                                                <col style="width:15%;">
+                                                <col style="width:85%;">
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row"><span>받으실분</span></th>
+                                                <td><input type="text" class="principal-name important"  name="receiverName" data-pattern="gdEngKor" maxlength="20" required></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><span>받으실 곳</span></th>
+                                                <td class="member_address">
+                                                    <div class="address_postcode">
+                                                        <input type="text" class="address-zonecode important" name="receiverZonecode" readonly="readonly" required>
+                                                        <span id="receiverZipcodeText" class="old_post_code"></span>
+                                                        <button type="button" class="btn_post_search">우편번호검색</button>
+                                                    </div>
+                                                    <div class="address_input">
+                                                        <input type="text" class="address-all important" name="receiverAddress" readonly="readonly" required>
+                                                        <input type="text" class="address-detail"  name="receiverAddressSub">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">전화번호</th>
+                                                <td>
+                                                    <input type="text" class="phone-number" id="receiverPhone" name="receiverPhone">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="payment_info">
+                                    <div class="order_zone_tit">
+                                        <h4>결제정보</h4>
+                                    </div>
+            
+                                    <div class="order_table_type">
+                                        <table class="table_left">
+                                            <colgroup>
+                                                <col style="width:15%;">
+                                                <col style="width:85%;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                   <th scope="row">상품 합계 금액</th>
+                                                   <td>
+                                                       <strong id="totalGoodsPrice" class="order_payment_sum pdtPrice" value="${data.pdtPrice}" th:text="${data.pdtPrice}"></strong>원
+                                                   </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">배송비</th>
+                                                    <td>
+                                                            <span id="totalDeliveryCharge"><strong>2,500</strong></span>원
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">최종 결제 금액</th>
+                                                    <td>
+                                                        <strong id="totalSettlePrice" class="order_payment_sum totalPay"></strong>원
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- //payment_info -->
+            
+                                <div class="payment_progress">
+                                    
+                                    </div>
+                                    <!-- //payment_progress_list -->
+                                    <div class="payment_final">
+                                        <div class="payment_final_total">
+                                            <dl>
+                                                <dt>최종 결제 금액</dt>
+                                                <dd><span><strong id="totalSettlePriceView"  class="totalPay"></strong>원</span></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="payment_final_check">
+                                            <div class="form_element">
+                                                <input type="checkbox" id="termAgree_orderCheck" class="require">
+                                                <label for="termAgree_orderCheck" class="check_s"><em><b>(필수)</b> 구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</em></label>
+                                            </div>
+                                        </div>
+                                        <div class="btn_center_box">
+                                            <button type="button" class="btn_order_buy order-buy"><em>결제하기</em></button>
+                                        </div>
+                                    </div>
+                                    <!-- //payment_final -->
+            
+                                </div>
+                                <!-- //payment_progress -->
+            
+                            </div>
+                            <!-- //order_view_info -->
+                        </div>
+                        <!-- //order_cont -->
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="/static/js/order/address.js"></script>
+    <script src="/static/js/order/product_order.js"></script>
+    <script src="/static/js/order/checkoutprice.js"></script>
+</body>
+</html>

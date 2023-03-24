@@ -82,4 +82,21 @@
             pm.id = #{pdtID}
     </select>
 
+    <select id="getPaymentProduct" resultType="com.study.ikmyeongshopteam4.domain.PaymentProduct">
+        SELECT
+            pd.id AS pdt_dtl_id,
+            pd.pdt_id,
+            pm.pdt_name,
+            pm.pdt_price,
+            pd.pdt_design,
+            pim.save_name
+        FROM
+            pdt_dtl pd
+            LEFT OUTER JOIN pdt_mst pm ON(pm.id = pd.pdt_id)
+            LEFT OUTER JOIN pdt_image_mst pim ON(pim.pdt_id = pd.pdt_id)
+        WHERE
+            pd.id = #{pdtDtlId}
+        LIMIT 1
+    </select>
+
 </mapper>

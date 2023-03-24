@@ -1,8 +1,8 @@
-const orderbtn = document.querySelector(".btn_add_order");
+// const orderbtn = document.querySelector(".btn_add_order");
 
-orderbtn.onclick = () => {
-    location.href = "/checkout"
-}
+// orderbtn.onclick = () => {
+//     location.href = "/checkout"
+// }
     
 
 

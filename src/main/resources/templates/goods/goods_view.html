@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,6 +90,7 @@
                             <div class="item_detail_tit">
                                 <h3 class="goods-title"></h3>
                             </div>
+                            <form action="/checkout" method="get">
                             <div class="item_detail_list">
                                 <dl class="item_price">
                                     <dt>판매가</dt>
@@ -191,7 +191,7 @@
                                     <dl>
                                         <dt>디자인</dt>
                                         <dd>
-                                            <select class="option_bar">
+                                            <select name="pdtDtlId" class="option_bar">
                                                 <!-- <option value="">= 옵션 : 가격 : 재고 =</option>
                                                 <option value="">익명이 : 110개</option>
                                                 <option value="">깨꾹이 : 100게</option> -->
@@ -201,16 +201,17 @@
                                 </div>
                             </div>
                             <div class="btn_choice_box">
-                                <button type="button" class="btn_add_cart">
-                                    <img src="/static/img/goods/goods_view/btn_cart.gif" alt="장바구니">
-                                </button>
-                                <button type="button" class="btn_add_order">
-                                    <img src="/static/img/goods/goods_view/btn_direct_buy.gif" alt="바로구매">
-                                </button>
-                                <button type="button" class="btn_add_wish">
-                                    <img src="/static/img/goods/goods_view/btn_wish_m_un.gif" alt="관심상품">
-                                </button>
+                                    <button type="button" class="btn_add_cart">
+                                        <img src="/static/img/goods/goods_view/btn_cart.gif" alt="장바구니">
+                                    </button>
+                                    <button type="submit" class="btn_add_order">
+                                        <img src="/static/img/goods/goods_view/btn_direct_buy.gif" alt="바로구매">
+                                    </button>
+                                    <button type="button" class="btn_add_wish">
+                                        <img src="/static/img/goods/goods_view/btn_wish_m_un.gif" alt="관심상품">
+                                    </button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

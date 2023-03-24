@@ -174,6 +174,10 @@
     justify-content: space-between;
     align-items: center;
 }
+.price-font1 {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
 
 .product_price_sum{
     width: 159px;
@@ -228,6 +232,7 @@
 
 .order_wrap{
     width: 1200px;
+    margin-bottom: 20px;
     padding:0 0 0 0;
     
 }
@@ -428,10 +433,16 @@ th > .important{margin: 0 0 0 -10px; padding:0 0 0 10px; background:url('../../i
 #contents .member_address .address_postcode{overflow:hidden; position:relative;}
 #contents .member_address .address_postcode input{float:left;}
 #contents .member_address .address_postcode .old_post_code{position:absolute; top:6px; left:55px; color:#333333;}
-#contents .member_address .address_postcode .btn_post_search{float:left; margin:0 0 0 5px; padding:5px 10px 5px 10px; border:1px solid #989898;}
-#contents .member_address .address_input{float:left; width:98%;}
-#contents .member_address .address_input input:first-child{width:400px;}
-#contents .member_address .address_input input{width:250px; margin:10px 0 0 0;}
+.member_address .address_postcode .btn_post_search{margin:10px 0 10px 5px; padding:5px 10px 5px 10px; border:1px solid #989898;}
+.member_address .address_input{
+  display: flex;
+  flex-direction: column;
+  float:left;}
+.member_address .address_input .address-all{
+  width:400px;}
+.member_address .address_input .address-detail{
+  margin-top: 10px;
+  width: 400px;}
 /* 남기실 말씀 */
 .td_last_say input[type="text"]{width:90%;}
 /* 회원정보 반영 */
@@ -575,8 +586,11 @@ textarea{padding:5px; color:#a9a9a9; border:1px solid #d6d6d6;
 .oh{overflow:hidden !important;}
 
 .btn_left_box{text-align:left;}
-.btn_center_box{text-align:center;}
+.btn_center_box{
+  margin-bottom: 10px;
+  text-align:center;}
 .btn_right_box{text-align:right;}
+
 
 /* 폰트 컬러 */
 .fc_red{color:#fa2828 !important;}
@@ -784,6 +798,7 @@ span.form_element{display:inline-block;}
 
 .btn_order_buy {
     display: inline-block;
+    margin-bottom: 10px;
     width: 300px;
     height: 61px;
     line-height: 59px;
