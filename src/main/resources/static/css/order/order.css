@@ -1261,3 +1261,16 @@ span.form_element{display:inline-block;}
   a {color:#333;text-decoration:none}
   a:active, a:hover {text-decoration:none;}
   address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+
+  .pdtimg img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-email1 {
+    font-size: 12px;
+  }
+
+  .user-email2 {
+    font-size: 12px;
+  }

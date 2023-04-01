@@ -17,7 +17,7 @@ class ImportApi {
 
     requestPay() {
         const pdtName = document.querySelector(".product-name").innerHTML;
-        const pdtPrice = Number(document.querySelector(".product-price").innerHTML);
+        const pdtPrice = Number(document.querySelector(".totalPay").innerHTML);
         const name = document.querySelector(".principal-name").value;
         const zoneCode = document.querySelector(".address-zonecode").value;
         const addressAll = document.querySelector(".address-all").value;
@@ -39,7 +39,6 @@ class ImportApi {
                 document.querySelector(`.${field}`).style.borderColor = "red";
             })
         }
-
 
         console.log("pdtName", pdtName);
         console.log("pdtPrice", pdtPrice)
@@ -82,7 +81,8 @@ class ImportApi {
             buyer_postcode: zoneCode
         }, function (rsp) {
             if(rsp.success) {
-                console.log("Payment Success")
+                console.log("Payment Success");
+                window.location.href = "/checkout/complete"
             } else {
                 console.log("Payment Failed")
             }

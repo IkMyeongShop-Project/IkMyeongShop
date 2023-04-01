@@ -24,7 +24,8 @@
                                     src="/static/img/header/top_btn_sns2.png" alt=""></a></li>
                     </ul>
                     <ul>
-                        <li><a href="/account/login">로그인</a></li>
+                        <li th:if="${session.user == null}"><a href="/account/login">로그인</a></li>
+                        <li th:if="${session.user != null}"><a href="/account/logout">로그아웃</a></li>
                         <li><a href="/account/register">회원가입</a></li>
                         <li><a href="/order/cart">장바구니0</a></li>
                         <li><a href="/mypage/index">마이페이지</a></li>

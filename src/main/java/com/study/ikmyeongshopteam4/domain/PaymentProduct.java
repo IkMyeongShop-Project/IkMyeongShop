@@ -14,7 +14,7 @@ public class PaymentProduct {
     private String pdt_name;
     private int pdt_price;
     private String pdt_design;
-    private String pdt_savename;
+    private String save_name;
 
     public CheckoutRespDto toDto() {
         return CheckoutRespDto.builder()
@@ -23,7 +23,7 @@ public class PaymentProduct {
                 .pdtName(pdt_name)
                 .pdtPrice(pdt_price)
                 .pdtDesign(pdt_design)
-                .saveName(pdt_savename)
+                .saveName(save_name)
                 .build();
     }
 }

@@ -36,4 +36,11 @@ public class ProductController {
         model.addAttribute("user", principalDetails.getUser());
         return "goods/goods_order";
     }
+
+    @GetMapping("/checkout/complete")
+    public String paymentComplete(Model model,
+                                  @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+        model.addAttribute("user",principalDetails.getUser());
+        return "goods/order_complete";
+    }
 }

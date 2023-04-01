@@ -22,7 +22,8 @@
                         <li><a href="#" target="_blank"><img src="/static/img/header/top_btn_sns2.png" alt=""></a></li>
                     </ul>
                     <ul>
-                        <li><a href="/account/login">로그인</a></li>
+                        <li th:if="${session.user == null}"><a href="/account/login">로그인</a></li>
+                        <li th:if="${session.user != null}"><a href="/account/logout">로그아웃</a></li>
                         <li><a href="/account/register">회원가입</a></li>
                         <li><a href="/order/cart">장바구니0</a></li>
                         <li><a href="/mypage/index">마이페이지</a></li>
@@ -70,13 +71,11 @@
                         </ol>
                     </div>
                         <div class="order_cont">
-            
                             <div class="cart_cont_list">
                                 <div class="order_cart_tit">
                                     <h3>주문상세내역</h3>
                                 </div>
                                 <!-- //order_cart_tit -->
-            
                                 <div class="order_table_type">
                                     <!-- 장바구니 상품리스트 시작 -->
                                     <table>
@@ -104,7 +103,9 @@
                                                 <input type="hidden" name="cartSno[]" value="">
                                                 <div class="pick_add_cont">
                                                     <span class="pick_add_img">
-                                                        <a href="../goods/goods_view.php?goodsNo=1000000486"><img th:src="|/static/upload/product/${data.saveName}|" class="middle"></a>
+                                                        <div class="pdtimg">
+                                                            <img th:src="|/static/upload/product/${data.saveName}|" class="middle">
+                                                        </div>
                                                     </span>
                                                     <div class="pick_add_info">
                                                         <div class="product-name" th:text="${data.pdtName}">
@@ -209,29 +210,49 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"><span>주문하시는 분</span></th>
-                                                    <td th:text="|${user.name}"><input type="text"name="orderName" data-pattern="gdEngKor" maxlength="20"></td>
+                                                    <td th:text="|${user.name}|"><input type="text"name="orderName" data-pattern="gdEngKor" maxlength="20"></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">전화번호</th>
                                                     <td>
-                                                        <input type="text" id="phoneNum" name="orderPhone" value="" maxlength="20">
+                                                        <span th:if="${user.phone != null}" th:text="|${user.phone}">
+                                                            <input type="text" id="phoneNum" name="orderPhone" value="" maxlength="20">
+                                                        </span>
+                                                        <span th:if="${user.phone == null}">
+                                                            <input type="text" id="phoneNum" name="orderPhone" value="" maxlength="20">
+                                                        </span>
+                                                            
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row"><span>이메일</span></th>
-                                                    <td class="member_email">
-                                                        <input type="text" class="principal-email" name="orderEmail">
-                
-                                                        <select id="emailDomain" class="chosen-select">
-                                                            <option value="self">직접입력</option>
-                                                            <option value="naver.com">naver.com</option>
-                                                            <option value="hanmail.net">hanmail.net</option>
-                                                            <option value="daum.net">daum.net</option>
-                                                            <option value="nate.com">nate.com</option>
-                                                            <option value="hotmail.com">hotmail.com</option>
-                                                            <option value="gmail.com">gmail.com</option>
-                                                            <option value="icloud.com">icloud.com</option>
-                                                        </select>
+                                                    <td>
+                                                        <span th:if="${user.email != null}" class="member_email user_email1" th:text="|${user.email}|">
+                                                            <input type="text" class="principal-email" name="orderEmail">
+                                                            <select id="emailDomain" class="chosen-select">
+                                                                <option value="self">직접입력</option>
+                                                                <option value="naver.com">naver.com</option>
+                                                                <option value="hanmail.net">hanmail.net</option>
+                                                                <option value="daum.net">daum.net</option>
+                                                                <option value="nate.com">nate.com</option>
+                                                                <option value="hotmail.com">hotmail.com</option>
+                                                                <option value="gmail.com">gmail.com</option>
+                                                                <option value="icloud.com">icloud.com</option>
+                                                            </select>
+                                                        </span>
+                                                        <span th:if="${user.email == null}" class="member_email user_email2">
+                                                            <input type="text" class="principal-email input-email" name="orderEmail">
+                                                            <select id="emailDomain" class="chosen-select">
+                                                                <option value="self">직접입력</option>
+                                                                <option value="naver.com">naver.com</option>
+                                                                <option value="hanmail.net">hanmail.net</option>
+                                                                <option value="daum.net">daum.net</option>
+                                                                <option value="nate.com">nate.com</option>
+                                                                <option value="hotmail.com">hotmail.com</option>
+                                                                <option value="gmail.com">gmail.com</option>
+                                                                <option value="icloud.com">icloud.com</option>
+                                                            </select>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -355,5 +376,6 @@
     <script src="/static/js/order/address.js"></script>
     <script src="/static/js/order/product_order.js"></script>
     <script src="/static/js/order/checkoutprice.js"></script>
+    <script src="/static/js/order/user.js"></script>
 </body>
 </html>

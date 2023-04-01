@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>익명상점</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/static/css/account/reset.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/order/order_complete.css">
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+            <div id="top">
+                <div class="sns">
+                    <ul>
+                        <li><a href="https://www.facebook.com/ikmyeongshop" target="_blank"><img src="/static/img/header/top_btn_sns1.png" alt=""></a></li>
+                        <li><a href="https://www.instagram.com/anonymous_ikmsang/" target="_blank"><img src="/static/img/header/top_btn_sns2.png" alt=""></a></li>
+                    </ul>
+                    <ul>
+                        <li th:if="${session.user == null}"><a href="/account/login">로그인</a></li>
+                        <li th:if="${session.user != null}"><a href="/account/logout">로그아웃</a></li>
+                        <li><a href="/account/register">회원가입</a></li>
+                        <li><a href="/order/cart">장바구니0</a></li>
+                        <li><a href="/mypage/index">마이페이지</a></li>
+                        <li><a href="#">고객센터</a></li>
+                        <li><a href="#"><img src="/static/img/header/top_btn_search.png" alt=""></a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <a href="#"><img src="/static/img/header/event_left.png" alt=""></a>
+                    <a href="/index"><img src="/static/img/header/logo.png" alt=""></a>
+                    <a href="#"><img src="/static/img/header/event_right.png" alt=""></a>
+                </div>
+                <nav  class="nav">
+                    <ul>
+                      <li><a href="/goods/DOll">DOLL</a></li>
+                      <li><a href="/goods/FIGURE&TOY">FIGURE & TOY</a></li>
+                      <li><a href="/goods/FANCY">FANCY</a></li>
+                      <li><a href="/goods/ACCESSORY">ACCESSORY</a></li>
+                      <li><a href="/goods/LIVING">LIVING</a></li>
+                      <li><a href="/goods/KITCHEN&BATHROOM">KITCHEN & BATHROOM</a></li>
+                      <li><a href="/goods/MOBILE">MOBILE</a></li>
+                      <li><a href="/goods/깨꾹이">깨꾹이</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div id="container">
+            <div id="contents">
+                <div class="location_wrap">
+                    <div class="location_cont">
+                        <em><a class="local_home" href="/goods/all">HOME</a></em>
+                    </div>
+                    <div class="content-box">
+                        <div class="order-wrap">
+                            <div class="order-tit">
+                                <h2>주문서작성/결제</h2>
+                                <ol class="order_state">
+                                    <li>
+                                        <span>01</span> 장바구니 <span class="state_img"><img src="" alt=">"></span>
+                                    </li>
+                                    <li>
+                                        <span>02</span> 주문서작성/결제 <span class="state_img"><img src="" alt=">"></span>
+                                    </li>
+                                    <li class="page_on">
+                                        <span>03</span> 주문완료
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="content-text-container">
+                                <div class="content-text">
+                                    <div class="text-main">
+                                        주문이 <strong>완료</strong> 되었습니다.
+                                    </div>
+                                    <div class="text-sub" >
+                                        <strong th:text="${user.name}"></strong>님 감사합니다.
+                                    </div>
+                                </div>
+                                <div class="location-button">
+                                    <button type="button" class="home-button">홈으로</button>
+                                    <button type="button" class="login-button">마이페이지</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>          
+    <script src="/static/js/order/order_complete.js"></script>
+    <div id="footer_wrap">
+    </div>
+</body>
+</html>
